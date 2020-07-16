@@ -1,0 +1,29 @@
+{
+  "name": "itpss-visualizer",
+  "version": "0.0.1",
+  "description": "Helps to visualize some of the data from the Illinois Traffic and Pedestrian Stop Study - specifically for Belvidere, IL",
+  "scripts": {
+    "build": "webpack --mode development",
+    "start": "npm run build && webpack-dev-server --mode development --open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://michaeldhart@github.com/michaeldhart/itpss-visualizer.git"
+  },
+  "author": "Michael D. Hart",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/michaeldhart/itpss-visualizer/issues"
+  },
+  "homepage": "https://github.com/michaeldhart/itpss-visualizer#readme",
+  "devDependencies": {
+    "open-cli": "^6.0.1",
+    "source-map-loader": "^1.0.1",
+    "ts-loader": "^8.0.1",
+    "typescript": "^3.9.6",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {}
+}
