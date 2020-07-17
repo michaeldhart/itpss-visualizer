@@ -14,12 +14,16 @@ module.exports = {
                 test: /\.ts$/,
                 include: path.resolve(__dirname, "src"),
                 loader: "ts-loader"
+            },
+            {
+                test: /\.(css|scss)$/,
+                use: ["style-loader", "css-loader", "sass-loader"]
             }
         ]
     },
     output: {
-        path: path.resolve(__dirname, "public"),
-        publicPath: "/public/",
+        path: path.resolve(__dirname, "public/js"),
+        publicPath: "/public/js/",
         filename: "main.js"
     },
     devServer: {

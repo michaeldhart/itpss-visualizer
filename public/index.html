@@ -1,7 +1,85 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
-    <script src="main.js" type="module"></script>
+    <meta charset="utf-8">
+    <title>Visualizing the ITPSS</title>
+    <meta name="description" content="Helps to visualize some of the data from the Illinois Traffic and Pedestrian Stop Study - specifically for Belvidere, IL">
+    <meta name="author" content="Michael D. Hart">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/skeleton.css">
+
+    <script src="js/main.js"></script>
 </head>
 <body>
-    Hello World!
+    <div class="container">
+        <h1>Visualizing the ITPSS</h1>
+        <p>
+            The Illinois Department of Transportation has released its 2019 <a target="_blank" href="http://www.idot.illinois.gov/transportation-system/local-transportation-partners/law-enforcement/illinois-traffic-stop-study">Illinois Traffic and Pedestrian Stop Study</a>. This study provides valuable information about local police departments and may help to determine whether or not each department exhibits any racial bias in their traffic stop practices.
+        </p>
+        <p>
+            In my conversations with people, it seemed that there was a lot of confusion on what exactly the data is telling us. We're not all data scientists and complex data sets can be hard to interpret. I realized that visualizing some of the data might make its findings more clear. That is the purpose of this site. 
+        </p>
+    </div>
+    <div class="container">
+        <h3>General Population</h3>
+        <p>
+            Given the racial makeup of this municipality, the general population looks something like the following:
+        </p>
+        <div class="row">
+            <table class="u-full-width pop-legend">
+                <thead>
+                    <tr>
+                        <th>Race</th>
+                        <th>Total</th>
+                        <th>Percent</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>White</td>
+                        <td id="benchmark-w"></td>
+                        <td id="percent-w"></td>
+                        <td id="pop-legend-w"></td>
+                    </tr>
+                    <tr>
+                        <td>Black</td>
+                        <td id="benchmark-b"></td>
+                        <td id="percent-b"></td>
+                        <td id="pop-legend-b"></td>
+                    </tr>
+                    <tr>
+                        <td>Hispanic</td>
+                        <td id="benchmark-h"></td>
+                        <td id="percent-h"></td>
+                        <td id="pop-legend-h"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <div id="pop-chart"></div>
+        </div>
+    </div>
+    <div class="container">
+        <h3>Assuming No Bias</h3>
+        <p>
+            Given the number of stops in this municipality, if there were no racial bias the makeup of stops would look like the following:
+        </p>
+        <div class="row">
+            <div id="no-bias-chart"></div>
+        </div>
+    </div>
+    <div class="container">
+        <h3>Actual Results</h3>
+        <p>
+            The actual racial representation of traffic stops for this municipality is reflected by the following:
+        </p>
+        <div class="row">
+            <div id="bias-chart"></div>
+        </div>
+    </div>
 </body>

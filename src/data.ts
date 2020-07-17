@@ -1,4 +1,4 @@
-interface LocalityStatisticSet {
+export interface LocalityStatisticSet {
     id: number;
     name: string;
     totalBenchmark: number;
