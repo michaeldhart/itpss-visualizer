@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "f101561d3ad7f3cbda11";
+/******/ 	var hotCurrentHash = "f06a7fb7543063c30a2b";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -12085,7 +12085,7 @@ makeMorphable();
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "body {\n  margin-top: 20px; }\n  body .row {\n    margin-bottom: 40px; }\n", ""]);
+exports.push([module.i, "body {\n  margin-top: 20px; }\n  body .row {\n    margin-bottom: 40px; }\n  body .footer {\n    border-top: 1px solid #000;\n    margin-top: 100px;\n    opacity: 0.5; }\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -12708,6 +12708,7 @@ const generalPopulationChartMaker_1 = __webpack_require__(/*! ./generalPopulatio
 const utils_1 = __webpack_require__(/*! ./utils */ "./src/utils.ts");
 const noBiasChartMaker_1 = __webpack_require__(/*! ./noBiasChartMaker */ "./src/noBiasChartMaker.ts");
 const biasChartMaker_1 = __webpack_require__(/*! ./biasChartMaker */ "./src/biasChartMaker.ts");
+const projectedPopulationChartMaker_1 = __webpack_require__(/*! ./projectedPopulationChartMaker */ "./src/projectedPopulationChartMaker.ts");
 const sampleSize = 250;
 const genPopHeight = 400;
 const noBiasHeight = 100;
@@ -12724,9 +12725,15 @@ function render() {
         renderGeneralPopulation(document.getElementById("pop-chart").clientWidth, genPopHeight, data_1.Data[0]);
         renderNoBias(document.getElementById("pop-chart").clientWidth, noBiasHeight, data_1.Data[0]);
         renderBias(document.getElementById("pop-chart").clientWidth, noBiasHeight, data_1.Data[0]);
+        renderProjectedPopulation(document.getElementById("pop-chart").clientWidth, genPopHeight, data_1.Data[0]);
     }, 500);
 }
 function renderGeneralPopulation(width, height, statistics) {
+    document.getElementById("total-benchmark").innerHTML = `${statistics.totalBenchmark}`;
+    const sampleSizeSpans = document.getElementsByClassName("sample-size").length;
+    for (let i = 0; i < sampleSizeSpans; i++) {
+        document.getElementsByClassName("sample-size").item(i).innerHTML = `${sampleSize}`;
+    }
     document.getElementById("benchmark-w").innerHTML = `${statistics.white.benchmark}`;
     document.getElementById("benchmark-b").innerHTML = `${statistics.black.benchmark}`;
     document.getElementById("benchmark-h").innerHTML = `${statistics.hispanic.benchmark}`;
@@ -12740,14 +12747,20 @@ function renderGeneralPopulation(width, height, statistics) {
     chartMaker.insertLegendDot("pop-legend-h", utils_1.Colors.GREEN);
 }
 function renderNoBias(width, height, statistics) {
+    document.getElementById("total-stops").innerHTML = `${statistics.totalStops}`;
     const count = Math.round((statistics.totalStops / statistics.totalBenchmark) * sampleSize);
     const chartMaker = new noBiasChartMaker_1.NoBiasChartMaker(width, height);
+    document.getElementById("sample-stops").innerHTML = `${chartMaker.getStopCountForSampleSize(statistics, sampleSize)}`;
     chartMaker.make(statistics, count);
 }
 function renderBias(width, height, statistics) {
     const count = Math.round((statistics.totalStops / statistics.totalBenchmark) * sampleSize);
     const chartMaker = new biasChartMaker_1.BiasChartMaker(width, height);
     chartMaker.make(statistics, count);
+}
+function renderProjectedPopulation(width, height, statistics) {
+    const chartMaker = new projectedPopulationChartMaker_1.ProjectedPopulationChartMaker(width, height, sampleSize);
+    chartMaker.make(statistics);
 }
 main();
 
@@ -12808,12 +12821,89 @@ class NoBiasChartMaker {
                 }
             }
         };
+        this.getStopCountForSampleSize = (statistics, count) => {
+            const stopPercent = statistics.totalStops / statistics.totalBenchmark;
+            return Math.round(count * stopPercent);
+        };
         this.width = width;
         this.height = height;
         this.dotSize = 10;
     }
 }
 exports.NoBiasChartMaker = NoBiasChartMaker;
+
+
+/***/ }),
+
+/***/ "./src/projectedPopulationChartMaker.ts":
+/*!**********************************************!*\
+  !*** ./src/projectedPopulationChartMaker.ts ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ProjectedPopulationChartMaker = void 0;
+const svg_js_1 = __webpack_require__(/*! @svgdotjs/svg.js */ "./node_modules/@svgdotjs/svg.js/dist/svg.esm.js");
+const utils_1 = __webpack_require__(/*! ./utils */ "./src/utils.ts");
+class ProjectedPopulationChartMaker {
+    constructor(width, height, sampleSize) {
+        this.make = (statistics) => {
+            const id = "projected-pop-chart";
+            document.getElementById(id).innerHTML = "";
+            var svg = svg_js_1.SVG().addTo(`#${id}`).size(this.width, this.height);
+            const whitePercent = statistics.white.stops / statistics.totalStops;
+            const blackPercent = statistics.black.stops / statistics.totalStops;
+            const hispanicPercent = statistics.hispanic.stops / statistics.totalStops;
+            let whiteCount = this.sampleSize * whitePercent;
+            let blackCount = this.sampleSize * blackPercent;
+            let hispanicCount = this.sampleSize * hispanicPercent;
+            const dots = [];
+            for (let i = 0; i < this.sampleSize; i++) {
+                let coordinates = this.generateCoordinates();
+                while (!this.coordinatesAreUnique(coordinates, dots)) {
+                    coordinates = this.generateCoordinates();
+                }
+                let color = utils_1.Colors.BLUE;
+                if (blackCount > 0) {
+                    color = utils_1.Colors.RED;
+                    blackCount--;
+                }
+                else if (hispanicCount > 0) {
+                    color = utils_1.Colors.GREEN;
+                    hispanicCount--;
+                }
+                const dot = svg.circle(this.dotSize)
+                    .attr({ fill: color })
+                    .attr({ cx: coordinates.x, cy: coordinates.y });
+                dots.push(dot);
+            }
+        };
+        this.generateCoordinates = () => {
+            const minX = this.dotSize / 2;
+            const maxX = this.width - (this.dotSize / 2);
+            const minY = this.dotSize / 2;
+            const maxY = this.height - (this.dotSize / 2);
+            const x = Math.round(Math.max(minX, Math.random() * maxX));
+            const y = Math.round(Math.max(minY, Math.random() * maxY));
+            return { x, y };
+        };
+        this.coordinatesAreUnique = (coordinates, dots) => {
+            return dots.every(d => this.dotsDontOverlap(coordinates, d));
+        };
+        this.dotsDontOverlap = (coordinates, dot) => {
+            return (coordinates.x < dot.cx() - this.dotSize || coordinates.x > dot.cx() + this.dotSize)
+                || (coordinates.y < dot.cy() - this.dotSize || coordinates.y > dot.cy() + this.dotSize);
+        };
+        this.width = width;
+        this.height = height;
+        this.sampleSize = sampleSize;
+        this.dotSize = 10;
+    }
+}
+exports.ProjectedPopulationChartMaker = ProjectedPopulationChartMaker;
 
 
 /***/ }),

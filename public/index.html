@@ -20,14 +20,14 @@
             The Illinois Department of Transportation has released its 2019 <a target="_blank" href="http://www.idot.illinois.gov/transportation-system/local-transportation-partners/law-enforcement/illinois-traffic-stop-study">Illinois Traffic and Pedestrian Stop Study</a>. This study provides valuable information about local police departments and may help to determine whether or not each department exhibits any racial bias in their traffic stop practices.
         </p>
         <p>
-            In my conversations with people, it seemed that there was a lot of confusion on what exactly the data is telling us. We're not all data scientists and complex data sets can be hard to interpret. I realized that visualizing some of the data might make its findings more clear. That is the purpose of this site. 
+            In my conversations, it seemed that there was a lot of confusion on what exactly the data is telling us. We're not all data scientists and complex data sets can be hard to interpret. Sometimes making data more visual helps us to understand what's going on in the numbers. That is the purpose of this site. 
         </p>
     </div>
     <div class="container">
         <h3>General Population</h3>
-        <p>
-            Given the racial makeup of this municipality, the general population looks something like the following:
-        </p>
+        <div class="row">
+            In this study, IDOT counted <span id="total-benchmark"></span> people in this municipality. The racial makeup of these people is reflected by the following table:
+        </div>
         <div class="row">
             <table class="u-full-width pop-legend">
                 <thead>
@@ -61,25 +61,53 @@
             </table>
         </div>
         <div class="row">
+            If this municipality were represented by <span class="sample-size"></span> dots, it would look like the following:
+        </div>
+        <div class="row">
+            <div>Figure 1.</div>
             <div id="pop-chart"></div>
         </div>
     </div>
     <div class="container">
         <h3>Assuming No Bias</h3>
         <p>
-            Given the number of stops in this municipality, if there were no racial bias the makeup of stops would look like the following:
+            <span id="total-stops"></span> stops were reported by this municipality in 2019. In our scaled-down municipality of <span class="sample-size"></span> people, we would have <span id="sample-stops"></span> stops. If those stops reflected the racial makeup of the larger municipality, they would look like this:
         </p>
         <div class="row">
+            <div>Figure 2.</div>
             <div id="no-bias-chart"></div>
         </div>
     </div>
     <div class="container">
         <h3>Actual Results</h3>
         <p>
-            The actual racial representation of traffic stops for this municipality is reflected by the following:
+            The actual racial representation of traffic stops for this municipality according to this report looked like this:
         </p>
         <div class="row">
+            <div>Figure 3.</div>
             <div id="bias-chart"></div>
+        </div>
+    </div>
+    <div class="container">
+        <h3>Projected Population</h3>
+        <p>
+            Here is what the general population's racial makeup would look like if it matched the racial makeup of the actual traffic stop results for this municipality:
+        </p>
+        <div class="row">
+            <div>Figure 4.</div>
+            <div id="projected-pop-chart"></div>
+        </div>
+    </div>
+    <div class="container">
+        <h3>Conclusion</h3>
+        <p>
+            The degree to which racial bias exists in this municipality is reflected in the above charts. How similar are Figure 2 and Figure 3? Figure 1 and Figure 4? The more similar they are, the less racial bias is presented by the data. The more different they are, the more racial bias is presented by the data.
+        </p>
+        <h5>How did your community do? How can we do better?</h5>
+    </div>
+    <div class="container footer">
+        <div class="row">
+            - Design and source code by Michael D. Hart. 
         </div>
     </div>
 </body>

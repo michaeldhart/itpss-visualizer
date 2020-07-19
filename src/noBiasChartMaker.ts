@@ -63,4 +63,10 @@ export class NoBiasChartMaker {
             }
         }
     }
+
+    getStopCountForSampleSize = (statistics: LocalityStatisticSet, count: number) => {
+        const stopPercent = statistics.totalStops / statistics.totalBenchmark;
+
+        return Math.round(count * stopPercent);
+    }
 }
