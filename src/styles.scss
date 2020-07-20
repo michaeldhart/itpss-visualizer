@@ -1,5 +1,7 @@
 body {
     margin-top: 20px;
+    background: rgba(255, 255, 255, 0.95) url("../public/images/dot-bg.jpg") repeat-x;
+    background-blend-mode: color;
 
     select {
         width: 100%;
