@@ -29,7 +29,7 @@ export class BiasChartMaker {
 
         const dots: Circle[] = [];
 
-        const columnCount = Math.floor(this.width / this.dotSize);
+        const columnCount = Math.floor(this.width / (this.dotSize * 2));
             
         let currentRow = 0;
         let currentColumn = 0;

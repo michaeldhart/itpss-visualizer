@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "3ea7c9df45e9a0e4aad0";
+/******/ 	var hotCurrentHash = "505f2661c6bc318cf370";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -12595,7 +12595,7 @@ class BiasChartMaker {
             let blackCount = count * blackPercent;
             let hispanicCount = count * hispanicPercent;
             const dots = [];
-            const columnCount = Math.floor(this.width / this.dotSize);
+            const columnCount = Math.floor(this.width / (this.dotSize * 2));
             let currentRow = 0;
             let currentColumn = 0;
             for (let i = 0; i < count; i++) {
@@ -13014,7 +13014,8 @@ class NoBiasChartMaker {
             let blackCount = count * blackPercent;
             let hispanicCount = count * hispanicPercent;
             const dots = [];
-            const columnCount = Math.floor(this.width / this.dotSize);
+            const columnCount = Math.floor(this.width / (this.dotSize * 2));
+            console.log(this.width, this.dotSize, columnCount);
             let currentRow = 0;
             let currentColumn = 0;
             for (let i = 0; i < count; i++) {
