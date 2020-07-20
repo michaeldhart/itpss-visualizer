@@ -51,16 +51,16 @@ function render() {
 }
 
 function renderGeneralPopulation(width: number, height: number, statistics: LocalityStatisticSet) {
-    document.getElementById("total-benchmark").innerHTML = `${statistics.totalBenchmark}`;
+    document.getElementById("total-benchmark").innerHTML = `${statistics.totalBenchmark.toLocaleString()}`;
     const sampleSizeSpans = document.getElementsByClassName("sample-size").length;
 
     for (let i = 0; i < sampleSizeSpans; i++) {
         document.getElementsByClassName("sample-size").item(i).innerHTML = `${sampleSize}`;
     }
 
-    document.getElementById("benchmark-w").innerHTML = `${statistics.white.benchmark}`;
-    document.getElementById("benchmark-b").innerHTML = `${statistics.black.benchmark}`;
-    document.getElementById("benchmark-h").innerHTML = `${statistics.hispanic.benchmark}`;
+    document.getElementById("benchmark-w").innerHTML = `${statistics.white.benchmark.toLocaleString()}`;
+    document.getElementById("benchmark-b").innerHTML = `${statistics.black.benchmark.toLocaleString()}`;
+    document.getElementById("benchmark-h").innerHTML = `${statistics.hispanic.benchmark.toLocaleString()}`;
 
     document.getElementById("percent-w").innerHTML = `${Math.round((statistics.white.benchmark / statistics.totalBenchmark) * 100)}%`;
     document.getElementById("percent-b").innerHTML = `${Math.round((statistics.black.benchmark / statistics.totalBenchmark) * 100)}%`;
@@ -74,7 +74,7 @@ function renderGeneralPopulation(width: number, height: number, statistics: Loca
 }
 
 function renderNoBias(width: number, height: number, statistics: LocalityStatisticSet) {
-    document.getElementById("total-stops").innerHTML = `${statistics.totalStops}`;
+    document.getElementById("total-stops").innerHTML = `${statistics.totalStops.toLocaleString()}`;
 
     const count = Math.round((statistics.totalStops / statistics.totalBenchmark) * sampleSize);
     const chartMaker = new NoBiasChartMaker(width, height);

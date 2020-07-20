@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "c60eb8d38e0a8a2cab00";
+/******/ 	var hotCurrentHash = "3ea7c9df45e9a0e4aad0";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -12950,14 +12950,14 @@ function render() {
     }, 500);
 }
 function renderGeneralPopulation(width, height, statistics) {
-    document.getElementById("total-benchmark").innerHTML = `${statistics.totalBenchmark}`;
+    document.getElementById("total-benchmark").innerHTML = `${statistics.totalBenchmark.toLocaleString()}`;
     const sampleSizeSpans = document.getElementsByClassName("sample-size").length;
     for (let i = 0; i < sampleSizeSpans; i++) {
         document.getElementsByClassName("sample-size").item(i).innerHTML = `${sampleSize}`;
     }
-    document.getElementById("benchmark-w").innerHTML = `${statistics.white.benchmark}`;
-    document.getElementById("benchmark-b").innerHTML = `${statistics.black.benchmark}`;
-    document.getElementById("benchmark-h").innerHTML = `${statistics.hispanic.benchmark}`;
+    document.getElementById("benchmark-w").innerHTML = `${statistics.white.benchmark.toLocaleString()}`;
+    document.getElementById("benchmark-b").innerHTML = `${statistics.black.benchmark.toLocaleString()}`;
+    document.getElementById("benchmark-h").innerHTML = `${statistics.hispanic.benchmark.toLocaleString()}`;
     document.getElementById("percent-w").innerHTML = `${Math.round((statistics.white.benchmark / statistics.totalBenchmark) * 100)}%`;
     document.getElementById("percent-b").innerHTML = `${Math.round((statistics.black.benchmark / statistics.totalBenchmark) * 100)}%`;
     document.getElementById("percent-h").innerHTML = `${Math.round((statistics.hispanic.benchmark / statistics.totalBenchmark) * 100)}%`;
@@ -12968,7 +12968,7 @@ function renderGeneralPopulation(width, height, statistics) {
     chartMaker.insertLegendDot("pop-legend-h", utils_1.Colors.GREEN);
 }
 function renderNoBias(width, height, statistics) {
-    document.getElementById("total-stops").innerHTML = `${statistics.totalStops}`;
+    document.getElementById("total-stops").innerHTML = `${statistics.totalStops.toLocaleString()}`;
     const count = Math.round((statistics.totalStops / statistics.totalBenchmark) * sampleSize);
     const chartMaker = new noBiasChartMaker_1.NoBiasChartMaker(width, height);
     document.getElementById("sample-stops").innerHTML = `${chartMaker.getStopCountForSampleSize(statistics, sampleSize)}`;
