@@ -11,9 +11,27 @@ const sampleSize = 250;
 const genPopHeight = 400;
 const noBiasHeight = 100;
 
+let selectedDataSet = 0;
 let resizeTimeout: NodeJS.Timeout;
 
 function main() {
+    setTimeout(() => {
+        const select = document.getElementById("data-sets") as HTMLSelectElement;
+
+        Data.forEach((d, i) => {
+            const option = document.createElement("option");
+            option.value = i.toString();
+            option.text = d.name;
+
+            select.add(option);
+        });
+
+        select.onchange = (event: Event) => {
+            selectedDataSet = select.selectedIndex;
+            render();
+        }
+    }, 500);
+
     render();
 
     window.onresize = () => {
@@ -25,10 +43,10 @@ function main() {
 
 function render() {
     resizeTimeout = setTimeout(() => {
-        renderGeneralPopulation(document.getElementById("pop-chart").clientWidth, genPopHeight, Data[0]);
-        renderNoBias(document.getElementById("pop-chart").clientWidth, noBiasHeight, Data[0]);
-        renderBias(document.getElementById("pop-chart").clientWidth, noBiasHeight, Data[0]);
-        renderProjectedPopulation(document.getElementById("pop-chart").clientWidth, genPopHeight, Data[0])
+        renderGeneralPopulation(document.getElementById("pop-chart").clientWidth, genPopHeight, Data[selectedDataSet]);
+        renderNoBias(document.getElementById("pop-chart").clientWidth, noBiasHeight, Data[selectedDataSet]);
+        renderBias(document.getElementById("pop-chart").clientWidth, noBiasHeight, Data[selectedDataSet]);
+        renderProjectedPopulation(document.getElementById("pop-chart").clientWidth, genPopHeight, Data[selectedDataSet])
     }, 500);
 }
 

@@ -1,8 +1,25 @@
 body {
     margin-top: 20px;
 
+    select {
+        width: 100%;
+    }
+
+    .small {
+        font-size: 0.2em;
+        opacity: 0.5;
+    }
+
     .row {
         margin-bottom: 40px;
+    }
+
+    h5 {
+        margin: 80px 0;
+    }
+
+    .afterword {
+        border-top: 1px solid #000;
     }
 
     .footer {

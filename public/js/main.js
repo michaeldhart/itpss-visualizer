@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "f06a7fb7543063c30a2b";
+/******/ 	var hotCurrentHash = "bddd5755b2fee6433a46";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -12085,7 +12085,7 @@ makeMorphable();
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "body {\n  margin-top: 20px; }\n  body .row {\n    margin-bottom: 40px; }\n  body .footer {\n    border-top: 1px solid #000;\n    margin-top: 100px;\n    opacity: 0.5; }\n", ""]);
+exports.push([module.i, "body {\n  margin-top: 20px; }\n  body select {\n    width: 100%; }\n  body .small {\n    font-size: 0.2em;\n    opacity: 0.5; }\n  body .row {\n    margin-bottom: 40px; }\n  body h5 {\n    margin: 80px 0; }\n  body .afterword {\n    border-top: 1px solid #000; }\n  body .footer {\n    border-top: 1px solid #000;\n    margin-top: 100px;\n    opacity: 0.5; }\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -12585,27 +12585,173 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Data = void 0;
 exports.Data = [
     {
-        id: 0,
         name: "Belvidere Police Department",
         totalBenchmark: 37855,
         totalStops: 5396,
         white: {
             benchmark: 29192,
-            stops: 3186,
-            stopRate: 0.109,
-            rateRatioVsWhite: 1
+            stops: 3186
         },
         black: {
             benchmark: 761,
-            stops: 627,
-            stopRate: 0.82,
-            rateRatioVsWhite: 7.5
+            stops: 627
         },
         hispanic: {
             benchmark: 7312,
             stops: 1537,
-            stopRate: 0.21,
-            rateRatioVsWhite: 1.9
+        }
+    },
+    {
+        name: "Boone County Sheriff",
+        totalBenchmark: 37855,
+        totalStops: 4969,
+        white: {
+            benchmark: 29192,
+            stops: 3395,
+        },
+        black: {
+            benchmark: 761,
+            stops: 409,
+        },
+        hispanic: {
+            benchmark: 7312,
+            stops: 1103,
+        }
+    },
+    {
+        name: "Freeport Police",
+        totalBenchmark: 17010,
+        totalStops: 2914,
+        white: {
+            benchmark: 12961,
+            stops: 1854,
+        },
+        black: {
+            benchmark: 3027,
+            stops: 1013,
+        },
+        hispanic: {
+            benchmark: 775,
+            stops: 37,
+        }
+    },
+    {
+        name: "Freeport Park District Police",
+        totalBenchmark: 17010,
+        totalStops: 21,
+        white: {
+            benchmark: 12961,
+            stops: 14,
+        },
+        black: {
+            benchmark: 3027,
+            stops: 7,
+        },
+        hispanic: {
+            benchmark: 775,
+            stops: 0,
+        }
+    },
+    {
+        name: "Ogle County Sheriff",
+        totalBenchmark: 37079,
+        totalStops: 4346,
+        white: {
+            benchmark: 33130,
+            stops: 3771,
+        },
+        black: {
+            benchmark: 349,
+            stops: 365,
+        },
+        hispanic: {
+            benchmark: 3259,
+            stops: 168,
+        }
+    },
+    {
+        name: "Oregon Police",
+        totalBenchmark: 37079,
+        totalStops: 682,
+        white: {
+            benchmark: 33130,
+            stops: 610,
+        },
+        black: {
+            benchmark: 349,
+            stops: 45,
+        },
+        hispanic: {
+            benchmark: 3259,
+            stops: 24,
+        }
+    },
+    {
+        name: "Rochelle Police",
+        totalBenchmark: 37079,
+        totalStops: 1033,
+        white: {
+            benchmark: 33130,
+            stops: 707,
+        },
+        black: {
+            benchmark: 349,
+            stops: 80,
+        },
+        hispanic: {
+            benchmark: 3259,
+            stops: 230,
+        }
+    },
+    {
+        name: "Rockford Police",
+        totalBenchmark: 102066,
+        totalStops: 11192,
+        white: {
+            benchmark: 59111,
+            stops: 4450,
+        },
+        black: {
+            benchmark: 22311,
+            stops: 5022,
+        },
+        hispanic: {
+            benchmark: 16957,
+            stops: 140,
+        }
+    },
+    {
+        name: "Stephenson County Sheriff",
+        totalBenchmark: 32474,
+        totalStops: 3022,
+        white: {
+            benchmark: 27928,
+            stops: 2374,
+        },
+        black: {
+            benchmark: 3136,
+            stops: 529,
+        },
+        hispanic: {
+            benchmark: 1101,
+            stops: 78,
+        }
+    },
+    {
+        name: "Winnebago County Sheriff",
+        totalBenchmark: 201483,
+        totalStops: 13550,
+        white: {
+            benchmark: 147766,
+            stops: 8789,
+        },
+        black: {
+            benchmark: 25175,
+            stops: 3179,
+        },
+        hispanic: {
+            benchmark: 22741,
+            stops: 43,
         }
     }
 ];
@@ -12712,8 +12858,22 @@ const projectedPopulationChartMaker_1 = __webpack_require__(/*! ./projectedPopul
 const sampleSize = 250;
 const genPopHeight = 400;
 const noBiasHeight = 100;
+let selectedDataSet = 0;
 let resizeTimeout;
 function main() {
+    setTimeout(() => {
+        const select = document.getElementById("data-sets");
+        data_1.Data.forEach((d, i) => {
+            const option = document.createElement("option");
+            option.value = i.toString();
+            option.text = d.name;
+            select.add(option);
+        });
+        select.onchange = (event) => {
+            selectedDataSet = select.selectedIndex;
+            render();
+        };
+    }, 500);
     render();
     window.onresize = () => {
         clearTimeout(resizeTimeout);
@@ -12722,10 +12882,10 @@ function main() {
 }
 function render() {
     resizeTimeout = setTimeout(() => {
-        renderGeneralPopulation(document.getElementById("pop-chart").clientWidth, genPopHeight, data_1.Data[0]);
-        renderNoBias(document.getElementById("pop-chart").clientWidth, noBiasHeight, data_1.Data[0]);
-        renderBias(document.getElementById("pop-chart").clientWidth, noBiasHeight, data_1.Data[0]);
-        renderProjectedPopulation(document.getElementById("pop-chart").clientWidth, genPopHeight, data_1.Data[0]);
+        renderGeneralPopulation(document.getElementById("pop-chart").clientWidth, genPopHeight, data_1.Data[selectedDataSet]);
+        renderNoBias(document.getElementById("pop-chart").clientWidth, noBiasHeight, data_1.Data[selectedDataSet]);
+        renderBias(document.getElementById("pop-chart").clientWidth, noBiasHeight, data_1.Data[selectedDataSet]);
+        renderProjectedPopulation(document.getElementById("pop-chart").clientWidth, genPopHeight, data_1.Data[selectedDataSet]);
     }, 500);
 }
 function renderGeneralPopulation(width, height, statistics) {
