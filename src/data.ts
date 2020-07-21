@@ -14,6 +14,23 @@ interface RaceStatisticSet {
 
 export const Data: LocalityStatisticSet[] = [
     {
+        name: "Algonquin Police",
+        totalBenchmark: 589331,
+        totalStops: 3785,
+        white: {
+            benchmark: 411768,
+            stops: 2877
+        },
+        black: {
+            benchmark: 22557,
+            stops: 203
+        },
+        hispanic: {
+            benchmark: 132538,
+            stops: 550,
+        }
+    },
+    {
         name: "Belvidere Police Department",
         totalBenchmark: 37855,
         totalStops: 5396,
@@ -48,6 +65,23 @@ export const Data: LocalityStatisticSet[] = [
         }
     },
     {
+        name: "Forest Park Police",
+        totalBenchmark: 299165,
+        totalStops: 1228,
+        white: {
+            benchmark: 118376,
+            stops: 295,
+        },
+        black: {
+            benchmark: 48386,
+            stops: 639,
+        },
+        hispanic: {
+            benchmark: 123450,
+            stops: 266,
+        }
+    },
+    {
         name: "Freeport Police",
         totalBenchmark: 17010,
         totalStops: 2914,
@@ -79,6 +113,40 @@ export const Data: LocalityStatisticSet[] = [
         hispanic: {
             benchmark: 775,
             stops: 0,
+        }
+    },
+    {
+        name: "McHenry County Sheriff",
+        totalBenchmark: 220488,
+        totalStops: 13561,
+        white: {
+            benchmark: 186104,
+            stops: 10426,
+        },
+        black: {
+            benchmark: 2920,
+            stops: 593,
+        },
+        hispanic: {
+            benchmark: 25093,
+            stops: 2286,
+        }
+    },
+    {
+        name: "Oak Park Police",
+        totalBenchmark: 299165,
+        totalStops: 8385,
+        white: {
+            benchmark: 118376,
+            stops: 2532,
+        },
+        black: {
+            benchmark: 48386,
+            stops: 4016,
+        },
+        hispanic: {
+            benchmark: 123450,
+            stops: 1609,
         }
     },
     {
@@ -150,6 +218,23 @@ export const Data: LocalityStatisticSet[] = [
         }
     },
     {
+        name: "Schaumburg Police",
+        totalBenchmark: 1238562,
+        totalStops: 22852,
+        white: {
+            benchmark: 826843,
+            stops: 13728,
+        },
+        black: {
+            benchmark: 48823,
+            stops: 2119,
+        },
+        hispanic: {
+            benchmark: 198434,
+            stops: 3012,
+        }
+    },
+    {
         name: "Stephenson County Sheriff",
         totalBenchmark: 32474,
         totalStops: 3022,
@@ -164,6 +249,23 @@ export const Data: LocalityStatisticSet[] = [
         hispanic: {
             benchmark: 1101,
             stops: 78,
+        }
+    },
+    {
+        name: "Wheaton Police",
+        totalBenchmark: 660604,
+        totalStops: 11020,
+        white: {
+            benchmark: 464950,
+            stops: 8117,
+        },
+        black: {
+            benchmark: 30398,
+            stops: 1265,
+        },
+        hispanic: {
+            benchmark: 84230,
+            stops: 1156,
         }
     },
     {

@@ -2,7 +2,7 @@ import { Data, LocalityStatisticSet } from "./data";
 
 import "./styles.scss";
 import { GeneralPopulationChartMaker } from "./generalPopulationChartMaker";
-import { Colors } from "./utils";
+import { Colors, getStopRateRatio } from "./utils";
 import { NoBiasChartMaker } from "./noBiasChartMaker";
 import { BiasChartMaker } from "./biasChartMaker";
 import { ProjectedPopulationChartMaker } from "./projectedPopulationChartMaker";
@@ -56,6 +56,22 @@ function renderGeneralPopulation(width: number, height: number, statistics: Loca
 
     for (let i = 0; i < sampleSizeSpans; i++) {
         document.getElementsByClassName("sample-size").item(i).innerHTML = `${sampleSize}`;
+    }
+
+    // warn users that if the stop rate is too low there
+    // might not be enough dots in the no-bias/bias charts to actually show bias
+    const stopRateDisclaimers = document.getElementsByClassName("stop-rate-disclaimer").length;
+    let disclaimerMessage = "";
+
+    if (getStopRateRatio(statistics) < 0.03) {
+        disclaimerMessage = `Note: This department's stop rate (the ratio of number of 
+            stops to the benchmark population) may be too small to accurately display this 
+            graph. When scaling down large population sizes or small stop counts, these 
+            figures would need to be represented by fractions of dots.`;
+    }
+
+    for (let i = 0; i < stopRateDisclaimers; i++) {
+        document.getElementsByClassName("stop-rate-disclaimer").item(i).innerHTML = disclaimerMessage;
     }
 
     document.getElementById("benchmark-w").innerHTML = `${statistics.white.benchmark.toLocaleString()}`;

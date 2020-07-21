@@ -30,7 +30,6 @@ export class NoBiasChartMaker {
         const dots: Circle[] = [];
 
         const columnCount = Math.floor(this.width / (this.dotSize * 2));
-        console.log(this.width, this.dotSize, columnCount);
             
         let currentRow = 0;
         let currentColumn = 0;

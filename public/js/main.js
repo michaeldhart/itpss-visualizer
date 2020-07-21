@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "505f2661c6bc318cf370";
+/******/ 	var hotCurrentHash = "ff4da52a6029f8746ffb";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -12088,7 +12088,7 @@ var ___CSS_LOADER_URL_IMPORT_0___ = __webpack_require__(/*! ../public/images/dot
 exports = ___CSS_LOADER_API_IMPORT___(false);
 var ___CSS_LOADER_URL_REPLACEMENT_0___ = ___CSS_LOADER_GET_URL_IMPORT___(___CSS_LOADER_URL_IMPORT_0___);
 // Module
-exports.push([module.i, "body {\n  margin-top: 20px;\n  background: rgba(255, 255, 255, 0.95) url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ") repeat-x;\n  background-blend-mode: color; }\n  body select {\n    width: 100%; }\n  body .small {\n    font-size: 0.2em;\n    opacity: 0.5; }\n  body .row {\n    margin-bottom: 40px; }\n  body h5 {\n    margin: 80px 0; }\n  body .afterword {\n    border-top: 1px solid #000; }\n  body .footer {\n    border-top: 1px solid #000;\n    margin-top: 100px;\n    opacity: 0.5; }\n", ""]);
+exports.push([module.i, "body {\n  margin-top: 20px;\n  background: rgba(255, 255, 255, 0.95) url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ") repeat-x;\n  background-blend-mode: color; }\n  body select {\n    width: 100%; }\n  body .small {\n    font-size: 0.8em;\n    opacity: 0.5; }\n  body .row {\n    margin-bottom: 40px; }\n  body h5 {\n    margin: 80px 0; }\n  body .afterword {\n    border-top: 1px solid #000; }\n  body .footer {\n    border-top: 1px solid #000;\n    margin-top: 100px;\n    opacity: 0.5; }\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -12646,6 +12646,23 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Data = void 0;
 exports.Data = [
     {
+        name: "Algonquin Police",
+        totalBenchmark: 589331,
+        totalStops: 3785,
+        white: {
+            benchmark: 411768,
+            stops: 2877
+        },
+        black: {
+            benchmark: 22557,
+            stops: 203
+        },
+        hispanic: {
+            benchmark: 132538,
+            stops: 550,
+        }
+    },
+    {
         name: "Belvidere Police Department",
         totalBenchmark: 37855,
         totalStops: 5396,
@@ -12680,6 +12697,23 @@ exports.Data = [
         }
     },
     {
+        name: "Forest Park Police",
+        totalBenchmark: 299165,
+        totalStops: 1228,
+        white: {
+            benchmark: 118376,
+            stops: 295,
+        },
+        black: {
+            benchmark: 48386,
+            stops: 639,
+        },
+        hispanic: {
+            benchmark: 123450,
+            stops: 266,
+        }
+    },
+    {
         name: "Freeport Police",
         totalBenchmark: 17010,
         totalStops: 2914,
@@ -12711,6 +12745,40 @@ exports.Data = [
         hispanic: {
             benchmark: 775,
             stops: 0,
+        }
+    },
+    {
+        name: "McHenry County Sheriff",
+        totalBenchmark: 220488,
+        totalStops: 13561,
+        white: {
+            benchmark: 186104,
+            stops: 10426,
+        },
+        black: {
+            benchmark: 2920,
+            stops: 593,
+        },
+        hispanic: {
+            benchmark: 25093,
+            stops: 2286,
+        }
+    },
+    {
+        name: "Oak Park Police",
+        totalBenchmark: 299165,
+        totalStops: 8385,
+        white: {
+            benchmark: 118376,
+            stops: 2532,
+        },
+        black: {
+            benchmark: 48386,
+            stops: 4016,
+        },
+        hispanic: {
+            benchmark: 123450,
+            stops: 1609,
         }
     },
     {
@@ -12782,6 +12850,23 @@ exports.Data = [
         }
     },
     {
+        name: "Schaumburg Police",
+        totalBenchmark: 1238562,
+        totalStops: 22852,
+        white: {
+            benchmark: 826843,
+            stops: 13728,
+        },
+        black: {
+            benchmark: 48823,
+            stops: 2119,
+        },
+        hispanic: {
+            benchmark: 198434,
+            stops: 3012,
+        }
+    },
+    {
         name: "Stephenson County Sheriff",
         totalBenchmark: 32474,
         totalStops: 3022,
@@ -12796,6 +12881,23 @@ exports.Data = [
         hispanic: {
             benchmark: 1101,
             stops: 78,
+        }
+    },
+    {
+        name: "Wheaton Police",
+        totalBenchmark: 660604,
+        totalStops: 11020,
+        white: {
+            benchmark: 464950,
+            stops: 8117,
+        },
+        black: {
+            benchmark: 30398,
+            stops: 1265,
+        },
+        hispanic: {
+            benchmark: 84230,
+            stops: 1156,
         }
     },
     {
@@ -12955,6 +13057,19 @@ function renderGeneralPopulation(width, height, statistics) {
     for (let i = 0; i < sampleSizeSpans; i++) {
         document.getElementsByClassName("sample-size").item(i).innerHTML = `${sampleSize}`;
     }
+    // warn users that if the stop rate is too low there
+    // might not be enough dots in the no-bias/bias charts to actually show bias
+    const stopRateDisclaimers = document.getElementsByClassName("stop-rate-disclaimer").length;
+    let disclaimerMessage = "";
+    if (utils_1.getStopRateRatio(statistics) < 0.03) {
+        disclaimerMessage = `Note: This department's stop rate (the ratio of number of 
+            stops to the benchmark population) may be too small to accurately display this 
+            graph. When scaling down large population sizes or small stop counts, these 
+            figures would need to be represented by fractions of dots.`;
+    }
+    for (let i = 0; i < stopRateDisclaimers; i++) {
+        document.getElementsByClassName("stop-rate-disclaimer").item(i).innerHTML = disclaimerMessage;
+    }
     document.getElementById("benchmark-w").innerHTML = `${statistics.white.benchmark.toLocaleString()}`;
     document.getElementById("benchmark-b").innerHTML = `${statistics.black.benchmark.toLocaleString()}`;
     document.getElementById("benchmark-h").innerHTML = `${statistics.hispanic.benchmark.toLocaleString()}`;
@@ -13015,7 +13130,6 @@ class NoBiasChartMaker {
             let hispanicCount = count * hispanicPercent;
             const dots = [];
             const columnCount = Math.floor(this.width / (this.dotSize * 2));
-            console.log(this.width, this.dotSize, columnCount);
             let currentRow = 0;
             let currentColumn = 0;
             for (let i = 0; i < count; i++) {
@@ -13222,13 +13336,39 @@ module.exports = content.locals || {};
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Colors = void 0;
+exports.getRateRatioVsWhite = exports.getStopRateRatio = exports.RaceCategory = exports.Colors = void 0;
 var Colors;
 (function (Colors) {
     Colors["BLUE"] = "blue";
     Colors["RED"] = "red";
     Colors["GREEN"] = "green";
 })(Colors = exports.Colors || (exports.Colors = {}));
+var RaceCategory;
+(function (RaceCategory) {
+    RaceCategory[RaceCategory["WHITE"] = 0] = "WHITE";
+    RaceCategory[RaceCategory["BLACK"] = 1] = "BLACK";
+    RaceCategory[RaceCategory["HISPANIC"] = 2] = "HISPANIC";
+})(RaceCategory = exports.RaceCategory || (exports.RaceCategory = {}));
+function getStopRateRatio(statisticsSet) {
+    return statisticsSet.totalStops / statisticsSet.totalBenchmark;
+}
+exports.getStopRateRatio = getStopRateRatio;
+function getRateRatioVsWhite(statisticsSet, raceCategory) {
+    const whiteStopRate = statisticsSet.white.stops / statisticsSet.white.benchmark;
+    let raceCategoryStopRate;
+    switch (raceCategory) {
+        case RaceCategory.WHITE:
+            return 1;
+        case RaceCategory.BLACK:
+            raceCategoryStopRate = statisticsSet.black.stops / statisticsSet.black.benchmark;
+            break;
+        case RaceCategory.HISPANIC:
+            raceCategoryStopRate = statisticsSet.hispanic.stops / statisticsSet.hispanic.benchmark;
+            break;
+    }
+    return raceCategoryStopRate / whiteStopRate;
+}
+exports.getRateRatioVsWhite = getRateRatioVsWhite;
 
 
 /***/ })
