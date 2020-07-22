@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "ff4da52a6029f8746ffb";
+/******/ 	var hotCurrentHash = "48b51df8222689b6bf25";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -12088,7 +12088,7 @@ var ___CSS_LOADER_URL_IMPORT_0___ = __webpack_require__(/*! ../public/images/dot
 exports = ___CSS_LOADER_API_IMPORT___(false);
 var ___CSS_LOADER_URL_REPLACEMENT_0___ = ___CSS_LOADER_GET_URL_IMPORT___(___CSS_LOADER_URL_IMPORT_0___);
 // Module
-exports.push([module.i, "body {\n  margin-top: 20px;\n  background: rgba(255, 255, 255, 0.95) url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ") repeat-x;\n  background-blend-mode: color; }\n  body select {\n    width: 100%; }\n  body .small {\n    font-size: 0.8em;\n    opacity: 0.5; }\n  body .row {\n    margin-bottom: 40px; }\n  body h5 {\n    margin: 80px 0; }\n  body .afterword {\n    border-top: 1px solid #000; }\n  body .footer {\n    border-top: 1px solid #000;\n    margin-top: 100px;\n    opacity: 0.5; }\n", ""]);
+exports.push([module.i, "body {\n  margin-top: 20px;\n  background: rgba(255, 255, 255, 0.95) url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ") repeat-x;\n  background-blend-mode: color; }\n  body h3 {\n    margin-top: 40px; }\n  body select {\n    width: 100%; }\n  body .small {\n    font-size: 0.8em;\n    opacity: 0.5; }\n  body .row {\n    margin-bottom: 40px; }\n  body h5 {\n    margin: 80px 0; }\n  body .afterword {\n    border-top: 1px solid #000; }\n  body .footer {\n    border-top: 1px solid #000;\n    margin-top: 100px;\n    opacity: 0.5; }\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -12850,6 +12850,40 @@ exports.Data = [
         }
     },
     {
+        name: "Rockton Police",
+        totalBenchmark: 201483,
+        totalStops: 1785,
+        white: {
+            benchmark: 147766,
+            stops: 1298,
+        },
+        black: {
+            benchmark: 25175,
+            stops: 297,
+        },
+        hispanic: {
+            benchmark: 22741,
+            stops: 19,
+        }
+    },
+    {
+        name: "Roscoe Police",
+        totalBenchmark: 201483,
+        totalStops: 1969,
+        white: {
+            benchmark: 147766,
+            stops: 1621,
+        },
+        black: {
+            benchmark: 25175,
+            stops: 175,
+        },
+        hispanic: {
+            benchmark: 22741,
+            stops: 13,
+        }
+    },
+    {
         name: "Schaumburg Police",
         totalBenchmark: 1238562,
         totalStops: 22852,
@@ -13020,7 +13054,7 @@ const biasChartMaker_1 = __webpack_require__(/*! ./biasChartMaker */ "./src/bias
 const projectedPopulationChartMaker_1 = __webpack_require__(/*! ./projectedPopulationChartMaker */ "./src/projectedPopulationChartMaker.ts");
 const sampleSize = 250;
 const genPopHeight = 400;
-const noBiasHeight = 100;
+const noBiasHeight = 50;
 let selectedDataSet = 0;
 let resizeTimeout;
 function main() {
@@ -13093,6 +13127,9 @@ function renderBias(width, height, statistics) {
     const count = Math.round((statistics.totalStops / statistics.totalBenchmark) * sampleSize);
     const chartMaker = new biasChartMaker_1.BiasChartMaker(width, height);
     chartMaker.make(statistics, count);
+    document.getElementById("rrvw-w").innerHTML = `${utils_1.getRateRatioVsWhite(statistics, utils_1.RaceCategory.WHITE)}`;
+    document.getElementById("rrvw-b").innerHTML = `${utils_1.getRateRatioVsWhite(statistics, utils_1.RaceCategory.BLACK)}`;
+    document.getElementById("rrvw-h").innerHTML = `${utils_1.getRateRatioVsWhite(statistics, utils_1.RaceCategory.HISPANIC)}`;
 }
 function renderProjectedPopulation(width, height, statistics) {
     const chartMaker = new projectedPopulationChartMaker_1.ProjectedPopulationChartMaker(width, height, sampleSize);
@@ -13358,7 +13395,7 @@ function getRateRatioVsWhite(statisticsSet, raceCategory) {
     let raceCategoryStopRate;
     switch (raceCategory) {
         case RaceCategory.WHITE:
-            return 1;
+            return "1.0";
         case RaceCategory.BLACK:
             raceCategoryStopRate = statisticsSet.black.stops / statisticsSet.black.benchmark;
             break;
@@ -13366,7 +13403,7 @@ function getRateRatioVsWhite(statisticsSet, raceCategory) {
             raceCategoryStopRate = statisticsSet.hispanic.stops / statisticsSet.hispanic.benchmark;
             break;
     }
-    return raceCategoryStopRate / whiteStopRate;
+    return (raceCategoryStopRate / whiteStopRate).toFixed(1).toString();
 }
 exports.getRateRatioVsWhite = getRateRatioVsWhite;
 

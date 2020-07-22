@@ -13,7 +13,7 @@ export function getRateRatioVsWhite(statisticsSet: LocalityStatisticSet, raceCat
 
     switch(raceCategory) {
         case RaceCategory.WHITE:
-            return 1;
+            return "1.0";
         case RaceCategory.BLACK:
             raceCategoryStopRate = statisticsSet.black.stops / statisticsSet.black.benchmark;
             break;
@@ -22,5 +22,5 @@ export function getRateRatioVsWhite(statisticsSet: LocalityStatisticSet, raceCat
             break;
     }
 
-    return raceCategoryStopRate / whiteStopRate;
+    return (raceCategoryStopRate / whiteStopRate).toFixed(1).toString();
 }

@@ -2,14 +2,14 @@ import { Data, LocalityStatisticSet } from "./data";
 
 import "./styles.scss";
 import { GeneralPopulationChartMaker } from "./generalPopulationChartMaker";
-import { Colors, getStopRateRatio } from "./utils";
+import { Colors, getStopRateRatio, getRateRatioVsWhite, RaceCategory } from "./utils";
 import { NoBiasChartMaker } from "./noBiasChartMaker";
 import { BiasChartMaker } from "./biasChartMaker";
 import { ProjectedPopulationChartMaker } from "./projectedPopulationChartMaker";
 
 const sampleSize = 250;
 const genPopHeight = 400;
-const noBiasHeight = 100;
+const noBiasHeight = 50;
 
 let selectedDataSet = 0;
 let resizeTimeout: NodeJS.Timeout;
@@ -104,6 +104,10 @@ function renderBias(width: number, height: number, statistics: LocalityStatistic
     const count = Math.round((statistics.totalStops / statistics.totalBenchmark) * sampleSize);
     const chartMaker = new BiasChartMaker(width, height);
     chartMaker.make(statistics, count);
+
+    document.getElementById("rrvw-w").innerHTML = `${getRateRatioVsWhite(statistics, RaceCategory.WHITE)}`;
+    document.getElementById("rrvw-b").innerHTML = `${getRateRatioVsWhite(statistics, RaceCategory.BLACK)}`;
+    document.getElementById("rrvw-h").innerHTML = `${getRateRatioVsWhite(statistics, RaceCategory.HISPANIC)}`;
 }
 
 function renderProjectedPopulation(width: number, height: number, statistics: LocalityStatisticSet) {

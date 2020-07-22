@@ -218,6 +218,40 @@ export const Data: LocalityStatisticSet[] = [
         }
     },
     {
+        name: "Rockton Police",
+        totalBenchmark: 201483,
+        totalStops: 1785,
+        white: {
+            benchmark: 147766,
+            stops: 1298,
+        },
+        black: {
+            benchmark: 25175,
+            stops: 297,
+        },
+        hispanic: {
+            benchmark: 22741,
+            stops: 19,
+        }
+    },
+    {
+        name: "Roscoe Police",
+        totalBenchmark: 201483,
+        totalStops: 1969,
+        white: {
+            benchmark: 147766,
+            stops: 1621,
+        },
+        black: {
+            benchmark: 25175,
+            stops: 175,
+        },
+        hispanic: {
+            benchmark: 22741,
+            stops: 13,
+        }
+    },
+    {
         name: "Schaumburg Police",
         totalBenchmark: 1238562,
         totalStops: 22852,
