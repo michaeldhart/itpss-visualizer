@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "48b51df8222689b6bf25";
+/******/ 	var hotCurrentHash = "9a2f241857df5364db54";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -12697,6 +12697,23 @@ exports.Data = [
         }
     },
     {
+        name: "Elgin Police",
+        totalBenchmark: 946801,
+        totalStops: 12608,
+        white: {
+            benchmark: 587557,
+            stops: 4805,
+        },
+        black: {
+            benchmark: 38062,
+            stops: 1849,
+        },
+        hispanic: {
+            benchmark: 221649,
+            stops: 5210,
+        }
+    },
+    {
         name: "Forest Park Police",
         totalBenchmark: 299165,
         totalStops: 1228,
@@ -12745,6 +12762,23 @@ exports.Data = [
         hispanic: {
             benchmark: 775,
             stops: 0,
+        }
+    },
+    {
+        name: "Glenview Police",
+        totalBenchmark: 326084,
+        totalStops: 1752,
+        white: {
+            benchmark: 233852,
+            stops: 1752,
+        },
+        black: {
+            benchmark: 15455,
+            stops: 244,
+        },
+        hispanic: {
+            benchmark: 26476,
+            stops: 392,
         }
     },
     {
