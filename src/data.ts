@@ -65,6 +65,23 @@ export const Data: LocalityStatisticSet[] = [
         }
     },
     {
+        name: "Elgin Police",
+        totalBenchmark: 946801,
+        totalStops: 12608,
+        white: {
+            benchmark: 587557,
+            stops: 4805,
+        },
+        black: {
+            benchmark: 38062,
+            stops: 1849,
+        },
+        hispanic: {
+            benchmark: 221649,
+            stops: 5210,
+        }
+    },
+    {
         name: "Forest Park Police",
         totalBenchmark: 299165,
         totalStops: 1228,
@@ -113,6 +130,23 @@ export const Data: LocalityStatisticSet[] = [
         hispanic: {
             benchmark: 775,
             stops: 0,
+        }
+    },
+    {
+        name: "Glenview Police",
+        totalBenchmark: 326084,
+        totalStops: 1752,
+        white: {
+            benchmark: 233852,
+            stops: 1752,
+        },
+        black: {
+            benchmark: 15455,
+            stops: 244,
+        },
+        hispanic: {
+            benchmark: 26476,
+            stops: 392,
         }
     },
     {
