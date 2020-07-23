@@ -31,6 +31,23 @@ export const Data: LocalityStatisticSet[] = [
         }
     },
     {
+        name: "Arlington Heights Police",
+        totalBenchmark: 1070935,
+        totalStops: 12616,
+        white: {
+            benchmark: 686366,
+            stops: 8243
+        },
+        black: {
+            benchmark: 50944,
+            stops: 862
+        },
+        hispanic: {
+            benchmark: 210294,
+            stops: 2249,
+        }
+    },
+    {
         name: "Belvidere Police Department",
         totalBenchmark: 37855,
         totalStops: 5396,
@@ -62,6 +79,23 @@ export const Data: LocalityStatisticSet[] = [
         hispanic: {
             benchmark: 7312,
             stops: 1103,
+        }
+    },
+    {
+        name: "Carpentersville Police",
+        totalBenchmark: 368843,
+        totalStops: 2939,
+        white: {
+            benchmark: 225664,
+            stops: 1241,
+        },
+        black: {
+            benchmark: 19637,
+            stops: 409,
+        },
+        hispanic: {
+            benchmark: 107445,
+            stops: 1214,
         }
     },
     {
@@ -147,6 +181,23 @@ export const Data: LocalityStatisticSet[] = [
         hispanic: {
             benchmark: 26476,
             stops: 392,
+        }
+    },
+    {
+        name: "Marengo Police",
+        totalBenchmark: 220488,
+        totalStops: 1212,
+        white: {
+            benchmark: 186104,
+            stops: 926,
+        },
+        black: {
+            benchmark: 2920,
+            stops: 57,
+        },
+        hispanic: {
+            benchmark: 25093,
+            stops: 199,
         }
     },
     {
