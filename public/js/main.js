@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "c138e2ecf0a1b6f80efa";
+/******/ 	var hotCurrentHash = "26de08224d3ab07bda5b";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -13203,9 +13203,9 @@ function renderGeneralPopulation(width, height, statistics) {
 }
 function renderNoBias(width, height, statistics) {
     document.getElementById("total-stops").innerHTML = `${statistics.totalStops.toLocaleString()}`;
-    const count = Math.round((statistics.totalStops / statistics.totalBenchmark) * sampleSize);
     const chartMaker = new noBiasChartMaker_1.NoBiasChartMaker(width, height);
-    document.getElementById("sample-stops").innerHTML = `${chartMaker.getStopCountForSampleSize(statistics, sampleSize)}`;
+    const count = chartMaker.getStopCountForSampleSize(statistics, sampleSize);
+    document.getElementById("sample-stops").innerHTML = `${count}`;
     chartMaker.make(statistics, count);
 }
 function renderBias(width, height, statistics) {
@@ -13279,9 +13279,9 @@ class NoBiasChartMaker {
                 }
             }
         };
-        this.getStopCountForSampleSize = (statistics, count) => {
+        this.getStopCountForSampleSize = (statistics, sampleSize) => {
             const stopPercent = statistics.totalStops / statistics.totalBenchmark;
-            return Math.round(count * stopPercent);
+            return Math.round(sampleSize * stopPercent);
         };
         this.width = width;
         this.height = height;

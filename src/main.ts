@@ -92,10 +92,11 @@ function renderGeneralPopulation(width: number, height: number, statistics: Loca
 function renderNoBias(width: number, height: number, statistics: LocalityStatisticSet) {
     document.getElementById("total-stops").innerHTML = `${statistics.totalStops.toLocaleString()}`;
 
-    const count = Math.round((statistics.totalStops / statistics.totalBenchmark) * sampleSize);
     const chartMaker = new NoBiasChartMaker(width, height);
 
-    document.getElementById("sample-stops").innerHTML = `${chartMaker.getStopCountForSampleSize(statistics, sampleSize)}`;
+    const count = chartMaker.getStopCountForSampleSize(statistics, sampleSize);
+
+    document.getElementById("sample-stops").innerHTML = `${count}`;
 
     chartMaker.make(statistics, count);
 }
