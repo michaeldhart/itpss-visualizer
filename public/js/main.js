@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "7c11ec496df081f54720";
+/******/ 	var hotCurrentHash = "845918ce42fae7760157";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -12802,6 +12802,23 @@ exports.Data = [
         }
     },
     {
+        name: "Evanston Police",
+        totalBenchmark: 326084,
+        totalStops: 12855,
+        white: {
+            benchmark: 233852,
+            stops: 6773,
+        },
+        black: {
+            benchmark: 15455,
+            stops: 3955,
+        },
+        hispanic: {
+            benchmark: 26476,
+            stops: 1234,
+        }
+    },
+    {
         name: "Forest Park Police",
         totalBenchmark: 299165,
         totalStops: 1228,
@@ -12955,6 +12972,23 @@ exports.Data = [
         }
     },
     {
+        name: "Naperville Police",
+        totalBenchmark: 1144329,
+        totalStops: 22410,
+        white: {
+            benchmark: 792872,
+            stops: 13586,
+        },
+        black: {
+            benchmark: 83648,
+            stops: 3229,
+        },
+        hispanic: {
+            benchmark: 159219,
+            stops: 2210,
+        }
+    },
+    {
         name: "Oak Park Police",
         totalBenchmark: 299165,
         totalStops: 8385,
@@ -13037,6 +13071,23 @@ exports.Data = [
         hispanic: {
             benchmark: 26476,
             stops: 482,
+        }
+    },
+    {
+        name: "Peoria Police",
+        totalBenchmark: 79331,
+        totalStops: 5863,
+        white: {
+            benchmark: 48140,
+            stops: 2404,
+        },
+        black: {
+            benchmark: 21553,
+            stops: 3041,
+        },
+        hispanic: {
+            benchmark: 4415,
+            stops: 295,
         }
     },
     {
@@ -13139,6 +13190,40 @@ exports.Data = [
         hispanic: {
             benchmark: 198434,
             stops: 3012,
+        }
+    },
+    {
+        name: "Skokie Police",
+        totalBenchmark: 326084,
+        totalStops: 6849,
+        white: {
+            benchmark: 233852,
+            stops: 3768,
+        },
+        black: {
+            benchmark: 15455,
+            stops: 1095,
+        },
+        hispanic: {
+            benchmark: 26476,
+            stops: 723,
+        }
+    },
+    {
+        name: "Springfield Police",
+        totalBenchmark: 82201,
+        totalStops: 12881,
+        white: {
+            benchmark: 61552,
+            stops: 7249,
+        },
+        black: {
+            benchmark: 16061,
+            stops: 5142,
+        },
+        hispanic: {
+            benchmark: 1993,
+            stops: 202,
         }
     },
     {
