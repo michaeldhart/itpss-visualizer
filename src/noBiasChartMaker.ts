@@ -5,15 +5,20 @@ import { Colors } from "./utils";
 export class NoBiasChartMaker {
     private width: number;
     private height: number;
-    private dotSize: number
+    private minStopCount: number;
+    private dotSize: number;
 
-    constructor(width: number, height: number) {
+    constructor(width: number, height: number, minStopCount: number) {
         this.width = width;
         this.height = height;
+        this.minStopCount = minStopCount;
         this.dotSize = 10;
     }
 
     make = (statistics: LocalityStatisticSet, count: number) => {
+        // if this actual count is less than minStopCount, use minStopCount
+        count = Math.max(count, this.minStopCount);
+        
         const id = "no-bias-chart";
         document.getElementById(id).innerHTML = "";
 

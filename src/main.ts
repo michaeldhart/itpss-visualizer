@@ -10,6 +10,7 @@ import { ProjectedPopulationChartMaker } from "./projectedPopulationChartMaker";
 const sampleSize = 250;
 const genPopHeight = 400;
 const noBiasHeight = 50;
+const minStopCount = 10;
 
 let selectedDataSet = 0;
 let resizeTimeout: NodeJS.Timeout;
@@ -58,22 +59,6 @@ function renderGeneralPopulation(width: number, height: number, statistics: Loca
         document.getElementsByClassName("sample-size").item(i).innerHTML = `${sampleSize}`;
     }
 
-    // warn users that if the stop rate is too low there
-    // might not be enough dots in the no-bias/bias charts to actually show bias
-    const stopRateDisclaimers = document.getElementsByClassName("stop-rate-disclaimer").length;
-    let disclaimerMessage = "";
-
-    if (getStopRateRatio(statistics) < 0.03) {
-        disclaimerMessage = `Note: This department's stop rate (the ratio of number of 
-            stops to the benchmark population) may be too small to accurately display this 
-            graph. When scaling down large population sizes or small stop counts, these 
-            figures would need to be represented by fractions of dots.`;
-    }
-
-    for (let i = 0; i < stopRateDisclaimers; i++) {
-        document.getElementsByClassName("stop-rate-disclaimer").item(i).innerHTML = disclaimerMessage;
-    }
-
     document.getElementById("benchmark-w").innerHTML = `${statistics.white.benchmark.toLocaleString()}`;
     document.getElementById("benchmark-b").innerHTML = `${statistics.black.benchmark.toLocaleString()}`;
     document.getElementById("benchmark-h").innerHTML = `${statistics.hispanic.benchmark.toLocaleString()}`;
@@ -92,28 +77,42 @@ function renderGeneralPopulation(width: number, height: number, statistics: Loca
 function renderNoBias(width: number, height: number, statistics: LocalityStatisticSet) {
     document.getElementById("total-stops").innerHTML = `${statistics.totalStops.toLocaleString()}`;
 
-    const chartMaker = new NoBiasChartMaker(width, height);
+    const chartMaker = new NoBiasChartMaker(width, height, minStopCount);
 
     const count = chartMaker.getStopCountForSampleSize(statistics, sampleSize);
 
     document.getElementById("sample-stops").innerHTML = `${count}`;
 
     chartMaker.make(statistics, count);
+
+    document.getElementsByClassName("stop-rate-disclaimer").item(0).innerHTML = getLowStopRateDisclaimerMessage(count);
 }
 
 function renderBias(width: number, height: number, statistics: LocalityStatisticSet) {
     const count = Math.round((statistics.totalStops / statistics.totalBenchmark) * sampleSize);
-    const chartMaker = new BiasChartMaker(width, height);
+    const chartMaker = new BiasChartMaker(width, height, minStopCount);
     chartMaker.make(statistics, count);
 
     document.getElementById("rrvw-w").innerHTML = `${getRateRatioVsWhite(statistics, RaceCategory.WHITE)}`;
     document.getElementById("rrvw-b").innerHTML = `${getRateRatioVsWhite(statistics, RaceCategory.BLACK)}`;
     document.getElementById("rrvw-h").innerHTML = `${getRateRatioVsWhite(statistics, RaceCategory.HISPANIC)}`;
+
+    document.getElementsByClassName("stop-rate-disclaimer").item(1).innerHTML = getLowStopRateDisclaimerMessage(count);
 }
 
 function renderProjectedPopulation(width: number, height: number, statistics: LocalityStatisticSet) {
     const chartMaker = new ProjectedPopulationChartMaker(width, height, sampleSize);
     chartMaker.make(statistics);
+}
+
+function getLowStopRateDisclaimerMessage(stopCountForSampleSize: number) {
+    return stopCountForSampleSize < minStopCount ? `Note: Since this department's stop rate (the ratio of number of 
+        stops to the benchmark population) when applied to our sample size 
+        produces only ${stopCountForSampleSize} stops to plot in this graph, 
+        we've chosen to display ${minStopCount} dots as a minimum in order to 
+        better visualize the stop rates by race. IN THE CASE OF THIS DEPARTMENT 
+        THIS GRAPH REPRESENTS ONLY THE STOP RATES BY RACE - IT IS NOT REPRESENTATIVE 
+        OF THE NUMBER OF STOPS RELATIVE TO BENCHMARK POPULATION.` : "";
 }
 
 main();

@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "26de08224d3ab07bda5b";
+/******/ 	var hotCurrentHash = "71171d1cf8e2c9585ccb";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -12583,8 +12583,10 @@ exports.BiasChartMaker = void 0;
 const svg_js_1 = __webpack_require__(/*! @svgdotjs/svg.js */ "./node_modules/@svgdotjs/svg.js/dist/svg.esm.js");
 const utils_1 = __webpack_require__(/*! ./utils */ "./src/utils.ts");
 class BiasChartMaker {
-    constructor(width, height) {
+    constructor(width, height, minStopCount) {
         this.make = (statistics, count) => {
+            // if this actual count is less than minStopCount, use minStopCount
+            count = Math.max(count, this.minStopCount);
             const id = "bias-chart";
             document.getElementById(id).innerHTML = "";
             var svg = svg_js_1.SVG().addTo(`#${id}`).size(this.width, this.height);
@@ -12625,6 +12627,7 @@ class BiasChartMaker {
         };
         this.width = width;
         this.height = height;
+        this.minStopCount = minStopCount;
         this.dotSize = 10;
     }
 }
@@ -13140,6 +13143,7 @@ const projectedPopulationChartMaker_1 = __webpack_require__(/*! ./projectedPopul
 const sampleSize = 250;
 const genPopHeight = 400;
 const noBiasHeight = 50;
+const minStopCount = 10;
 let selectedDataSet = 0;
 let resizeTimeout;
 function main() {
@@ -13176,19 +13180,6 @@ function renderGeneralPopulation(width, height, statistics) {
     for (let i = 0; i < sampleSizeSpans; i++) {
         document.getElementsByClassName("sample-size").item(i).innerHTML = `${sampleSize}`;
     }
-    // warn users that if the stop rate is too low there
-    // might not be enough dots in the no-bias/bias charts to actually show bias
-    const stopRateDisclaimers = document.getElementsByClassName("stop-rate-disclaimer").length;
-    let disclaimerMessage = "";
-    if (utils_1.getStopRateRatio(statistics) < 0.03) {
-        disclaimerMessage = `Note: This department's stop rate (the ratio of number of 
-            stops to the benchmark population) may be too small to accurately display this 
-            graph. When scaling down large population sizes or small stop counts, these 
-            figures would need to be represented by fractions of dots.`;
-    }
-    for (let i = 0; i < stopRateDisclaimers; i++) {
-        document.getElementsByClassName("stop-rate-disclaimer").item(i).innerHTML = disclaimerMessage;
-    }
     document.getElementById("benchmark-w").innerHTML = `${statistics.white.benchmark.toLocaleString()}`;
     document.getElementById("benchmark-b").innerHTML = `${statistics.black.benchmark.toLocaleString()}`;
     document.getElementById("benchmark-h").innerHTML = `${statistics.hispanic.benchmark.toLocaleString()}`;
@@ -13203,22 +13194,33 @@ function renderGeneralPopulation(width, height, statistics) {
 }
 function renderNoBias(width, height, statistics) {
     document.getElementById("total-stops").innerHTML = `${statistics.totalStops.toLocaleString()}`;
-    const chartMaker = new noBiasChartMaker_1.NoBiasChartMaker(width, height);
+    const chartMaker = new noBiasChartMaker_1.NoBiasChartMaker(width, height, minStopCount);
     const count = chartMaker.getStopCountForSampleSize(statistics, sampleSize);
     document.getElementById("sample-stops").innerHTML = `${count}`;
     chartMaker.make(statistics, count);
+    document.getElementsByClassName("stop-rate-disclaimer").item(0).innerHTML = getLowStopRateDisclaimerMessage(count);
 }
 function renderBias(width, height, statistics) {
     const count = Math.round((statistics.totalStops / statistics.totalBenchmark) * sampleSize);
-    const chartMaker = new biasChartMaker_1.BiasChartMaker(width, height);
+    const chartMaker = new biasChartMaker_1.BiasChartMaker(width, height, minStopCount);
     chartMaker.make(statistics, count);
     document.getElementById("rrvw-w").innerHTML = `${utils_1.getRateRatioVsWhite(statistics, utils_1.RaceCategory.WHITE)}`;
     document.getElementById("rrvw-b").innerHTML = `${utils_1.getRateRatioVsWhite(statistics, utils_1.RaceCategory.BLACK)}`;
     document.getElementById("rrvw-h").innerHTML = `${utils_1.getRateRatioVsWhite(statistics, utils_1.RaceCategory.HISPANIC)}`;
+    document.getElementsByClassName("stop-rate-disclaimer").item(1).innerHTML = getLowStopRateDisclaimerMessage(count);
 }
 function renderProjectedPopulation(width, height, statistics) {
     const chartMaker = new projectedPopulationChartMaker_1.ProjectedPopulationChartMaker(width, height, sampleSize);
     chartMaker.make(statistics);
+}
+function getLowStopRateDisclaimerMessage(stopCountForSampleSize) {
+    return stopCountForSampleSize < minStopCount ? `Note: Since this department's stop rate (the ratio of number of 
+        stops to the benchmark population) when applied to our sample size 
+        produces only ${stopCountForSampleSize} stops to plot in this graph, 
+        we've chosen to display ${minStopCount} dots as a minimum in order to 
+        better visualize the stop rates by race. IN THE CASE OF THIS DEPARTMENT 
+        THIS GRAPH REPRESENTS ONLY THE STOP RATES BY RACE - IT IS NOT REPRESENTATIVE 
+        OF THE NUMBER OF STOPS RELATIVE TO BENCHMARK POPULATION.` : "";
 }
 main();
 
@@ -13239,8 +13241,10 @@ exports.NoBiasChartMaker = void 0;
 const svg_js_1 = __webpack_require__(/*! @svgdotjs/svg.js */ "./node_modules/@svgdotjs/svg.js/dist/svg.esm.js");
 const utils_1 = __webpack_require__(/*! ./utils */ "./src/utils.ts");
 class NoBiasChartMaker {
-    constructor(width, height) {
+    constructor(width, height, minStopCount) {
         this.make = (statistics, count) => {
+            // if this actual count is less than minStopCount, use minStopCount
+            count = Math.max(count, this.minStopCount);
             const id = "no-bias-chart";
             document.getElementById(id).innerHTML = "";
             var svg = svg_js_1.SVG().addTo(`#${id}`).size(this.width, this.height);
@@ -13285,6 +13289,7 @@ class NoBiasChartMaker {
         };
         this.width = width;
         this.height = height;
+        this.minStopCount = minStopCount;
         this.dotSize = 10;
     }
 }
