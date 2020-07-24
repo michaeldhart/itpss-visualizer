@@ -133,6 +133,23 @@ export const Data: LocalityStatisticSet[] = [
         }
     },
     {
+        name: "Chicago Police",
+        totalBenchmark: 1862966,
+        totalStops: 598332,
+        white: {
+            benchmark: 661647,
+            stops: 77339,
+        },
+        black: {
+            benchmark: 567198,
+            stops: 368332,
+        },
+        hispanic: {
+            benchmark: 502903,
+            stops: 132457,
+        }
+    },
+    {
         name: "Elgin Police",
         totalBenchmark: 946801,
         totalStops: 12608,
@@ -215,6 +232,23 @@ export const Data: LocalityStatisticSet[] = [
         hispanic: {
             benchmark: 26476,
             stops: 392,
+        }
+    },
+    {
+        name: "Hoffman Estates Police",
+        totalBenchmark: 946801,
+        totalStops: 12334,
+        white: {
+            benchmark: 587557,
+            stops: 6220,
+        },
+        black: {
+            benchmark: 36062,
+            stops: 1299,
+        },
+        hispanic: {
+            benchmark: 221649,
+            stops: 2780,
         }
     },
     {
@@ -337,6 +371,40 @@ export const Data: LocalityStatisticSet[] = [
         }
     },
     {
+        name: "Palatine Police",
+        totalBenchmark: 577958,
+        totalStops: 20836,
+        white: {
+            benchmark: 361893,
+            stops: 17174,
+        },
+        black: {
+            benchmark: 18425,
+            stops: 811,
+        },
+        hispanic: {
+            benchmark: 114204,
+            stops: 2104,
+        }
+    },
+    {
+        name: "Park Ridge Police",
+        totalBenchmark: 326084,
+        totalStops: 3929,
+        white: {
+            benchmark: 233852,
+            stops: 2964,
+        },
+        black: {
+            benchmark: 15455,
+            stops: 209,
+        },
+        hispanic: {
+            benchmark: 26476,
+            stops: 482,
+        }
+    },
+    {
         name: "Rochelle Police",
         totalBenchmark: 37079,
         totalStops: 1033,
@@ -385,6 +453,23 @@ export const Data: LocalityStatisticSet[] = [
         hispanic: {
             benchmark: 22741,
             stops: 19,
+        }
+    },
+    {
+        name: "Rolling Meadows Police",
+        totalBenchmark: 577958,
+        totalStops: 2631,
+        white: {
+            benchmark: 361893,
+            stops: 1472,
+        },
+        black: {
+            benchmark: 18425,
+            stops: 232,
+        },
+        hispanic: {
+            benchmark: 114204,
+            stops: 578,
         }
     },
     {
