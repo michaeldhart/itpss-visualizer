@@ -48,6 +48,23 @@ export const Data: LocalityStatisticSet[] = [
         }
     },
     {
+        name: "Aurora Police",
+        totalBenchmark: 1601471,
+        totalStops: 21577,
+        white: {
+            benchmark: 1083507,
+            stops: 5417
+        },
+        black: {
+            benchmark: 109029,
+            stops: 4915
+        },
+        hispanic: {
+            benchmark: 281095,
+            stops: 10390,
+        }
+    },
+    {
         name: "Belvidere Police Department",
         totalBenchmark: 37855,
         totalStops: 5396,
@@ -96,6 +113,23 @@ export const Data: LocalityStatisticSet[] = [
         hispanic: {
             benchmark: 107445,
             stops: 1214,
+        }
+    },
+    {
+        name: "Cherry Valley Police",
+        totalBenchmark: 201483,
+        totalStops: 2533,
+        white: {
+            benchmark: 147766,
+            stops: 1565,
+        },
+        black: {
+            benchmark: 25175,
+            stops: 543,
+        },
+        hispanic: {
+            benchmark: 22741,
+            stops: 6,
         }
     },
     {
@@ -181,6 +215,40 @@ export const Data: LocalityStatisticSet[] = [
         hispanic: {
             benchmark: 26476,
             stops: 392,
+        }
+    },
+    {
+        name: "Joliet Police",
+        totalBenchmark: 572024,
+        totalStops: 9287,
+        white: {
+            benchmark: 392893,
+            stops: 3597,
+        },
+        black: {
+            benchmark: 58994,
+            stops: 3098,
+        },
+        hispanic: {
+            benchmark: 89420,
+            stops: 2422,
+        }
+    },
+    {
+        name: "Loves Park Police",
+        totalBenchmark: 239338,
+        totalStops: 6554,
+        white: {
+            benchmark: 176958,
+            stops: 4348,
+        },
+        black: {
+            benchmark: 25936,
+            stops: 1294,
+        },
+        hispanic: {
+            benchmark: 30053,
+            stops: 29,
         }
     },
     {
