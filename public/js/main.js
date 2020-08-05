@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "845918ce42fae7760157";
+/******/ 	var hotCurrentHash = "ab665ce15163de0c0e11";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -12700,6 +12700,23 @@ exports.Data = [
         }
     },
     {
+        name: "Barrington Police",
+        totalBenchmark: 577958,
+        totalStops: 2066,
+        white: {
+            benchmark: 361893,
+            stops: 1570
+        },
+        black: {
+            benchmark: 18425,
+            stops: 112
+        },
+        hispanic: {
+            benchmark: 114204,
+            stops: 285,
+        }
+    },
+    {
         name: "Belvidere Police Department",
         totalBenchmark: 37855,
         totalStops: 5396,
@@ -12731,6 +12748,23 @@ exports.Data = [
         hispanic: {
             benchmark: 7312,
             stops: 1103,
+        }
+    },
+    {
+        name: "Buffalo Grove Police",
+        totalBenchmark: 1070935,
+        totalStops: 9170,
+        white: {
+            benchmark: 686266,
+            stops: 5703,
+        },
+        black: {
+            benchmark: 50944,
+            stops: 567,
+        },
+        hispanic: {
+            benchmark: 210294,
+            stops: 1658,
         }
     },
     {
@@ -12918,6 +12952,23 @@ exports.Data = [
         hispanic: {
             benchmark: 89420,
             stops: 2422,
+        }
+    },
+    {
+        name: "Lake Zurich Police",
+        totalBenchmark: 492977,
+        totalStops: 3845,
+        white: {
+            benchmark: 324473,
+            stops: 2892,
+        },
+        black: {
+            benchmark: 32519,
+            stops: 219,
+        },
+        hispanic: {
+            benchmark: 96090,
+            stops: 524,
         }
     },
     {

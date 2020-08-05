@@ -65,6 +65,23 @@ export const Data: LocalityStatisticSet[] = [
         }
     },
     {
+        name: "Barrington Police",
+        totalBenchmark: 577958,
+        totalStops: 2066,
+        white: {
+            benchmark: 361893,
+            stops: 1570
+        },
+        black: {
+            benchmark: 18425,
+            stops: 112
+        },
+        hispanic: {
+            benchmark: 114204,
+            stops: 285,
+        }
+    },
+    {
         name: "Belvidere Police Department",
         totalBenchmark: 37855,
         totalStops: 5396,
@@ -96,6 +113,23 @@ export const Data: LocalityStatisticSet[] = [
         hispanic: {
             benchmark: 7312,
             stops: 1103,
+        }
+    },
+    {
+        name: "Buffalo Grove Police",
+        totalBenchmark: 1070935,
+        totalStops: 9170,
+        white: {
+            benchmark: 686266,
+            stops: 5703,
+        },
+        black: {
+            benchmark: 50944,
+            stops: 567,
+        },
+        hispanic: {
+            benchmark: 210294,
+            stops: 1658,
         }
     },
     {
@@ -283,6 +317,23 @@ export const Data: LocalityStatisticSet[] = [
         hispanic: {
             benchmark: 89420,
             stops: 2422,
+        }
+    },
+    {
+        name: "Lake Zurich Police",
+        totalBenchmark: 492977,
+        totalStops: 3845,
+        white: {
+            benchmark: 324473,
+            stops: 2892,
+        },
+        black: {
+            benchmark: 32519,
+            stops: 219,
+        },
+        hispanic: {
+            benchmark: 96090,
+            stops: 524,
         }
     },
     {
