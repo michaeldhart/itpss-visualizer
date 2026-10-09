@@ -1,0 +1,593 @@
+{
+  "source": "https://idot.illinois.gov/form-and-reports/crash-reports/illinois-traffic-and-pedestrian-stop-study.html",
+  "files": [
+    {
+      "year": 2004,
+      "stopType": "traffic",
+      "kind": "detail-tables",
+      "title": "2004 Illinois Traffic Stop Study",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2004-illinois-traffic-stop-study.pdf"
+    },
+    {
+      "year": 2004,
+      "stopType": "traffic",
+      "kind": "executive-summary",
+      "title": "2004 Illinois Traffic Stop Summary",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2004-illinois-traffic-stop-summary.pdf"
+    },
+    {
+      "year": 2004,
+      "stopType": "traffic",
+      "kind": "form",
+      "title": "2004 2006 Traffic Stop Data Sheet",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2004-2006-traffic-stop-data-sheet.pdf"
+    },
+    {
+      "year": 2004,
+      "stopType": "traffic",
+      "kind": "other",
+      "title": "Governors 2004 Press Release",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/governors-2004-press-release.pdf"
+    },
+    {
+      "year": 2005,
+      "stopType": "traffic",
+      "kind": "detail-tables",
+      "title": "2005 Illinois Traffic Stop Study",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2005-illinois-traffic-stop-study.pdf"
+    },
+    {
+      "year": 2005,
+      "stopType": "traffic",
+      "kind": "executive-summary",
+      "title": "2005 Illinois Traffic Stop Study Statewide Report",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2005-illinois-traffic-stop-study-statewide-report.pdf"
+    },
+    {
+      "year": 2005,
+      "stopType": "traffic",
+      "kind": "executive-summary",
+      "title": "2005 Illinois Traffic Stop Summary",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2005-illinois-traffic-stop-summary.pdf"
+    },
+    {
+      "year": 2005,
+      "stopType": "traffic",
+      "kind": "other",
+      "title": "Governors 2005 Press Release",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/governors-2005-press-release.pdf"
+    },
+    {
+      "year": 2006,
+      "stopType": "traffic",
+      "kind": "detail-tables",
+      "title": "2006 Illinois Traffic Stop Report",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2006-illinois-traffic-stop-report.pdf"
+    },
+    {
+      "year": 2006,
+      "stopType": "traffic",
+      "kind": "executive-summary",
+      "title": "2006 Illinois Traffic Stop Study Statewide Report",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2006-illinois-traffic-stop-study-statewide-report.pdf"
+    },
+    {
+      "year": 2006,
+      "stopType": "traffic",
+      "kind": "executive-summary",
+      "title": "2006 Illinois Traffic Stop Summary",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2006-illinois-traffic-stop-summary.pdf"
+    },
+    {
+      "year": 2007,
+      "stopType": "traffic",
+      "kind": "detail-tables",
+      "title": "2007 Illinois Traffic Stop Report",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2007-illinois-traffic-stop-report.pdf"
+    },
+    {
+      "year": 2007,
+      "stopType": "traffic",
+      "kind": "executive-summary",
+      "title": "2007 Illinois Traffic Stop Summary",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2007-illinois-traffic-stop-summary.pdf"
+    },
+    {
+      "year": 2007,
+      "stopType": "traffic",
+      "kind": "form",
+      "title": "2007 2011 Traffic Stop Data Sheet",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2007-2011-traffic-stop-data-sheet.pdf"
+    },
+    {
+      "year": 2007,
+      "stopType": "traffic",
+      "kind": "ratios",
+      "title": "2007 Illinois Traffic Stop Ratio Data",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2007-illinois-traffic-stop-ratio-data.pdf"
+    },
+    {
+      "year": 2008,
+      "stopType": "traffic",
+      "kind": "detail-tables",
+      "title": "2008 Illinois Traffic Stop Report",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2008-illinois-traffic-stop-report.pdf"
+    },
+    {
+      "year": 2008,
+      "stopType": "traffic",
+      "kind": "executive-summary",
+      "title": "2008 Illinois Traffic Stop Summary",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2008-illinois-traffic-stop-summary.pdf"
+    },
+    {
+      "year": 2008,
+      "stopType": "traffic",
+      "kind": "ratios",
+      "title": "2008 Illinois Traffic Stop Ratio Data",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2008-illinois-traffic-stop-ratio-data.pdf"
+    },
+    {
+      "year": 2009,
+      "stopType": "traffic",
+      "kind": "detail-tables",
+      "title": "2009 Illinois Traffic Stop Report",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2009-illinois-traffic-stop-report.pdf"
+    },
+    {
+      "year": 2009,
+      "stopType": "traffic",
+      "kind": "executive-summary",
+      "title": "2009 Illinois Traffic Stop Summary",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2009-illinois-traffic-stop-summary.pdf"
+    },
+    {
+      "year": 2009,
+      "stopType": "traffic",
+      "kind": "ratios",
+      "title": "2009 Illinois Traffic Stop Ratio Data",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2009-illinois-traffic-stop-ratio-data.pdf"
+    },
+    {
+      "year": 2009,
+      "stopType": "traffic",
+      "kind": "ratios",
+      "title": "Agency Ratios 2009 2013",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/agency-ratios-2009-2013.pdf"
+    },
+    {
+      "year": 2010,
+      "stopType": "traffic",
+      "kind": "detail-tables",
+      "title": "2010 Illinois Traffic Stop Report",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2010-illinois-traffic-stop-report.pdf"
+    },
+    {
+      "year": 2010,
+      "stopType": "traffic",
+      "kind": "executive-summary",
+      "title": "2010 Illinois Traffic Stop Summary",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2010-illinois-traffic-stop-summary.pdf"
+    },
+    {
+      "year": 2010,
+      "stopType": "traffic",
+      "kind": "ratios",
+      "title": "2010 Illinois Traffic Stop Ratio Data",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2010-illinois-traffic-stop-ratio-data.pdf"
+    },
+    {
+      "year": 2010,
+      "stopType": "traffic",
+      "kind": "ratios",
+      "title": "2014 Itss Agency Ratios 2010 2014",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2014-itss-agency-ratios-2010-2014.pdf"
+    },
+    {
+      "year": 2011,
+      "stopType": "traffic",
+      "kind": "detail-tables",
+      "title": "2011 Illinois Traffic Stop Report",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2011-illinois-traffic-stop-report.pdf"
+    },
+    {
+      "year": 2011,
+      "stopType": "traffic",
+      "kind": "executive-summary",
+      "title": "2011 Illinois Traffic Stop Summary",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2011-illinois-traffic-stop-summary.pdf"
+    },
+    {
+      "year": 2011,
+      "stopType": "traffic",
+      "kind": "ratios",
+      "title": "2011 Illinois Traffic Stop Ratio Data",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2011-illinois-traffic-stop-ratio-data.pdf"
+    },
+    {
+      "year": 2011,
+      "stopType": "traffic",
+      "kind": "ratios",
+      "title": "2015 Itss Agency Ratios 2011 2015",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2015-itss-agency-ratios-2011-2015.pdf"
+    },
+    {
+      "year": 2012,
+      "stopType": "traffic",
+      "kind": "detail-tables",
+      "title": "2012 Illinois Traffic Stop Report",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2012-illinois-traffic-stop-report.pdf"
+    },
+    {
+      "year": 2012,
+      "stopType": "traffic",
+      "kind": "executive-summary",
+      "title": "2012 Illinois Traffic Stop Summary",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2012-illinois-traffic-stop-summary.pdf"
+    },
+    {
+      "year": 2012,
+      "stopType": "traffic",
+      "kind": "ratios",
+      "title": "2012 Illinois Traffic Stop Ratio Data",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2012-illinois-traffic-stop-ratio-data.pdf"
+    },
+    {
+      "year": 2012,
+      "stopType": "traffic",
+      "kind": "ratios",
+      "title": "2016 Itss Agency Ratios 2012 2016",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2016-itss-agency-ratios-2012-2016.pdf"
+    },
+    {
+      "year": 2013,
+      "stopType": "traffic",
+      "kind": "detail-tables",
+      "title": "2013 Itss Statewide And Agency Reports",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2013-itss-statewide-and-agency-reports.pdf"
+    },
+    {
+      "year": 2013,
+      "stopType": "traffic",
+      "kind": "executive-summary",
+      "title": "2013 Itss Executive Summary",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2013-itss-executive-summary.pdf"
+    },
+    {
+      "year": 2013,
+      "stopType": "traffic",
+      "kind": "ratios",
+      "title": "2017 Itss Agency Ratios 2013 2017",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2017-itss-agency-ratios-2013-2017.pdf"
+    },
+    {
+      "year": 2014,
+      "stopType": "traffic",
+      "kind": "detail-tables",
+      "title": "2014 Itss Statewide And Agency Reports",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2014-itss-statewide-and-agency-reports.pdf"
+    },
+    {
+      "year": 2014,
+      "stopType": "traffic",
+      "kind": "executive-summary",
+      "title": "2014 Itss Executive Summary",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2014-itss-executive-summary.pdf"
+    },
+    {
+      "year": 2014,
+      "stopType": "traffic",
+      "kind": "ratios",
+      "title": "2018 Agency Ratios 2014 2018",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2018-agency-ratios-2014-2018.pdf"
+    },
+    {
+      "year": 2015,
+      "stopType": "traffic",
+      "kind": "detail-tables",
+      "title": "2015 Itss Statewide And Agency Reports",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2015-itss-statewide-and-agency-reports.pdf"
+    },
+    {
+      "year": 2015,
+      "stopType": "traffic",
+      "kind": "executive-summary",
+      "title": "2015 Itss Executive Summary",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2015-itss-executive-summary.pdf"
+    },
+    {
+      "year": 2016,
+      "stopType": "pedestrian",
+      "kind": "detail-tables",
+      "title": "2016 Ipss Agency Reports",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2016-ipss-agency-reports.pdf"
+    },
+    {
+      "year": 2016,
+      "stopType": "pedestrian",
+      "kind": "executive-summary",
+      "title": "2016 Ipss Executive Summary",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2016-ipss-executive-summary.pdf"
+    },
+    {
+      "year": 2016,
+      "stopType": "traffic",
+      "kind": "detail-tables",
+      "title": "2016 Itss Statewide And Agency Reports",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2016-itss-statewide-and-agency-reports.pdf"
+    },
+    {
+      "year": 2016,
+      "stopType": "traffic",
+      "kind": "executive-summary",
+      "title": "2016 Itss Executive Summary",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2016-itss-executive-summary.pdf"
+    },
+    {
+      "year": 2017,
+      "stopType": "pedestrian",
+      "kind": "detail-tables",
+      "title": "2017 Ipss Agency Reports",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2017-ipss-agency-reports.pdf"
+    },
+    {
+      "year": 2017,
+      "stopType": "pedestrian",
+      "kind": "executive-summary",
+      "title": "2017 Ipss Exec Summary",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2017-ipss-exec-summary.pdf"
+    },
+    {
+      "year": 2017,
+      "stopType": "traffic",
+      "kind": "detail-tables",
+      "title": "2017 Itss Statewide And Agency Reports",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2017-itss-statewide-and-agency-reports.pdf"
+    },
+    {
+      "year": 2017,
+      "stopType": "traffic",
+      "kind": "executive-summary",
+      "title": "2017 Itss Executive Summary",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2017-itss-executive-summary.pdf"
+    },
+    {
+      "year": 2018,
+      "stopType": "pedestrian",
+      "kind": "detail-tables",
+      "title": "2018 Ipss Statewide And Agency Reports",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2018-ipss-statewide-and-agency-reports.pdf"
+    },
+    {
+      "year": 2018,
+      "stopType": "pedestrian",
+      "kind": "executive-summary",
+      "title": "2018 Ipss Executive Summary",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2018-ipss-executive-summary.pdf"
+    },
+    {
+      "year": 2018,
+      "stopType": "traffic",
+      "kind": "detail-tables",
+      "title": "2018 Itss Statewide And Agency Reports",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2018-itss-statewide-and-agency-reports.pdf"
+    },
+    {
+      "year": 2018,
+      "stopType": "traffic",
+      "kind": "executive-summary",
+      "title": "2018 Itss Executive Summary",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2018-itss-executive-summary.pdf"
+    },
+    {
+      "year": 2019,
+      "stopType": "pedestrian",
+      "kind": "detail-tables",
+      "title": "Pedestrian Stop Report Tables 7 1 2020 Part II",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/final--part-ii-pedestrian-stop-report--tables--7-1-20.pdf"
+    },
+    {
+      "year": 2019,
+      "stopType": "pedestrian",
+      "kind": "executive-summary",
+      "title": "Executive Summary Pedestrian Stop Data 7 1 2020 Part I",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/final--part-i-executive-summary-pedestrian-stop-data--7-1-20.pdf"
+    },
+    {
+      "year": 2019,
+      "stopType": "traffic",
+      "kind": "detail-tables",
+      "title": "Traffic Stop Report Tables 7 1 2020 Part II",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/final--part-ii-traffic-stop-report--tables--7-1-20.pdf"
+    },
+    {
+      "year": 2019,
+      "stopType": "traffic",
+      "kind": "executive-summary",
+      "title": "Executive Summary Traffic Stop Data 7 1 2020 Part I",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/final--part-i-executive-summary-traffic-stop-data--7-1-20.pdf"
+    },
+    {
+      "year": 2020,
+      "stopType": "pedestrian",
+      "kind": "detail-tables",
+      "title": "Illinois Traffic And Pedestrian Stop Study 2020 Pedestrian 6 24 21 Part II",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/final--illinois-traffic-and-pedestrian-stop-study-2020---part-ii-pedestrian--6-24-21.pdf"
+    },
+    {
+      "year": 2020,
+      "stopType": "pedestrian",
+      "kind": "executive-summary",
+      "title": "Executive Summary 2020 Pedestrian Stops 6 24 21 Part I",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/final--part-i-executive-summary-2020-pedestrian-stops--6-24-21.pdf"
+    },
+    {
+      "year": 2020,
+      "stopType": "traffic",
+      "kind": "detail-tables",
+      "title": "Illinois Traffic And Pedestrian Stop Study 2020 Traffic 6 24 21 Part II",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/final--illinois-traffic-and-pedestrian-stop-study-2020---part-ii-traffic--6-24-21.pdf"
+    },
+    {
+      "year": 2020,
+      "stopType": "traffic",
+      "kind": "executive-summary",
+      "title": "Executive Summary 2020 Traffic Stops 6 24 21 Part I",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/final--part-i-executive-summary-2020-traffic-stops--6-24-21.pdf"
+    },
+    {
+      "year": 2021,
+      "stopType": "pedestrian",
+      "kind": "detail-tables",
+      "title": "Il 2021 Pedestrian Stop Study Deatailed Tables Part II",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/il-2021-pedestrian-stop-study-part-ii---deatailed-tables.pdf"
+    },
+    {
+      "year": 2021,
+      "stopType": "pedestrian",
+      "kind": "executive-summary",
+      "title": "Il 2021 Pedestrian Stop Study Executive Summary Part I",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/il-2021-pedestrian-stop-study-part-i--executive-summary.pdf"
+    },
+    {
+      "year": 2021,
+      "stopType": "traffic",
+      "kind": "detail-tables",
+      "title": "Il 2021 Traffic Stop Study Deatiled Tables Part II",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/il-2021-traffic-stop-study-part-ii---deatiled-tables.pdf"
+    },
+    {
+      "year": 2021,
+      "stopType": "traffic",
+      "kind": "executive-summary",
+      "title": "Il 2021 Traffic Stop Study Executive Summary Part I",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/il-2021traffic-stop-study-part-i---executive-summary.pdf"
+    },
+    {
+      "year": 2022,
+      "stopType": "pedestrian",
+      "kind": "detail-tables",
+      "title": "2022 Illinois Pedestrian Stop Study - Part 2",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/final--il-stop-study-2022-part-ii-pedestrian-stops--6-30-23.pdf"
+    },
+    {
+      "year": 2022,
+      "stopType": "pedestrian",
+      "kind": "executive-summary",
+      "title": "2022 Illinois Pedestrian Stop Study - Part I",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/final--part-i-executive-summary-pedestrian-6-30-23.pdf"
+    },
+    {
+      "year": 2022,
+      "stopType": "traffic",
+      "kind": "detail-tables",
+      "title": "2022 Illinois Traffic Stop Study - Part 2",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/final--il-stop-study-2022-part-ii-traffic-stops--6-30-23.pdf"
+    },
+    {
+      "year": 2022,
+      "stopType": "traffic",
+      "kind": "executive-summary",
+      "title": "2022 Illinois Traffic Stop Study - Part 1",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/final--part-i-executive-summary-traffic--6-30-23.pdf"
+    },
+    {
+      "year": 2023,
+      "stopType": "pedestrian",
+      "kind": "detail-tables",
+      "title": "2023 Illinois Pedestrian Stop Study - Part II",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2023ipss_2.pdf"
+    },
+    {
+      "year": 2023,
+      "stopType": "pedestrian",
+      "kind": "executive-summary",
+      "title": "2023 Illinois Pedestrian Stop Study - Part I",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2023ipss_1.pdf"
+    },
+    {
+      "year": 2023,
+      "stopType": "traffic",
+      "kind": "detail-tables",
+      "title": "2023 Illinois Traffic Stop Study - Part II",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2023 Illinois Traffic Stop Study - Part II.pdf"
+    },
+    {
+      "year": 2023,
+      "stopType": "traffic",
+      "kind": "executive-summary",
+      "title": "2023 Illinois Traffic Stop Study - Part I",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2023 Illinois Traffic Stop Study - Part I.pdf"
+    },
+    {
+      "year": 2023,
+      "stopType": "traffic",
+      "kind": "other",
+      "title": "IDOT Response to ILACP Letter",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/IDOT response.pdf"
+    },
+    {
+      "year": 2023,
+      "stopType": "traffic",
+      "kind": "other",
+      "title": "ILACP Concerns Over IL Traffic Stop Study",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/ILACP Concerns Over IL Traffic Stop Study Vendor 012324.pdf"
+    },
+    {
+      "year": 2024,
+      "stopType": "pedestrian",
+      "kind": "detail-tables",
+      "title": "2024 Illinois Pedestrian Stop Study - Part II",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2024-Illinois-Pedestrian-Stop-Study-PartII.pdf"
+    },
+    {
+      "year": 2024,
+      "stopType": "pedestrian",
+      "kind": "executive-summary",
+      "title": "2024 Illinois Pedestrian Stop Study - Part I",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2024-Illinois-Pedestrian-Stop-Study-PartI.pdf"
+    },
+    {
+      "year": 2024,
+      "stopType": "traffic",
+      "kind": "detail-tables",
+      "title": "2024 Illinois Traffic Stop Study - Part II",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2024-Illinois-Traffic-Stop-Study-PartII.pdf"
+    },
+    {
+      "year": 2024,
+      "stopType": "traffic",
+      "kind": "executive-summary",
+      "title": "2024 Illinois Traffic Stop Study - Part I",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2024-Illinois-Traffic-Stop-Study-PartI.pdf"
+    },
+    {
+      "year": 2025,
+      "stopType": "pedestrian",
+      "kind": "detail-tables",
+      "title": "2024 Illinois Pedestrian Stop Study - Part II",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2025-pedestrian-stops-part-ii.pdf"
+    },
+    {
+      "year": 2025,
+      "stopType": "pedestrian",
+      "kind": "executive-summary",
+      "title": "2025 Illinois Pedestrian Stop Study - Part I",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2025-pedestrian-stops-part-i.pdf"
+    },
+    {
+      "year": 2025,
+      "stopType": "traffic",
+      "kind": "detail-tables",
+      "title": "2025 Illinois Traffic Stop Study - Part II",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2025-traffic-stops-part-ii.pdf"
+    },
+    {
+      "year": 2025,
+      "stopType": "traffic",
+      "kind": "executive-summary",
+      "title": "2025 Illinois Traffic Stop Study - Part I",
+      "url": "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2025-traffic-stops-part-i.pdf"
+    }
+  ]
+}

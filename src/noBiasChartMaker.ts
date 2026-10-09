@@ -1,5 +1,5 @@
 import { SVG, Circle } from "@svgdotjs/svg.js";
-import { LocalityStatisticSet } from "./data";
+import { LocalityStatisticSet } from "./types";
 import { Colors } from "./utils";
 
 export class NoBiasChartMaker {
@@ -20,7 +20,7 @@ export class NoBiasChartMaker {
         count = Math.max(count, this.minStopCount);
         
         const id = "no-bias-chart";
-        document.getElementById(id).innerHTML = "";
+        document.getElementById(id)!.innerHTML = "";
 
         var svg = SVG().addTo(`#${id}`).size(this.width, this.height);
 

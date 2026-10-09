@@ -1,7 +1,26 @@
-import { LocalityStatisticSet } from "./data";
+import { LocalityStatisticSet, YearStats } from "./types";
 
 export enum Colors { BLUE = "blue", RED = "red", GREEN = "green" }
 export enum RaceCategory { WHITE, BLACK, HISPANIC }
+
+// Returns null when the year has no per-race population benchmark, since the
+// benchmark-based comparisons can't be made without it.
+export function toStatisticSet(name: string, stats: YearStats): LocalityStatisticSet | null {
+    const { totalBenchmark, white, black, hispanic } = stats;
+
+    if (totalBenchmark === null || white.benchmark === null || black.benchmark === null || hispanic.benchmark === null) {
+        return null;
+    }
+
+    return {
+        name,
+        totalStops: stats.totalStops,
+        totalBenchmark,
+        white: { stops: white.stops, benchmark: white.benchmark },
+        black: { stops: black.stops, benchmark: black.benchmark },
+        hispanic: { stops: hispanic.stops, benchmark: hispanic.benchmark }
+    };
+}
 
 export function getStopRateRatio(statisticsSet: LocalityStatisticSet) {
     return statisticsSet.totalStops / statisticsSet.totalBenchmark;

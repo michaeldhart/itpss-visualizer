@@ -1,0 +1,184 @@
+Tolerated discrepancies in IDOT's reports (parsed values kept as printed).
+
+2005 traffic p.1000 MACON COUNTY SHERIFF: total stops excludes 1 N/S stops
+2005 traffic p.1012 MANHATTAN POLICE: total stops excludes 1 N/S stops
+2005 traffic p.1030 MARION POLICE: total stops excludes 1 N/S stops
+2005 traffic p.105 BEARDSTOWN POLICE: total stops excludes 1 N/S stops
+2005 traffic p.1056 MASON COUNTY SHERIFF: total stops excludes 6 N/S stops
+2005 traffic p.1068 MCCOOK POLICE: total stops excludes 3 N/S stops
+2005 traffic p.1070 MCDONOUGH COUNTY SHERIFF: total stops excludes 5 N/S stops
+2005 traffic p.1098 MERRIONETTE PARK POLICE: total stops excludes 1 N/S stops
+2005 traffic p.1104 METROPOLIS POLICE: total stops excludes 4 N/S stops
+2005 traffic p.1108 MILAN POLICE: total stops excludes 1 N/S stops
+2005 traffic p.1118 MINONK POLICE: total stops excludes 3 N/S stops
+2005 traffic p.1122 MOKENA POLICE: total stops excludes 2 N/S stops
+2005 traffic p.1130 MONEE POLICE: total stops excludes 3 N/S stops
+2005 traffic p.1134 MONROE COUNTY SHERIFF: total stops excludes 1 N/S stops
+2005 traffic p.1144 MORGAN COUNTY SHERIFF: total stops excludes 4 N/S stops
+2005 traffic p.1172 MOUNT PROSPECT POLICE: total stops excludes 1 N/S stops
+2005 traffic p.1178 MOUNT VERNON POLICE: total stops excludes 2 N/S stops
+2005 traffic p.1198 NAPLATE POLICE: total stops excludes 1 N/S stops
+2005 traffic p.1206 NEW ATHENS POLICE: total stops excludes 1 N/S stops
+2005 traffic p.1222 NEWTON POLICE: total stops excludes 1 N/S stops
+2005 traffic p.1236 NORTH CHICAGO POLICE: total stops excludes 1 N/S stops
+2005 traffic p.1246 NORTHEASTERN ILLINOIS UNIVERSITY: total stops excludes 1 N/S stops
+2005 traffic p.1272 OAKTON COMMUNITY COLLEGE POLICE: total stops excludes 1 N/S stops
+2005 traffic p.1274 OAKWOOD HILLS POLICE: total stops excludes 1 N/S stops
+2005 traffic p.1284 OGDEN POLICE: total stops excludes 1 N/S stops
+2005 traffic p.1294 OLNEY POLICE: total stops excludes 1 N/S stops
+2005 traffic p.1298 ONARGA POLICE: total stops excludes 1 N/S stops
+2005 traffic p.1306 ORLAND HILLS POLICE: total stops excludes 3 N/S stops
+2005 traffic p.1330 PARK CITY POLICE: total stops excludes 17 N/S stops
+2005 traffic p.1334 PARK RIDGE POLICE: total stops excludes 1 N/S stops
+2005 traffic p.137 BLANDINSVILLE POLICE: total stops excludes 5 N/S stops
+2005 traffic p.1372 PHOENIX POLICE: total stops excludes 1 N/S stops
+2005 traffic p.1386 PITTSFIELD POLICE: total stops excludes 1 N/S stops
+2005 traffic p.1390 PLANO POLICE: total stops excludes 1 N/S stops
+2005 traffic p.1404 PONTOON BEACH POLICE: total stops excludes 4 N/S stops
+2005 traffic p.1408 PORT BYRON POLICE: total stops excludes 1 N/S stops
+2005 traffic p.1416 PRAIRIE GROVE POLICE: total stops excludes 2 N/S stops
+2005 traffic p.1438 RANTOUL POLICE: total stops excludes 3 N/S stops
+2005 traffic p.1444 RICHLAND COUNTY SHERIFF: total stops excludes 1 N/S stops
+2005 traffic p.1448 RICHTON PARK POLICE: total stops excludes 2 N/S stops
+2005 traffic p.1478 ROCK FALLS POLICE: total stops excludes 1 N/S stops
+2005 traffic p.1480 ROCK ISLAND COUNTY SHERIFF: total stops excludes 12 N/S stops
+2005 traffic p.1498 ROODHOUSE POLICE: total stops excludes 1 N/S stops
+2005 traffic p.15 ALEXANDER COUNTY SHERIFF: total stops excludes 1 N/S stops
+2005 traffic p.1500 ROSCOE POLICE: total stops excludes 1 N/S stops
+2005 traffic p.151 BONNIE POLICE: total stops excludes 1 N/S stops
+2005 traffic p.1528 SALEM POLICE: total stops excludes 1 N/S stops
+2005 traffic p.153 BOONE COUNTY SHERIFF: total stops excludes 2 N/S stops
+2005 traffic p.1534 SANDOVAL POLICE: total stops excludes 2 N/S stops
+2005 traffic p.1544 SAVANNA POLICE: total stops excludes 2 N/S stops
+2005 traffic p.155 BOURBONNAIS POLICE: total stops excludes 2 N/S stops
+2005 traffic p.1578 SHILOH POLICE: total stops excludes 4 N/S stops
+2005 traffic p.1580 SHOREWOOD POLICE: total stops excludes 9 N/S stops
+2005 traffic p.1594 SOUTH BARRINGTON POLICE: total stops excludes 2 N/S stops
+2005 traffic p.1602 SOUTH HOLLAND POLICE: total stops excludes 8 N/S stops
+2005 traffic p.1610 SOUTH SUBURBAN COLLEGE POLICE: total stops excludes 1 N/S stops
+2005 traffic p.1616 SOUTHERN VIEW POLICE: total stops excludes 1 N/S stops
+2005 traffic p.1644 ST. PETER POLICE: total stops excludes 1 N/S stops
+2005 traffic p.1646 STANFORD POLICE: total stops excludes 1 N/S stops
+2005 traffic p.1648 STARK COUNTY SHERIFF: total stops excludes 3 N/S stops
+2005 traffic p.1656 STEPHENSON COUNTY SHERIFF: total stops excludes 3 N/S stops
+2005 traffic p.1664 STOCKTON POLICE: total stops excludes 1 N/S stops
+2005 traffic p.167 BRIDGEVIEW POLICE: total stops excludes 2 N/S stops
+2005 traffic p.1674 STREATOR POLICE: total stops excludes 4 N/S stops
+2005 traffic p.1696 TAZEWELL COUNTY SHERIFF: total stops excludes 2 N/S stops
+2005 traffic p.1704 THOMASBORO POLICE: total stops excludes 1 N/S stops
+2005 traffic p.1724 TOULON POLICE: total stops excludes 1 N/S stops
+2005 traffic p.1736 TUSCOLA POLICE: total stops excludes 1 N/S stops
+2005 traffic p.1778 VILLA GROVE POLICE: total stops excludes 2 N/S stops
+2005 traffic p.1794 WARREN COUNTY SHERIFF: total stops excludes 1 N/S stops
+2005 traffic p.1798 WARRENSBURG POLICE: total stops excludes 2 N/S stops
+2005 traffic p.1808 WASHINGTON PARK POLICE: total stops excludes 229 N/S stops
+2005 traffic p.1838 WEST FRANKFORT POLICE: total stops excludes 1 N/S stops
+2005 traffic p.1846 WESTERN SPRINGS POLICE: total stops excludes 1 N/S stops
+2005 traffic p.1854 WHEATON POLICE: total stops excludes 7 N/S stops
+2005 traffic p.1864 WHITESIDE COUNTY SHERIFF: total stops excludes 5 N/S stops
+2005 traffic p.1866 WILL COUNTY FOREST PRESERVE POLICE: total stops excludes 1 N/S stops
+2005 traffic p.1872 WILLIAMSON COUNTY SHERIFF: total stops excludes 3 N/S stops
+2005 traffic p.1884 WILMINGTON POLICE: total stops excludes 3 N/S stops
+2005 traffic p.1920 WOODSTOCK POLICE: total stops excludes 1 N/S stops
+2005 traffic p.1922 WORDEN POLICE: total stops excludes 1 N/S stops
+2005 traffic p.203 BUSHNELL POLICE: total stops excludes 1 N/S stops
+2005 traffic p.205 BYRON POLICE: total stops excludes 1 N/S stops
+2005 traffic p.241 CARRIER MILLS POLICE: total stops excludes 2 N/S stops
+2005 traffic p.243 CARROLL COUNTY SHERIFF: total stops excludes 10 N/S stops
+2005 traffic p.291 CHERRY POLICE: total stops excludes 2 N/S stops
+2005 traffic p.293 CHERRY VALLEY POLICE: total stops excludes 1 N/S stops
+2005 traffic p.306 CHICAGO RIDGE POLICE: total stops excludes 6 N/S stops
+2005 traffic p.316 CICERO POLICE: total stops excludes 1 N/S stops
+2005 traffic p.342 COLCHESTER POLICE: total stops excludes 2 N/S stops
+2005 traffic p.35 ANNA POLICE: total stops excludes 1 N/S stops
+2005 traffic p.352 COLLINSVILLE POLICE: total stops excludes 2 N/S stops
+2005 traffic p.354 COLONA POLICE: total stops excludes 2 N/S stops
+2005 traffic p.372 COUNTRYSIDE POLICE: total stops excludes 19 N/S stops
+2005 traffic p.412 DECATUR PARK DISTRICT POLICE: total stops excludes 1 N/S stops
+2005 traffic p.426 DESOTO POLICE: total stops excludes 1 N/S stops
+2005 traffic p.440 DOWNERS GROVE POLICE: total stops excludes 1 N/S stops
+2005 traffic p.45 ARGENTA POLICE: total stops excludes 1 N/S stops
+2005 traffic p.462 EAST DUNDEE POLICE: total stops excludes 3 N/S stops
+2005 traffic p.478 EDGAR COUNTY SHERIFF: total stops excludes 3 N/S stops
+2005 traffic p.484 EFFINGHAM COUNTY SHERIFF: total stops excludes 3 N/S stops
+2005 traffic p.498 ELIZABETH POLICE: total stops excludes 1 N/S stops
+2005 traffic p.51 AROMA PARK POLICE: total stops excludes 1 N/S stops
+2005 traffic p.53 ARTHUR POLICE: total stops excludes 1 N/S stops
+2005 traffic p.538 FAIRBURY POLICE: total stops excludes 1 N/S stops
+2005 traffic p.540 FAIRFIELD POLICE: total stops excludes 1 N/S stops
+2005 traffic p.560 FISHER POLICE: total stops excludes 1 N/S stops
+2005 traffic p.566 FLOSSMOOR POLICE: total stops excludes 1 N/S stops
+2005 traffic p.570 FORD COUNTY SHERIFF: total stops excludes 1 N/S stops
+2005 traffic p.586 FOX RIVER VALLEY GARD POLICE: total stops excludes 2 N/S stops
+2005 traffic p.598 FRANKLIN POLICE: total stops excludes 1 N/S stops
+2005 traffic p.608 FULTON POLICE: total stops excludes 137 N/S stops
+2005 traffic p.620 GALVA POLICE: total stops excludes 1 N/S stops
+2005 traffic p.634 GIBSON CITY POLICE: total stops excludes 6 N/S stops
+2005 traffic p.656 GLENWOOD POLICE: total stops excludes 1 N/S stops
+2005 traffic p.664 GRAFTON POLICE: total stops excludes 1 N/S stops
+2005 traffic p.684 GREAT LAKES NAVAL STATION: total stops excludes 1 N/S stops
+2005 traffic p.71 ATLANTA POLICE: total stops excludes 2 N/S stops
+2005 traffic p.728 HARVEY POLICE: total stops excludes 1 N/S stops
+2005 traffic p.73 ATWOOD POLICE: total stops excludes 1 N/S stops
+2005 traffic p.75 AUBURN POLICE: total stops excludes 3 N/S stops
+2005 traffic p.754 HICKORY HILLS POLICE: total stops excludes 3 N/S stops
+2005 traffic p.770 HINCKLEY POLICE: total stops excludes 1 N/S stops
+2005 traffic p.774 HODGKINS POLICE: total stops excludes 4 N/S stops
+2005 traffic p.782 HOMETOWN POLICE: total stops excludes 2 N/S stops
+2005 traffic p.790 HUDSON POLICE: total stops excludes 1 N/S stops
+2005 traffic p.810 IRVING POLICE: total stops excludes 2 N/S stops
+2005 traffic p.822 JEFFERSON COUNTY SHERIFF: total stops excludes 1 N/S stops
+2005 traffic p.830 JO DAVIESS COUNTY SHERIFF: total stops excludes 1 N/S stops
+2005 traffic p.836 JOHNSON COUNTY SHERIFF: total stops excludes 1 N/S stops
+2005 traffic p.840 JOLIET JUNIOR COLLEGE POLICE: total stops excludes 4 N/S stops
+2005 traffic p.850 JUSTICE POLICE: total stops excludes 6 N/S stops
+2005 traffic p.860 KANSAS POLICE: total stops excludes 1 N/S stops
+2005 traffic p.864 KENDALL COUNTY SHERIFF: total stops excludes 8 N/S stops
+2005 traffic p.874 KINCAID POLICE: total stops excludes 1 N/S stops
+2005 traffic p.908 LAKE VILLA POLICE: total stops excludes 1 N/S stops
+2005 traffic p.912 LAKEMOOR POLICE: total stops excludes 6 N/S stops
+2005 traffic p.920 LANSING POLICE: total stops excludes 4 N/S stops
+2005 traffic p.932 LEBANON POLICE: total stops excludes 1 N/S stops
+2005 traffic p.938 LELAND POLICE: total stops excludes 1 N/S stops
+2005 traffic p.942 LENA POLICE: total stops excludes 1 N/S stops
+2005 traffic p.944 LEROY POLICE: total stops excludes 1 N/S stops
+2005 traffic p.958 LINCOLNSHIRE POLICE: total stops excludes 4 N/S stops
+2005 traffic p.966 LITCHFIELD POLICE: total stops excludes 1 N/S stops
+2005 traffic p.968 LIVINGSTON COUNTY SHERIFF: total stops excludes 74 N/S stops
+2005 traffic p.994 LYONS POLICE: total stops excludes 3 N/S stops
+2016 pedestrian p.70 CHICAGO POLICE: community demographics sum to 2150916, printed total is 2150966
+2017 pedestrian p.174 ILLINOIS DEPARTMENT OF NATURAL RESOURCES POLICE: community demographics are inconsistent in the report; benchmark omitted
+2017 pedestrian p.358 SECRETARY OF STATE POLICE: community demographics are inconsistent in the report; benchmark omitted
+2017 pedestrian p.62 CHICAGO POLICE: community demographics sum to 2150916, printed total is 2150966
+2018 pedestrian p.176 ILLINOIS DEPARTMENT OF NATURAL RESOURCES POLICE: community demographics are inconsistent in the report; benchmark omitted
+2018 pedestrian p.352 SECRETARY OF STATE POLICE: community demographics are inconsistent in the report; benchmark omitted
+
+Sum of agency stops vs the report's statewide total (agencies IDOT lists separately may be missing from the body):
+2004 traffic    statewide  2,495,099  agencies  2,494,663  diff -436
+2007 traffic    statewide  2,450,986  agencies  2,450,985  diff -1
+2008 traffic    statewide  2,518,825  agencies  2,491,032  diff -27,793
+2009 traffic    statewide  2,470,554  agencies  2,450,311  diff -20,243
+2010 traffic    statewide  2,377,851  agencies  2,377,847  diff -4
+2011 traffic    statewide  2,167,550  agencies  2,167,550  diff +0
+2012 traffic    statewide  2,132,006  agencies  2,132,006  diff +0
+2013 traffic    statewide  2,095,876  agencies  2,095,876  diff +0
+2014 traffic    statewide  2,043,247  agencies  2,043,247  diff +0
+2015 traffic    statewide  2,022,332  agencies  2,022,332  diff +0
+2016 traffic    statewide  2,169,796  agencies  2,169,796  diff +0
+2017 traffic    statewide  2,284,919  agencies  2,284,919  diff +0
+2018 traffic    statewide  2,470,322  agencies  2,470,318  diff -4
+2019 traffic    statewide  2,483,904  agencies  2,465,321  diff -18,583
+2020 traffic    statewide  1,561,514  agencies  1,555,113  diff -6,401
+2021 traffic    statewide  1,655,935  agencies  1,631,983  diff -23,952
+2022 traffic    statewide  2,012,124  agencies  2,012,124  diff +0
+2023 traffic    statewide  2,260,647  agencies  2,260,647  diff +0
+2024 traffic    statewide  2,050,405  agencies  2,050,405  diff +0
+2025 traffic    statewide  2,062,325  agencies  2,062,325  diff +0
+2018 pedestrian statewide    149,400  agencies    149,400  diff +0
+2019 pedestrian statewide    172,160  agencies    172,160  diff +0
+2020 pedestrian statewide     94,042  agencies     94,042  diff +0
+2021 pedestrian statewide     72,615  agencies     72,617  diff +2
+2022 pedestrian statewide     72,960  agencies     72,960  diff +0
+2023 pedestrian statewide     83,149  agencies     83,149  diff +0
+2024 pedestrian statewide     88,016  agencies     88,016  diff +0
+2025 pedestrian statewide     88,677  agencies     88,677  diff +0

@@ -1,5 +1,5 @@
 import { SVG, Circle } from "@svgdotjs/svg.js";
-import { LocalityStatisticSet } from "./data";
+import { LocalityStatisticSet } from "./types";
 import { Colors } from "./utils";
 
 export class GeneralPopulationChartMaker {
@@ -17,7 +17,7 @@ export class GeneralPopulationChartMaker {
 
     make = (statistics: LocalityStatisticSet) => {
         const id = "pop-chart";
-        document.getElementById(id).innerHTML = "";
+        document.getElementById(id)!.innerHTML = "";
 
         var svg = SVG().addTo(`#${id}`).size(this.width, this.height);
 
@@ -57,7 +57,7 @@ export class GeneralPopulationChartMaker {
     }
 
     insertLegendDot(id: string, color: Colors) {
-        document.getElementById(id).innerHTML = "";
+        document.getElementById(id)!.innerHTML = "";
 
         var svg = SVG().addTo(`#${id}`).size(this.dotSize, this.dotSize);
 

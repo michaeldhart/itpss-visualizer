@@ -1,5 +1,5 @@
 import { SVG, Circle } from "@svgdotjs/svg.js";
-import { LocalityStatisticSet } from "./data";
+import { StopStatistics } from "./types";
 import { Colors } from "./utils";
 
 export class ProjectedPopulationChartMaker {
@@ -15,9 +15,9 @@ export class ProjectedPopulationChartMaker {
         this.dotSize = 10;
     }
 
-    make = (statistics: LocalityStatisticSet) => {
+    make = (statistics: StopStatistics) => {
         const id = "projected-pop-chart";
-        document.getElementById(id).innerHTML = "";
+        document.getElementById(id)!.innerHTML = "";
 
         var svg = SVG().addTo(`#${id}`).size(this.width, this.height);
 

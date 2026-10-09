@@ -1,1 +1,7 @@
-node_modules/**
+node_modules
+dist
+.DS_Store
+.venv
+__pycache__
+pipeline/cache
+.pytest_cache

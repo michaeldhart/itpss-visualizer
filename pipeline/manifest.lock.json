@@ -1,0 +1,142 @@
+{
+  "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2004-2006-traffic-stop-data-sheet.pdf": {
+    "bytes": 203685,
+    "sha256": "d1cf66d7fbda9119094c188f61a530b2df3be9126ec943acbba7d911b238c104"
+  },
+  "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2004-illinois-traffic-stop-study.pdf": {
+    "bytes": 5635527,
+    "sha256": "7405f8871defdcee7dd29966de1b0414672aed94edc037b07c86e12f1c9fb889"
+  },
+  "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2005-illinois-traffic-stop-study.pdf": {
+    "bytes": 5463824,
+    "sha256": "7507a49013181581801f9f09251dabea1c9ab94865e90e916611312c2ad2f312"
+  },
+  "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2006-illinois-traffic-stop-report.pdf": {
+    "bytes": 5476162,
+    "sha256": "ea57a9040d37c015aa92f4c94215ffb91686e05a898fb04b4be92913d7a229fb"
+  },
+  "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2007-2011-traffic-stop-data-sheet.pdf": {
+    "bytes": 91422,
+    "sha256": "ada6926abbcf1e365345f74d4f75243ba73679027bc09b3d00b2c9fd1c8a6f6d"
+  },
+  "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2007-illinois-traffic-stop-report.pdf": {
+    "bytes": 6608390,
+    "sha256": "5b8f4f97de1572d39b207060b339d1ada7932f66fed4fdbf2195733001d0e157"
+  },
+  "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2008-illinois-traffic-stop-ratio-data.pdf": {
+    "bytes": 154167,
+    "sha256": "dbc890e9e432bc08e5eb45bc7a60c452648e99af6dee4a27de2c40181c84bcb0"
+  },
+  "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2008-illinois-traffic-stop-report.pdf": {
+    "bytes": 3298771,
+    "sha256": "01781f5bf7077ea7a04fc5dca93e761958ae1564bfcfd28e14dbf48e0ada4ccd"
+  },
+  "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2009-illinois-traffic-stop-report.pdf": {
+    "bytes": 3344922,
+    "sha256": "a2ce9ed00f826bd6e582efde03eae59befb3ce7b36af7f917ac15d80f0128448"
+  },
+  "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2010-illinois-traffic-stop-report.pdf": {
+    "bytes": 6036278,
+    "sha256": "248df9928310fb583f93e00840f4244f0790d90830b9bb6b950106cfbfb09b35"
+  },
+  "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2011-illinois-traffic-stop-report.pdf": {
+    "bytes": 5881343,
+    "sha256": "abf1cab7cc48144cdcc2816aab83dafa09226da5a1bc965e11ba845b73b40ebb"
+  },
+  "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2012-illinois-traffic-stop-report.pdf": {
+    "bytes": 14107376,
+    "sha256": "bc5469fc5b8f9abcb4ef43e8cdfd0f02caa7cc24145f17af230f8e349f69a63c"
+  },
+  "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2013-itss-statewide-and-agency-reports.pdf": {
+    "bytes": 6903147,
+    "sha256": "8e782f718cab1d85fb06271476e18a1c057feba89aaf4aefae124aa87617902a"
+  },
+  "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2014-itss-statewide-and-agency-reports.pdf": {
+    "bytes": 7222881,
+    "sha256": "fe060bdb17104e7d283f6eeba1d498534e41dd28af45a8c4d9126a9a6672c6cb"
+  },
+  "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2015-itss-statewide-and-agency-reports.pdf": {
+    "bytes": 15100338,
+    "sha256": "a92815ebe21533e590637bb19c7b4a7b73f9ba3021fe5b1cb0acdbafbca4b940"
+  },
+  "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2016-ipss-agency-reports.pdf": {
+    "bytes": 3228580,
+    "sha256": "8f160daf52b570aed02978d35698950b26fe7d27b287fec510744ad81d546f24"
+  },
+  "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2016-itss-statewide-and-agency-reports.pdf": {
+    "bytes": 18384465,
+    "sha256": "03e55a391abdbe97b9ae8ce6b4504768ec8f06bdaaea5cad7af96e91ee3f7063"
+  },
+  "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2017-ipss-agency-reports.pdf": {
+    "bytes": 6351280,
+    "sha256": "c1a27114615b93d4f98f60686a9b59125ceae575dffafb3f91b1848155ad1714"
+  },
+  "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2017-itss-statewide-and-agency-reports.pdf": {
+    "bytes": 8027717,
+    "sha256": "13ed1ba1585661cbe2173bd22380bc855dedfcad09c720bb1ff896586f13bc41"
+  },
+  "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2018-ipss-statewide-and-agency-reports.pdf": {
+    "bytes": 2913535,
+    "sha256": "3da6dd566281cb469fe23cffc786a4bdd4d819128885f04f11a493bd5a002afa"
+  },
+  "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2018-itss-statewide-and-agency-reports.pdf": {
+    "bytes": 7773683,
+    "sha256": "116101732ce5e9f86c9bd73cdc5804236b602f33f54dce19873249b7896d350d"
+  },
+  "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2023 Illinois Traffic Stop Study - Part II.pdf": {
+    "bytes": 55388365,
+    "sha256": "5d383ccc49c9968541648c55cfa08c4249f755b374e9cb658db14700d26497e7"
+  },
+  "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2023ipss_2.pdf": {
+    "bytes": 16100857,
+    "sha256": "e921b1aa9e8194f8a823601502c3000d8fe1c4e0ff7603f82ff4994c6ea4e51c"
+  },
+  "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2024-Illinois-Pedestrian-Stop-Study-PartII.pdf": {
+    "bytes": 18964486,
+    "sha256": "6320ee1db6d09f78a13927fe962dc97ba5f3abd7fe6b41779ae36e90f8fef8cb"
+  },
+  "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2024-Illinois-Traffic-Stop-Study-PartII.pdf": {
+    "bytes": 60977723,
+    "sha256": "9ef763b667cd8e8d693b54b8535a294fc6eafaaeba2552f28f4649307f69f2c2"
+  },
+  "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2025-pedestrian-stops-part-ii.pdf": {
+    "bytes": 17910591,
+    "sha256": "1c38b0d17e42b2e5baa40cfb4b0ae1eb9ff90823996c6120d61b5827994d5088"
+  },
+  "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/2025-traffic-stops-part-ii.pdf": {
+    "bytes": 66622192,
+    "sha256": "a38f324db5cc6132bb8b94bb48bfd657577c9209558f54030b75deefd738be6c"
+  },
+  "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/final--il-stop-study-2022-part-ii-pedestrian-stops--6-30-23.pdf": {
+    "bytes": 3191307,
+    "sha256": "3a5c3a8ec59831548b16f59d8f9e79881c024e9c391d8352e2ebd0edc2078b8f"
+  },
+  "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/final--il-stop-study-2022-part-ii-traffic-stops--6-30-23.pdf": {
+    "bytes": 16153260,
+    "sha256": "505056c934bd184cd1438766d8697c72b2393af4375e2f4511a7355a1cb343de"
+  },
+  "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/final--illinois-traffic-and-pedestrian-stop-study-2020---part-ii-pedestrian--6-24-21.pdf": {
+    "bytes": 2666868,
+    "sha256": "e0a33c53d8af15a7c5b2c2f4f428ce47f7e973b558424d3e91a70ec5a27a33bf"
+  },
+  "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/final--illinois-traffic-and-pedestrian-stop-study-2020---part-ii-traffic--6-24-21.pdf": {
+    "bytes": 14153327,
+    "sha256": "ba2286673464cbfa843724e84adc6d8e5456b0bd5d9c8e73f9d94d63729bdeb2"
+  },
+  "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/final--part-ii-pedestrian-stop-report--tables--7-1-20.pdf": {
+    "bytes": 3694799,
+    "sha256": "675524e763e692a09811c8ec1f4e3e873e70790f47073fb2e5216e0c060d17ae"
+  },
+  "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/final--part-ii-traffic-stop-report--tables--7-1-20.pdf": {
+    "bytes": 15085345,
+    "sha256": "c57a51499f802af15c2e64c5db206b8732a8e4348c2f3b3a27c5175f6a752738"
+  },
+  "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/il-2021-pedestrian-stop-study-part-ii---deatailed-tables.pdf": {
+    "bytes": 2115306,
+    "sha256": "52ba0ece66379ac74d8652866859923a69c813356b24b3c2267986a409f3cc09"
+  },
+  "https://idot.illinois.gov/content/dam/soi/en/web/idot/documents/transportation-system/reports/safety/traffic-stop-studies/il-2021-traffic-stop-study-part-ii---deatiled-tables.pdf": {
+    "bytes": 11637314,
+    "sha256": "2a7837e0efed0118feaa081a55874344b2e5f28f1d3599429ba64e1c95195a9b"
+  }
+}

@@ -1,4 +1,4 @@
-import { LocalityStatisticSet } from "./data";
+import { LocalityStatisticSet } from "./types";
 import { SVG, Circle } from "@svgdotjs/svg.js";
 import { Colors } from "./utils";
 
@@ -20,7 +20,7 @@ export class BiasChartMaker {
         count = Math.max(count, this.minStopCount);
         
         const id = "bias-chart";
-        document.getElementById(id).innerHTML = "";
+        document.getElementById(id)!.innerHTML = "";
 
         var svg = SVG().addTo(`#${id}`).size(this.width, this.height);
 
