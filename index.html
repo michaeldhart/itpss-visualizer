@@ -213,6 +213,46 @@
         </p>
         <h5>How did your community do?</h5>
     </div>
+    <div class="container" id="trends">
+        <h3>Over the Years</h3>
+        <p>
+            How <span class="agency-name"></span>'s <span class="stop-type-label"></span> stops have changed from <span id="trend-first-year"></span>
+            to <span id="trend-last-year"></span>. Select a point to jump to that year. Hollow points are based on fewer than
+            <span id="trend-small-sample"></span> stops, so they can swing widely. A gap means the department did not report that year.
+        </p>
+        <h5 class="chart-title">Minority drivers: share of stops and share of the population</h5>
+        <p class="legend" id="trend-share-legend"></p>
+        <div id="trend-share-chart"></div>
+        <div id="trend-ratio-section">
+            <h5 class="chart-title">Stop rate compared with White drivers</h5>
+            <p class="small">
+                A value of 1.0 means a group was stopped at the same rate as White drivers; 2.0 means twice the rate.
+                Only years with a population benchmark by race can be shown.
+            </p>
+            <p class="legend" id="trend-ratio-legend"></p>
+            <div id="trend-ratio-chart"></div>
+        </div>
+        <p class="small" id="trend-benchmarks"></p>
+        <details>
+            <summary>Show the numbers</summary>
+            <div class="table-scroll">
+                <table id="trend-table">
+                    <thead>
+                        <tr>
+                            <th>Year</th>
+                            <th>Stops with a recorded race</th>
+                            <th>Minority share of stops</th>
+                            <th>Minority share of population</th>
+                            <th>Ratio of the two</th>
+                            <th>Black stop rate vs. White</th>
+                            <th>Hispanic stop rate vs. White</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </details>
+    </div>
     <div class="container afterword">
         <h6>Afterword</h6>
         <p>

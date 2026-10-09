@@ -26,24 +26,23 @@ export function getStopRateRatio(statisticsSet: LocalityStatisticSet) {
     return statisticsSet.totalStops / statisticsSet.totalBenchmark;
 }
 
-export function getRateRatioVsWhite(statisticsSet: LocalityStatisticSet, raceCategory: RaceCategory) {
-    const whiteStopRate = statisticsSet.white.stops / statisticsSet.white.benchmark;
-    let raceCategoryStopRate;
+// Stop rate of a race (stops / benchmark population) divided by the White stop rate; null when either rate
+// can't be calculated (no White stops, or a race with no population).
+export function rateRatioVsWhite(statisticsSet: LocalityStatisticSet, raceCategory: RaceCategory): number | null {
+    const race = raceCategory === RaceCategory.WHITE ? statisticsSet.white
+        : raceCategory === RaceCategory.BLACK ? statisticsSet.black : statisticsSet.hispanic;
+    const ratio = (race.stops / race.benchmark) / (statisticsSet.white.stops / statisticsSet.white.benchmark);
 
-    switch(raceCategory) {
-        case RaceCategory.WHITE:
-            return "1.0";
-        case RaceCategory.BLACK:
-            raceCategoryStopRate = statisticsSet.black.stops / statisticsSet.black.benchmark;
-            break;
-        case RaceCategory.HISPANIC:
-            raceCategoryStopRate = statisticsSet.hispanic.stops / statisticsSet.hispanic.benchmark;
-            break;
-    }
-
-    return (raceCategoryStopRate / whiteStopRate).toFixed(1).toString();
+    return Number.isFinite(ratio) ? ratio : null;
 }
 
+export function getRateRatioVsWhite(statisticsSet: LocalityStatisticSet, raceCategory: RaceCategory) {
+    if (raceCategory === RaceCategory.WHITE) {
+        return "1.0";
+    }
+
+    return (rateRatioVsWhite(statisticsSet, raceCategory) ?? NaN).toFixed(1).toString();
+}
 
 // What fraction of the dots in a chart are red and green; the rest are blue.
 export interface DotShares {

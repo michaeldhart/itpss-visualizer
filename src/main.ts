@@ -4,6 +4,8 @@ import { getEraNotice } from "./eras";
 import { AgencyFile, AgencyIndexEntry, LocalityStatisticSet, StopType, StopTypes, YearStats } from "./types";
 import { AgencyCombobox } from "./agencyCombobox";
 import { GeneralPopulationChartMaker } from "./generalPopulationChartMaker";
+import { drawTrendChart, niceAxis, TrendPoint, TrendSeries } from "./trendChart";
+import { benchmarkPeriods, buildTrend, describePeriod, smallSampleStops as trendSmallSample, YearTrend } from "./trends";
 import { benchmarkShares, Colors, getRateRatioVsWhite, MinorityComparison, RaceCategory, stopShares, toMinorityComparison, toStatisticSet } from "./utils";
 import { NoBiasChartMaker } from "./noBiasChartMaker";
 import { BiasChartMaker } from "./biasChartMaker";
@@ -108,6 +110,7 @@ async function render() {
     document.getElementById("visualization")!.hidden = !stats;
 
     if (!stats) {
+        document.getElementById("trends")!.hidden = true;
         return;
     }
 
@@ -177,10 +180,151 @@ function renderVisualization(agency: AgencyFile, current: Selection, stats: Year
     } else {
         new ProjectedPopulationChartMaker(width, genPopHeight, sampleSize).make(stopShares(stats));
     }
+
+    renderTrends(agency, current, width);
+}
+
+const percent = (fraction: number) => `${Math.round(fraction * 100)}%`;
+const trendHeight = 280;
+// Rate ratios above this are drawn on the top edge of the chart, so one extreme year can't flatten the rest
+const maxRateRatioAxis = 10;
+
+function jumpToYear(year: number) {
+    select({ ...selection, year });
+    document.getElementById("selectors")!.scrollIntoView({ behavior: "smooth" });
+}
+
+function renderTrends(agency: AgencyFile, current: Selection, width: number) {
+    const trend = buildTrend(agency[current.stopType]);
+    const section = document.getElementById("trends")!;
+
+    section.hidden = trend.length < 2;
+
+    if (trend.length < 2) {
+        return;
+    }
+
+    const firstYear = trend[0].year;
+    const lastYear = trend[trend.length - 1].year;
+    const periods = benchmarkPeriods(trend);
+    // where the benchmark changes, halfway between the last year of one period and the first of the next
+    const breaks = periods.slice(1).map((period, i) => ({
+        at: (periods[i].lastYear + period.firstYear) / 2,
+        label: `The population benchmark changes here: ${describePeriod(period, current.stopType)} from ${period.firstYear}`
+    }));
+    const common = {
+        width, height: trendHeight, firstYear, lastYear, breaks, selectedYear: current.year,
+        hrefForYear: (year: number) => `#/${current.stopType}/${agency.id}/${year}`,
+        onSelectYear: jumpToYear
+    };
+
+    section.querySelectorAll(".agency-name").forEach(e => e.textContent = agency.name);
+    document.getElementById("trend-first-year")!.textContent = `${firstYear}`;
+    document.getElementById("trend-last-year")!.textContent = `${lastYear}`;
+    document.getElementById("trend-small-sample")!.textContent = `${trendSmallSample}`;
+
+    // minority share of stops vs. of the population
+    const stopShares: TrendPoint[] = [];
+    const populationShares: TrendPoint[] = [];
+    trend.forEach(t => {
+        stopShares.push({
+            year: t.year, value: t.minorityStopShare, hollow: t.knownStops < trendSmallSample,
+            tooltip: t.minorityStopShare === null ? `${t.year}: no stops with a recorded race`
+                : `${t.year}: ${percent(t.minorityStopShare)} of ${t.knownStops.toLocaleString()} stops were minority drivers`
+        });
+        populationShares.push({
+            year: t.year, value: t.minorityPopulationShare, hollow: false,
+            tooltip: t.minorityPopulationShare === null ? "" : `${t.year}: minority share of the population ${percent(t.minorityPopulationShare)} (${describePeriod({ family: t.benchmarkFamily, firstYear: t.year, lastYear: t.year, methods: t.benchmarkMethod ? [t.benchmarkMethod] : [] }, current.stopType)})`
+        });
+    });
+    const shareSeries: TrendSeries[] = [
+        { name: "Minority share of stops", color: "red", selectable: true, points: stopShares },
+        { name: "Minority share of the population", color: "#555", dashed: true, points: populationShares }
+    ];
+    const shareMax = niceAxis(Math.max(0.1, ...shareSeries.flatMap(s => s.points.map(p => p.value ?? 0)))).max;
+    drawTrendChart(shareSeries, { ...common, containerId: "trend-share-chart", yMax: Math.min(1, shareMax), formatTick: percent });
+    setLegend("trend-share-legend", shareSeries);
+
+    // stop rate vs. White, only for years with a benchmark by race
+    const rateSeries: TrendSeries[] = [
+        { name: "Black drivers", color: "red", selectable: true, points: trend.map(t => rateRatioPoint(t, "Black", t.blackRateRatio, t.blackStops)) },
+        { name: "Hispanic drivers", color: "green", selectable: true, points: trend.map(t => rateRatioPoint(t, "Hispanic", t.hispanicRateRatio, t.hispanicStops)) }
+    ];
+    const rateValues = rateSeries.flatMap(s => s.points.map(p => p.value)).filter((v): v is number => v !== null);
+    const ratioSection = document.getElementById("trend-ratio-section")!;
+    ratioSection.hidden = rateValues.length < 2;
+
+    if (rateValues.length >= 2) {
+        const rateMax = Math.min(maxRateRatioAxis, niceAxis(Math.max(2, ...rateValues)).max);
+        drawTrendChart(rateSeries, {
+            ...common, containerId: "trend-ratio-chart", yMax: rateMax, formatTick: v => `${v}`,
+            referenceLine: { value: 1, label: "1.0 = same rate as White drivers" }
+        });
+        setLegend("trend-ratio-legend", rateSeries);
+    }
+
+    renderBenchmarkNote(periods, current.stopType);
+    renderTrendTable(trend, agency, current);
+}
+
+function rateRatioPoint(t: YearTrend, group: string, ratio: number | null, groupStops: number): TrendPoint {
+    return {
+        year: t.year, value: ratio, hollow: Math.min(t.whiteStops, groupStops) < trendSmallSample,
+        tooltip: ratio === null ? "" : `${t.year}: ${group} drivers were stopped at ${ratio.toFixed(1)} times the White rate (${groupStops.toLocaleString()} ${group} stops, ${t.whiteStops.toLocaleString()} White)`
+    };
+}
+
+function setLegend(id: string, series: TrendSeries[]) {
+    const legend = document.getElementById(id)!;
+    legend.innerHTML = "";
+
+    series.forEach(s => {
+        const key = document.createElement("span");
+        key.className = "key";
+        const swatch = document.createElement("i");
+        swatch.className = s.dashed ? "swatch dashed" : "swatch";
+        swatch.style.borderTopColor = s.color;
+        key.append(swatch, s.name);
+        legend.appendChild(key);
+    });
+}
+
+function renderBenchmarkNote(periods: ReturnType<typeof benchmarkPeriods>, stopType: StopType) {
+    const note = document.getElementById("trend-benchmarks")!;
+    const span = (p: { firstYear: number; lastYear: number }) => p.firstYear === p.lastYear ? `${p.firstYear}` : `${p.firstYear}-${p.lastYear}`;
+
+    note.hidden = periods.length < 2;
+    note.textContent = periods.length < 2 ? "" : `Population benchmark: ${periods.map(p => `${describePeriod(p, stopType)} (${span(p)})`).join("; ")}. `
+        + "The dashed vertical lines mark where it changes. The benchmark means something different on each side of a line, so compare years across one with care.";
+}
+
+function renderTrendTable(trend: YearTrend[], agency: AgencyFile, current: Selection) {
+    const body = document.querySelector("#trend-table tbody") as HTMLTableSectionElement;
+    body.innerHTML = "";
+    const number = (value: number | null, digits: number) => value === null ? "-" : value.toFixed(digits);
+
+    [...trend].reverse().forEach(t => {
+        const row = body.insertRow();
+        row.classList.toggle("incomplete", t.incomplete);
+
+        const link = document.createElement("a");
+        link.href = `#/${current.stopType}/${agency.id}/${t.year}`;
+        link.textContent = `${t.year}${t.incomplete ? " (incomplete data)" : ""}`;
+        link.addEventListener("click", event => {
+            event.preventDefault();
+            jumpToYear(t.year);
+        });
+        row.insertCell().appendChild(link);
+
+        [t.knownStops.toLocaleString(),
+            t.minorityStopShare === null ? "-" : percent(t.minorityStopShare),
+            t.minorityPopulationShare === null ? "-" : percent(t.minorityPopulationShare),
+            number(t.minorityRatio, 2), number(t.blackRateRatio, 1), number(t.hispanicRateRatio, 1)]
+            .forEach(text => row.insertCell().textContent = text);
+    });
 }
 
 function renderMinorityComparison(width: number, comparison: MinorityComparison) {
-    const percent = (fraction: number) => `${Math.round(fraction * 100)}%`;
     const knownStops = comparison.whiteStops + comparison.minorityStops;
 
     document.getElementById("minority-population-percent")!.textContent = percent(comparison.minorityPopulationShare);

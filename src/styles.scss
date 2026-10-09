@@ -55,6 +55,60 @@ body {
         }
     }
 
+    #trends {
+        margin-bottom: 60px;
+    }
+
+    .chart-title {
+        margin: 40px 0 10px;
+    }
+
+    .key {
+        display: inline-block;
+        margin-right: 1.4rem;
+    }
+
+    .swatch {
+        display: inline-block;
+        width: 1.6rem;
+        height: 0;
+        margin-right: 0.5rem;
+        vertical-align: middle;
+        border-top: 3px solid;
+
+        &.dashed {
+            border-top-style: dashed;
+        }
+    }
+
+    details {
+        margin-top: 2rem;
+
+        summary {
+            cursor: pointer;
+        }
+    }
+
+    .table-scroll {
+        overflow-x: auto;
+    }
+
+    #trend-table {
+        font-size: 0.9em;
+
+        th, td {
+            padding: 6px 12px;
+        }
+
+        td {
+            white-space: nowrap;
+        }
+
+        .incomplete {
+            opacity: 0.6;
+        }
+    }
+
     .legend span {
         display: inline-block;
         vertical-align: middle;
