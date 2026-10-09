@@ -1,5 +1,5 @@
 import { SVG, Circle } from "@svgdotjs/svg.js";
-import { Colors, DotShares, dotColors } from "./utils";
+import { DotShares, dotColors } from "./utils";
 
 export class GeneralPopulationChartMaker {
     private width: number;
@@ -37,15 +37,6 @@ export class GeneralPopulationChartMaker {
 
             dots.push(dot);
         }
-    }
-
-    insertLegendDot(id: string, color: Colors) {
-        document.getElementById(id)!.innerHTML = "";
-
-        var svg = SVG().addTo(`#${id}`).size(this.dotSize, this.dotSize);
-
-        const dot = svg.circle(this.dotSize)
-                .attr({ fill: color});
     }
 
     private generateCoordinates = (): Coordinates => {

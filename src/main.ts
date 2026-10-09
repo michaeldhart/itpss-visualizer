@@ -3,6 +3,7 @@ import { loadAgency, loadAgencyIndex } from "./data";
 import { getEraNotice } from "./eras";
 import { AgencyFile, AgencyIndexEntry, LocalityStatisticSet, StopType, StopTypes, YearStats } from "./types";
 import { AgencyCombobox } from "./agencyCombobox";
+import { fillDotLegend, insertLegendDot } from "./legend";
 import { GeneralPopulationChartMaker } from "./generalPopulationChartMaker";
 import { drawTrendChart, niceAxis, TrendPoint, TrendSeries } from "./trendChart";
 import { benchmarkPeriods, buildTrend, describePeriod, smallSampleStops as trendSmallSample, YearTrend } from "./trends";
@@ -19,7 +20,7 @@ const minStopCount = 10;
 const smallSampleStops = 30;
 
 // Benchmark-based sections, hidden for years whose reports don't publish population benchmarks
-const benchmarkSections = ["general-population", "no-bias", "actual-results", "conclusion"];
+const benchmarkSections = ["population-map", "no-bias", "actual-results", "conclusion"];
 
 interface Selection {
     agencyId: string;
@@ -167,18 +168,22 @@ function renderVisualization(agency: AgencyFile, current: Selection, stats: Year
 
     benchmarkSections.forEach(id => document.getElementById(id)!.hidden = !statistics);
     document.getElementById("minority-view")!.hidden = !minority;
-    document.getElementById("projected")!.hidden = !!minority;
+    document.getElementById("dot-maps")!.hidden = !!minority;
 
+    // The two big maps sit side by side, so each is as wide as its own column. That is measured here, after
+    // the sections above are shown (a hidden element has no width).
     if (statistics) {
-        renderGeneralPopulation(width, genPopHeight, statistics);
+        renderGeneralPopulation(genPopHeight, statistics);
         renderNoBias(width, noBiasHeight, statistics);
         renderBias(width, noBiasHeight, statistics);
+        fillDotLegend("no-bias-legend", raceLegend);
+        fillDotLegend("actual-legend", raceLegend);
     }
 
     if (minority) {
-        renderMinorityComparison(width, minority);
+        renderMinorityComparison(minority);
     } else {
-        new ProjectedPopulationChartMaker(width, genPopHeight, sampleSize).make(stopShares(stats));
+        renderProjectedPopulation(stats);
     }
 
     renderTrends(agency, current, width);
@@ -324,7 +329,30 @@ function renderTrendTable(trend: YearTrend[], agency: AgencyFile, current: Selec
     });
 }
 
-function renderMinorityComparison(width: number, comparison: MinorityComparison) {
+const raceLegend = [
+    { color: Colors.BLUE, label: "White" },
+    { color: Colors.RED, label: "Black" },
+    { color: Colors.GREEN, label: "Hispanic" }
+];
+
+const chartWidth = (id: string) => document.getElementById(id)!.clientWidth;
+
+function renderProjectedPopulation(stats: YearStats) {
+    const shares = stopShares(stats);
+    new ProjectedPopulationChartMaker(chartWidth("projected-pop-chart"), genPopHeight, sampleSize).make(shares);
+
+    // the legend doubles as a table of how many stops each race had
+    const counts = { w: stats.white.stops, b: stats.black.stops, h: stats.hispanic.stops };
+    (Object.keys(counts) as (keyof typeof counts)[]).forEach(key => {
+        document.getElementById(`stops-${key}`)!.textContent = counts[key].toLocaleString();
+        document.getElementById(`stops-percent-${key}`)!.textContent = percent(counts[key] / stats.totalStops);
+    });
+    insertLegendDot("stops-legend-w", Colors.BLUE);
+    insertLegendDot("stops-legend-b", Colors.RED);
+    insertLegendDot("stops-legend-h", Colors.GREEN);
+}
+
+function renderMinorityComparison(comparison: MinorityComparison) {
     const knownStops = comparison.whiteStops + comparison.minorityStops;
 
     document.getElementById("minority-population-percent")!.textContent = percent(comparison.minorityPopulationShare);
@@ -336,16 +364,20 @@ function renderMinorityComparison(width: number, comparison: MinorityComparison)
         : "";
 
     // red dots are the minority share; there is no green group in this view
-    const population = new GeneralPopulationChartMaker(width, genPopHeight, sampleSize, "minority-pop-chart");
-    population.make({ red: comparison.minorityPopulationShare, green: 0 });
-    population.insertLegendDot("minority-legend-w", Colors.BLUE);
-    population.insertLegendDot("minority-legend-m", Colors.RED);
-
-    new ProjectedPopulationChartMaker(width, genPopHeight, sampleSize, "minority-stops-chart")
+    new GeneralPopulationChartMaker(chartWidth("minority-pop-chart"), genPopHeight, sampleSize, "minority-pop-chart")
+        .make({ red: comparison.minorityPopulationShare, green: 0 });
+    new ProjectedPopulationChartMaker(chartWidth("minority-stops-chart"), genPopHeight, sampleSize, "minority-stops-chart")
         .make({ red: comparison.minorityStopShare, green: 0 });
+
+    const legend = (share: number) => [
+        { color: Colors.BLUE, label: `White ${percent(1 - share)}` },
+        { color: Colors.RED, label: `Minority ${percent(share)}` }
+    ];
+    fillDotLegend("minority-pop-legend", legend(comparison.minorityPopulationShare));
+    fillDotLegend("minority-stops-legend", legend(comparison.minorityStopShare));
 }
 
-function renderGeneralPopulation(width: number, height: number, statistics: LocalityStatisticSet) {
+function renderGeneralPopulation(height: number, statistics: LocalityStatisticSet) {
     document.getElementById("total-benchmark")!.innerHTML = `${statistics.totalBenchmark.toLocaleString()}`;
 
     document.getElementById("benchmark-w")!.innerHTML = `${statistics.white.benchmark.toLocaleString()}`;
@@ -356,11 +388,10 @@ function renderGeneralPopulation(width: number, height: number, statistics: Loca
     document.getElementById("percent-b")!.innerHTML = `${Math.round((statistics.black.benchmark / statistics.totalBenchmark) * 100)}%`;
     document.getElementById("percent-h")!.innerHTML = `${Math.round((statistics.hispanic.benchmark / statistics.totalBenchmark) * 100)}%`;
 
-    const chartMaker = new GeneralPopulationChartMaker(width, height, sampleSize);
-    chartMaker.make(benchmarkShares(statistics));
-    chartMaker.insertLegendDot("pop-legend-w", Colors.BLUE);
-    chartMaker.insertLegendDot("pop-legend-b", Colors.RED);
-    chartMaker.insertLegendDot("pop-legend-h", Colors.GREEN);
+    new GeneralPopulationChartMaker(chartWidth("pop-chart"), height, sampleSize).make(benchmarkShares(statistics));
+    insertLegendDot("pop-legend-w", Colors.BLUE);
+    insertLegendDot("pop-legend-b", Colors.RED);
+    insertLegendDot("pop-legend-h", Colors.GREEN);
 }
 
 function renderNoBias(width: number, height: number, statistics: LocalityStatisticSet) {

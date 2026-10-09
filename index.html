@@ -64,52 +64,98 @@
         <p id="benchmark-method" class="small" hidden></p>
     </div>
     <div id="visualization">
-    <div class="container" id="general-population">
-        <h3>General Population</h3>
-        <div class="row">
-            IDOT's benchmark population for this department is <span id="total-benchmark"></span> people. The racial makeup of this population is reflected by the following table:
-        </div>
-        <div class="row">
-            <table class="u-full-width pop-legend">
-                <thead>
-                    <tr>
-                        <th>Race</th>
-                        <th>Total</th>
-                        <th>Percent</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>White</td>
-                        <td id="benchmark-w"></td>
-                        <td id="percent-w"></td>
-                        <td id="pop-legend-w"></td>
-                    </tr>
-                    <tr>
-                        <td>Black</td>
-                        <td id="benchmark-b"></td>
-                        <td id="percent-b"></td>
-                        <td id="pop-legend-b"></td>
-                    </tr>
-                    <tr>
-                        <td>Hispanic</td>
-                        <td id="benchmark-h"></td>
-                        <td id="percent-h"></td>
-                        <td id="pop-legend-h"></td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="small">
-                Note: other categories of reported races have been omitted because the data reported for those categories was statistically insignificant.
+    <div class="container" id="dot-maps">
+        <div class="maps">
+            <div class="map" id="population-map">
+                <h3>General Population</h3>
+                <p>
+                    IDOT's benchmark population for this department is <span id="total-benchmark"></span> people. If this community were represented by <span class="sample-size"></span> dots, it would look like this:
+                </p>
+                <div class="row">
+                    <div>Figure 1.</div>
+                    <div id="pop-chart"></div>
+                </div>
+                <div>
+                    <table class="u-full-width dot-table">
+                    <thead>
+                        <tr>
+                            <th>Race</th>
+                            <th>Total</th>
+                            <th>Percent</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>White</td>
+                            <td id="benchmark-w"></td>
+                            <td id="percent-w"></td>
+                            <td id="pop-legend-w"></td>
+                        </tr>
+                        <tr>
+                            <td>Black</td>
+                            <td id="benchmark-b"></td>
+                            <td id="percent-b"></td>
+                            <td id="pop-legend-b"></td>
+                        </tr>
+                        <tr>
+                            <td>Hispanic</td>
+                            <td id="benchmark-h"></td>
+                            <td id="percent-h"></td>
+                            <td id="pop-legend-h"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                    <div class="small">
+                        Note: other categories of reported races have been omitted because the data reported for those categories was statistically insignificant. Any dots they would take up are drawn blue, like White.
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            If this municipality were represented by <span class="sample-size"></span> dots, it would look like the following:
-        </div>
-        <div class="row">
-            <div>Figure 1.</div>
-            <div id="pop-chart"></div>
+            <div class="map" id="stops-map">
+                <h3>Projected Population</h3>
+                <p>
+                    Here is what our <span class="sample-size"></span> dots would look like if they matched the racial makeup of the actual <span class="stop-type-label"></span> stop results for this municipality:
+                </p>
+                <div class="row">
+                    <div>Figure 2.</div>
+                    <div id="projected-pop-chart"></div>
+                </div>
+                <div>
+                    <table class="u-full-width dot-table">
+                    <thead>
+                        <tr>
+                            <th>Race</th>
+                            <th>Total</th>
+                            <th>Percent</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>White</td>
+                            <td id="stops-w"></td>
+                            <td id="stops-percent-w"></td>
+                            <td id="stops-legend-w"></td>
+                        </tr>
+                        <tr>
+                            <td>Black</td>
+                            <td id="stops-b"></td>
+                            <td id="stops-percent-b"></td>
+                            <td id="stops-legend-b"></td>
+                        </tr>
+                        <tr>
+                            <td>Hispanic</td>
+                            <td id="stops-h"></td>
+                            <td id="stops-percent-h"></td>
+                            <td id="stops-legend-h"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                    <div class="small">
+                        Note: other categories of reported races are not listed separately; their dots are drawn blue, like White.
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="container" id="no-bias">
@@ -118,8 +164,9 @@
             <span id="total-stops"></span> <span class="stop-type-label"></span> stops were reported by this municipality in <span class="selected-year"></span>. In our scaled-down municipality of <span class="sample-size"></span> people, we would have <span id="sample-stops"></span> stops. If those stops reflected the racial makeup of the larger municipality, they would look like this:
         </p>
         <p class="stop-rate-disclaimer small"></p>
+        <p class="legend" id="no-bias-legend"></p>
         <div class="row">
-            <div>Figure 2.</div>
+            <div>Figure 3.</div>
             <div id="no-bias-chart"></div>
         </div>
     </div>
@@ -129,8 +176,9 @@
             The actual racial representation of <span class="stop-type-label"></span> stops for this municipality according to this report looked like this:
         </p>
         <p class="stop-rate-disclaimer small"></p>
+        <p class="legend" id="actual-legend"></p>
         <div class="row">
-            <div>Figure 3.</div>
+            <div>Figure 4.</div>
             <div id="bias-chart"></div>
         </div>
         <div class="row">
@@ -154,30 +202,34 @@
         </div>
     </div>
     <div class="container" id="minority-view">
-        <h3>Estimated Driving Population</h3>
-        <p>
-            IDOT's <span class="selected-year"></span> report doesn't count this department's population by race. Instead it estimates
-            that <strong id="minority-population-percent"></strong> of the drivers in the department's area are minority drivers (everyone who is
-            not White). If that area were represented by <span class="sample-size"></span> dots, it would look like this:
-        </p>
-        <p class="legend">
-            <span id="minority-legend-w"></span>White
-            <span id="minority-legend-m"></span>Minority
-        </p>
-        <div class="row">
-            <div>Figure 1.</div>
-            <div id="minority-pop-chart"></div>
-        </div>
-        <h3>Actual Stops</h3>
-        <p>
-            In <span class="selected-year"></span> this department made <span id="minority-known-stops"></span> traffic stops where the driver's race
-            was recorded, and <strong id="minority-stop-percent"></strong> of them were minority drivers. Here are <span class="sample-size"></span>
-            dots matching the racial makeup of those stops:
-        </p>
-        <p class="small" id="minority-small-sample"></p>
-        <div class="row">
-            <div>Figure 2.</div>
-            <div id="minority-stops-chart"></div>
+        <div class="maps">
+            <div class="map">
+                <h3>Estimated Driving Population</h3>
+                <p>
+                    IDOT's <span class="selected-year"></span> report doesn't count this department's population by race. Instead it estimates
+                    that <strong id="minority-population-percent"></strong> of the drivers in the department's area are minority drivers (everyone who is
+                    not White). If that area were represented by <span class="sample-size"></span> dots, it would look like this:
+                </p>
+                <div class="row">
+                    <div>Figure 1.</div>
+                    <div id="minority-pop-chart"></div>
+                </div>
+                <p class="legend" id="minority-pop-legend"></p>
+            </div>
+            <div class="map">
+                <h3>Actual Stops</h3>
+                <p>
+                    In <span class="selected-year"></span> this department made <span id="minority-known-stops"></span> traffic stops where the driver's race
+                    was recorded, and <strong id="minority-stop-percent"></strong> of them were minority drivers. Here are <span class="sample-size"></span>
+                    dots matching the racial makeup of those stops:
+                    <span class="small" id="minority-small-sample"></span>
+                </p>
+                <div class="row">
+                    <div>Figure 2.</div>
+                    <div id="minority-stops-chart"></div>
+                </div>
+                <p class="legend" id="minority-stops-legend"></p>
+            </div>
         </div>
         <div class="row">
             <p>
@@ -192,24 +244,11 @@
             </p>
         </div>
     </div>
-    <div class="container" id="projected">
-        <h3>Projected Population</h3>
-        <p>
-            Here is what our <span class="sample-size"></span> dots would look like if they matched the racial makeup of the actual traffic stop results for this municipality:
-        </p>
-        <div class="row">
-            <div>Figure 4.</div>
-            <div id="projected-pop-chart"></div>
-            <div class="small">
-                Blue dots represent White drivers and any group not shown separately, red dots Black drivers, and green dots Hispanic drivers.
-            </div>
-        </div>
-    </div>
     </div>
     <div class="container" id="conclusion">
         <h3>Conclusion</h3>
         <p>
-            The degree to which racial bias exists in this municipality, according to the data of this study, is reflected in the above charts. How similar are Figure 2 and Figure 3? Figure 1 and Figure 4? The more similar they are, the less racial bias is presented by the data. The more different they are, the more racial bias is presented by the data.
+            The degree to which racial bias exists in this municipality, according to the data of this study, is reflected in the above charts. How similar are Figure 3 and Figure 4? Figure 1 and Figure 2? The more similar they are, the less racial bias is presented by the data. The more different they are, the more racial bias is presented by the data.
         </p>
         <h5>How did your community do?</h5>
     </div>

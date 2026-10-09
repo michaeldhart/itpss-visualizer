@@ -109,13 +109,28 @@ body {
         }
     }
 
-    .legend span {
-        display: inline-block;
-        vertical-align: middle;
-        margin: 0 0.4rem 0 1rem;
+    // Two columns that share their row heights, so side-by-side maps line up even when the text above them
+    // differs in length. Each column is four rows (heading, text, map, legend); they stack on a narrow screen.
+    .maps {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        column-gap: 40px;
+    }
 
-        &:first-child {
-            margin-left: 0;
+    .map {
+        display: grid;
+        grid-row: span 4;
+        grid-template-rows: subgrid;
+        min-width: 0;
+    }
+
+    .dot-key {
+        display: inline-block;
+        margin-right: 1.4rem;
+
+        svg {
+            margin-right: 0.4rem;
+            vertical-align: middle;
         }
     }
 
