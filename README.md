@@ -21,6 +21,10 @@ The site reads static JSON under `public/data/`, generated from IDOT's published
 Source reports are listed at
 <https://idot.illinois.gov/form-and-reports/crash-reports/illinois-traffic-and-pedestrian-stop-study.html>.
 
+### Merging a department that changed names
+
+IDOT's agency names change between years (spelling, "Police" vs "Police Department", real renames), and each distinct name becomes its own agency. `python -m pipeline.rename_report` writes `pipeline/rename_candidates.md`: spelling variants of one department (with a proposed `agency_aliases.json`), and pairs where one name extends another that need a human decision. Confirmed merges go in `pipeline/agency_aliases.json` as `{"id to merge": "id to keep"}`; the next `build_data` combines their years, and fails if an id in the file matches no agency.
+
 ### Regenerating the data
 
 The pipeline is Python (`pipeline/`) and covers every year from 2004 to 2025, traffic and pedestrian. Two parsers handle the two report layouts: `parse_tables.py` (2019 onward, with a population benchmark by race) and `parse_legacy.py` (2004-2018 per-agency pages; stops by race, and for pedestrian stops from 2016 a population count by race).

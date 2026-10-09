@@ -13,6 +13,11 @@ ORDINAL = re.compile(r"^(\d+)(ST|ND|RD|TH)$")
 OVERRIDES = {k.upper(): v for k, v in json.loads((Path(__file__).parent / "name_overrides.json").read_text()).items()}
 
 
+# Confirmed same-department spellings, as {agency id: id to merge it into}; see rename_candidates.md.
+ALIASES = {k: v for k, v in json.loads((Path(__file__).parent / "agency_aliases.json").read_text()).items()
+           if not k.startswith("_")}
+
+
 def clean(raw: str) -> str:
     text = unicodedata.normalize("NFKC", raw).replace("‐", "-").replace("‑", "-")
     return re.sub(r"\s+", " ", text).strip()

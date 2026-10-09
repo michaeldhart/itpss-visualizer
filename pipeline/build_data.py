@@ -42,6 +42,33 @@ def year_stats(record: dict, incomplete: bool) -> dict:
     return stats
 
 
+def resolve_agency_id(name: str, aliases: dict) -> str:
+    """The id an agency is stored under: its slug, unless it has been aliased to another agency."""
+    if is_statewide(name):
+        return STATEWIDE_ID
+    slug = names.slug(name)
+    return aliases.get(slug, slug)
+
+
+def check_aliases(aliases: dict, seen_slugs: set) -> list:
+    """Problems with the alias file: ids that appear nowhere in the data (typos, stale entries) or chains."""
+    problems = []
+    for alias, target in aliases.items():
+        for kind, slug in (("alias", alias), ("target", target)):
+            if slug not in seen_slugs:
+                problems.append(f"agency_aliases.json: {kind} {slug!r} matches no agency in the data")
+        if target in aliases:
+            problems.append(f"agency_aliases.json: {alias!r} points at {target!r}, which is itself aliased")
+    return problems
+
+
+def display_source(entries: list, agency_id: str) -> str:
+    """The raw name to show for a merged agency: its canonical spelling's latest name, so a typo or
+    garbled variant never becomes the label. entries are (year, raw name, slug)."""
+    own = [e for e in entries if e[2] == agency_id] or entries
+    return max(own)[1]
+
+
 def parse_report(entry, stop_type, year):
     if year >= FIRST_DETAIL_TABLES_YEAR:
         return parse_tables.parse_pages(sources.page_texts(entry), stop_type, year)
@@ -53,7 +80,8 @@ def collect(years):
 
     Agencies are keyed by the slug of their name, so spelling variants across years ("AVIATION POLICE ORD",
     "AVIATION POLICE - ORD") become one agency."""
-    agencies = defaultdict(lambda: {"names": {}, **{t: {} for t in STOP_TYPES}})
+    agencies = defaultdict(lambda: {"names": [], **{t: {} for t in STOP_TYPES}})
+    seen_slugs = set()
     problems, warnings = [], []
     for year in years:
         for stop_type in STOP_TYPES:
@@ -71,12 +99,14 @@ def collect(years):
                         name, incomplete = "Illinois Statewide", False
                     else:
                         name, incomplete = names.split_incomplete(record["agency"])
-                    agency = agencies[STATEWIDE_ID if is_statewide(name) else names.slug(name)]
+                    seen_slugs.add(names.slug(name))
+                    agency = agencies[resolve_agency_id(name, names.ALIASES)]
                     if str(year) in agency[stop_type]:
                         problems.append(f"{label}: duplicate entry for {name}")
                         continue
-                    agency["names"][year] = name
+                    agency["names"].append((year, name, names.slug(name)))
                     agency[stop_type][str(year)] = year_stats(record, incomplete)
+    problems += check_aliases(names.ALIASES, seen_slugs)
     return agencies, problems, warnings
 
 
@@ -89,7 +119,7 @@ def write(agencies):
     index = []
     for agency_id in sorted(agencies, key=lambda i: (i != STATEWIDE_ID, i)):
         agency = agencies[agency_id]
-        latest_name = agency["names"][max(agency["names"])]
+        latest_name = display_source(agency["names"], agency_id)
         shown = latest_name if agency_id == STATEWIDE_ID else names.display_name(latest_name)
         data = {t: agency[t] for t in STOP_TYPES}
         (out / f"{agency_id}.json").write_text(json.dumps({"id": agency_id, "name": shown, **data}, separators=(",", ":")) + "\n")
@@ -110,7 +140,7 @@ def cross_check(agencies, years):
         for year in years:
             state = agencies[STATEWIDE_ID][stop_type].get(str(year))
             total = sum(d[stop_type][str(year)]["totalStops"] for i, d in agencies.items()
-                        if i != STATEWIDE_ID and not CHICAGO_DISTRICT.match(d["names"][max(d["names"])])
+                        if i != STATEWIDE_ID and not CHICAGO_DISTRICT.match(max(d["names"])[1])
                         and str(year) in d[stop_type])
             if state:
                 lines.append(f"{year} {stop_type:10} statewide {state['totalStops']:>10,}  agencies {total:>10,}  diff {total - state['totalStops']:+,}")
