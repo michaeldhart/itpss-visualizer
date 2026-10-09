@@ -34,11 +34,14 @@
             In my conversations, it seemed that there was a lot of confusion on what exactly the data is telling us. We're not all data scientists and complex data sets can be hard to interpret. Sometimes making data more visual helps us to understand what's going on in the numbers. That is the purpose of this site. 
         </p>
         <div id="selectors">
-            <label>
-                To begin, please select the police force you wish to view the data for.
-                <br />
-                <select id="agency-select"></select>
+            <label for="agency-input">
+                To begin, please search for the police force you wish to view the data for.
             </label>
+            <div class="combobox">
+                <input id="agency-input" type="text" role="combobox" aria-expanded="false" aria-controls="agency-listbox"
+                    aria-autocomplete="list" autocomplete="off" spellcheck="false" placeholder="Start typing a city, county or agency name" />
+                <ul id="agency-listbox" role="listbox" hidden></ul>
+            </div>
             <div class="row">
                 <div class="six columns">
                     <label>

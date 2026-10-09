@@ -2,6 +2,7 @@ import "./styles.scss";
 import { loadAgency, loadAgencyIndex } from "./data";
 import { getEraNotice } from "./eras";
 import { AgencyFile, AgencyIndexEntry, LocalityStatisticSet, StopType, StopTypes, YearStats } from "./types";
+import { AgencyCombobox } from "./agencyCombobox";
 import { GeneralPopulationChartMaker } from "./generalPopulationChartMaker";
 import { Colors, getRateRatioVsWhite, RaceCategory, toStatisticSet } from "./utils";
 import { NoBiasChartMaker } from "./noBiasChartMaker";
@@ -26,7 +27,7 @@ let agencies: AgencyIndexEntry[] = [];
 let selection: Selection;
 let resizeTimeout: ReturnType<typeof setTimeout>;
 
-const agencySelect = () => document.getElementById("agency-select") as HTMLSelectElement;
+let agencyCombobox: AgencyCombobox;
 const stopTypeSelect = () => document.getElementById("stop-type-select") as HTMLSelectElement;
 const yearSelect = () => document.getElementById("year-select") as HTMLSelectElement;
 
@@ -40,9 +41,7 @@ async function main() {
         return;
     }
 
-    agencies.forEach(a => agencySelect().add(new Option(a.name, a.id)));
-
-    agencySelect().onchange = () => select({ agencyId: agencySelect().value, stopType: selection.stopType, year: selection.year });
+    agencyCombobox = new AgencyCombobox(agencies, agencyId => select({ agencyId, stopType: selection.stopType, year: selection.year }));
     stopTypeSelect().onchange = () => select({ agencyId: selection.agencyId, stopType: stopTypeSelect().value as StopType, year: selection.year });
     yearSelect().onchange = () => select({ ...selection, year: Number(yearSelect().value) });
 
@@ -73,7 +72,7 @@ function select(requested: Selection, updateHash = true) {
 
     selection = { agencyId: agency.id, stopType: requested.stopType, year };
 
-    agencySelect().value = selection.agencyId;
+    agencyCombobox.setSelected(selection.agencyId);
     stopTypeSelect().value = selection.stopType;
 
     const yearSelectEl = yearSelect();

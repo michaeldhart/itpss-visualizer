@@ -11,6 +11,50 @@ body {
         width: 100%;
     }
 
+    .combobox {
+        position: relative;
+        margin-bottom: 2rem;
+
+        input {
+            width: 100%;
+            margin-bottom: 0;
+            // iOS Safari zooms the page when an input under 16px gets focus
+            font-size: 16px;
+        }
+
+        ul {
+            position: absolute;
+            z-index: 10;
+            left: 0;
+            right: 0;
+            max-height: 18rem;
+            overflow-y: auto;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            background: #fff;
+            border: 1px solid #d1d1d1;
+            border-top: 0;
+            border-radius: 0 0 4px 4px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+        }
+
+        li {
+            padding: 0.6rem 1rem;
+            cursor: pointer;
+
+            &[aria-selected="true"] {
+                background: #e8f1fb;
+            }
+
+            &.note {
+                cursor: default;
+                font-size: 0.85em;
+                opacity: 0.6;
+            }
+        }
+    }
+
     .small {
         font-size: 0.8em;
         opacity: 0.5;
