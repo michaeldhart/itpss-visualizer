@@ -8,16 +8,17 @@ interface DataEra {
 }
 
 // IDOT's traffic stop reports through 2018 give each department's stops by race, but only a single
-// estimate of the minority share of the driving population rather than a benchmark for each race.
+// estimate of the minority share of the driving population rather than a benchmark for each race,
+// so those years compare White and minority drivers instead.
 // Pedestrian reports (2016 on) always include a population count by race.
 const eras: DataEra[] = [
     {
         stopType: "traffic",
         firstYear: 2004,
         lastYear: 2018,
-        notice: `IDOT's traffic stop reports through 2018 give each department's stops by race, but not the population
-            benchmark by race used for later years. The population comparisons shown for later years can't be made for these
-            years, so only the stops by race are shown.`
+        notice: `IDOT's traffic stop reports through 2018 don't count the population by race, as the reports for later years do.
+            They estimate only the share of drivers who are minority, so the comparison for these years is between White and minority
+            drivers instead of by race.`
     }
 ];
 

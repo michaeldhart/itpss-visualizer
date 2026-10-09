@@ -4,7 +4,7 @@ import { getEraNotice } from "./eras";
 import { AgencyFile, AgencyIndexEntry, LocalityStatisticSet, StopType, StopTypes, YearStats } from "./types";
 import { AgencyCombobox } from "./agencyCombobox";
 import { GeneralPopulationChartMaker } from "./generalPopulationChartMaker";
-import { Colors, getRateRatioVsWhite, RaceCategory, toStatisticSet } from "./utils";
+import { benchmarkShares, Colors, getRateRatioVsWhite, MinorityComparison, RaceCategory, stopShares, toMinorityComparison, toStatisticSet } from "./utils";
 import { NoBiasChartMaker } from "./noBiasChartMaker";
 import { BiasChartMaker } from "./biasChartMaker";
 import { ProjectedPopulationChartMaker } from "./projectedPopulationChartMaker";
@@ -13,6 +13,8 @@ const sampleSize = 250;
 const genPopHeight = 400;
 const noBiasHeight = 50;
 const minStopCount = 10;
+// Fewer recorded stops than this and percentages can swing widely
+const smallSampleStops = 30;
 
 // Benchmark-based sections, hidden for years whose reports don't publish population benchmarks
 const benchmarkSections = ["general-population", "no-bias", "actual-results", "conclusion"];
@@ -130,7 +132,7 @@ function setMessage(current: Selection, stats?: YearStats) {
     }
 
     // the era notice already explains a missing benchmark for the older reports
-    if (stats && stats.totalBenchmark === null && !messages.some(m => m.includes("through 2018"))) {
+    if (stats && stats.totalBenchmark === null && messages.length === 0) {
         messages.push(`IDOT's report for this department doesn't include a population benchmark, so only the stops by race are shown.`);
     }
 
@@ -156,15 +158,47 @@ function renderVisualization(agency: AgencyFile, current: Selection, stats: Year
     document.querySelectorAll(".stop-type-label").forEach(e => e.innerHTML = current.stopType);
     document.querySelectorAll(".sample-size").forEach(e => e.innerHTML = `${sampleSize}`);
 
-    benchmarkSections.forEach(id => document.getElementById(id)!.hidden = !statistics);
+    // Three views: the full comparison by race (a benchmark by race), White vs. minority (older traffic
+    // reports), or just the stops by race
+    const minority = statistics ? null : toMinorityComparison(stats);
 
-    new ProjectedPopulationChartMaker(width, genPopHeight, sampleSize).make(stats);
+    benchmarkSections.forEach(id => document.getElementById(id)!.hidden = !statistics);
+    document.getElementById("minority-view")!.hidden = !minority;
+    document.getElementById("projected")!.hidden = !!minority;
 
     if (statistics) {
         renderGeneralPopulation(width, genPopHeight, statistics);
         renderNoBias(width, noBiasHeight, statistics);
         renderBias(width, noBiasHeight, statistics);
     }
+
+    if (minority) {
+        renderMinorityComparison(width, minority);
+    } else {
+        new ProjectedPopulationChartMaker(width, genPopHeight, sampleSize).make(stopShares(stats));
+    }
+}
+
+function renderMinorityComparison(width: number, comparison: MinorityComparison) {
+    const percent = (fraction: number) => `${Math.round(fraction * 100)}%`;
+    const knownStops = comparison.whiteStops + comparison.minorityStops;
+
+    document.getElementById("minority-population-percent")!.textContent = percent(comparison.minorityPopulationShare);
+    document.getElementById("minority-stop-percent")!.textContent = percent(comparison.minorityStopShare);
+    document.getElementById("minority-known-stops")!.textContent = knownStops.toLocaleString();
+    document.getElementById("minority-ratio")!.textContent = comparison.ratio === null ? "not available (IDOT estimated no minority drivers in this area)" : comparison.ratio.toFixed(2);
+    document.getElementById("minority-small-sample")!.textContent = knownStops < smallSampleStops
+        ? `Note: only ${knownStops} stops with a recorded race, so these percentages can swing widely from one stop to the next.`
+        : "";
+
+    // red dots are the minority share; there is no green group in this view
+    const population = new GeneralPopulationChartMaker(width, genPopHeight, sampleSize, "minority-pop-chart");
+    population.make({ red: comparison.minorityPopulationShare, green: 0 });
+    population.insertLegendDot("minority-legend-w", Colors.BLUE);
+    population.insertLegendDot("minority-legend-m", Colors.RED);
+
+    new ProjectedPopulationChartMaker(width, genPopHeight, sampleSize, "minority-stops-chart")
+        .make({ red: comparison.minorityStopShare, green: 0 });
 }
 
 function renderGeneralPopulation(width: number, height: number, statistics: LocalityStatisticSet) {
@@ -179,7 +213,7 @@ function renderGeneralPopulation(width: number, height: number, statistics: Loca
     document.getElementById("percent-h")!.innerHTML = `${Math.round((statistics.hispanic.benchmark / statistics.totalBenchmark) * 100)}%`;
 
     const chartMaker = new GeneralPopulationChartMaker(width, height, sampleSize);
-    chartMaker.make(statistics);
+    chartMaker.make(benchmarkShares(statistics));
     chartMaker.insertLegendDot("pop-legend-w", Colors.BLUE);
     chartMaker.insertLegendDot("pop-legend-b", Colors.RED);
     chartMaker.insertLegendDot("pop-legend-h", Colors.GREEN);
@@ -194,7 +228,7 @@ function renderNoBias(width: number, height: number, statistics: LocalityStatist
 
     document.getElementById("sample-stops")!.innerHTML = `${count}`;
 
-    chartMaker.make(statistics, count);
+    chartMaker.make(benchmarkShares(statistics), count);
 
     document.getElementsByClassName("stop-rate-disclaimer").item(0)!.innerHTML = getLowStopRateDisclaimerMessage(count);
 }
@@ -202,7 +236,7 @@ function renderNoBias(width: number, height: number, statistics: LocalityStatist
 function renderBias(width: number, height: number, statistics: LocalityStatisticSet) {
     const count = Math.round((statistics.totalStops / statistics.totalBenchmark) * sampleSize);
     const chartMaker = new BiasChartMaker(width, height, minStopCount);
-    chartMaker.make(statistics, count);
+    chartMaker.make(stopShares(statistics), count);
 
     document.getElementById("rrvw-w")!.innerHTML = `${getRateRatioVsWhite(statistics, RaceCategory.WHITE)}`;
     document.getElementById("rrvw-b")!.innerHTML = `${getRateRatioVsWhite(statistics, RaceCategory.BLACK)}`;

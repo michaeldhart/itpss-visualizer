@@ -153,6 +153,45 @@
             </div>
         </div>
     </div>
+    <div class="container" id="minority-view">
+        <h3>Estimated Driving Population</h3>
+        <p>
+            IDOT's <span class="selected-year"></span> report doesn't count this department's population by race. Instead it estimates
+            that <strong id="minority-population-percent"></strong> of the drivers in the department's area are minority drivers (everyone who is
+            not White). If that area were represented by <span class="sample-size"></span> dots, it would look like this:
+        </p>
+        <p class="legend">
+            <span id="minority-legend-w"></span>White
+            <span id="minority-legend-m"></span>Minority
+        </p>
+        <div class="row">
+            <div>Figure 1.</div>
+            <div id="minority-pop-chart"></div>
+        </div>
+        <h3>Actual Stops</h3>
+        <p>
+            In <span class="selected-year"></span> this department made <span id="minority-known-stops"></span> traffic stops where the driver's race
+            was recorded, and <strong id="minority-stop-percent"></strong> of them were minority drivers. Here are <span class="sample-size"></span>
+            dots matching the racial makeup of those stops:
+        </p>
+        <p class="small" id="minority-small-sample"></p>
+        <div class="row">
+            <div>Figure 2.</div>
+            <div id="minority-stops-chart"></div>
+        </div>
+        <div class="row">
+            <p>
+                One of the main numbers IDOT reports for these years is the "ratio": the minority share of stops divided by the
+                minority share of the driving population. For this department it was <strong id="minority-ratio"></strong>.
+                A ratio of 1.00 would mean minority drivers were stopped in proportion to their share of the drivers; a higher
+                ratio means they were stopped more often than that share, and a lower one means less often.
+            </p>
+            <p>
+                How similar are Figure 1 and Figure 2? The more similar they are, the closer this department's stops came to
+                matching its estimated driving population.
+            </p>
+        </div>
+    </div>
     <div class="container" id="projected">
         <h3>Projected Population</h3>
         <p>
@@ -161,6 +200,9 @@
         <div class="row">
             <div>Figure 4.</div>
             <div id="projected-pop-chart"></div>
+            <div class="small">
+                Blue dots represent White drivers and any group not shown separately, red dots Black drivers, and green dots Hispanic drivers.
+            </div>
         </div>
     </div>
     </div>
@@ -175,9 +217,6 @@
         <h6>Afterword</h6>
         <p>
             This study contains much more data than presented in these graphs. I chose to select the simplest set of data which I believe is the easiest to understand and which does the best job of summarizing the outcomes of the study - namely the "Rate Ratio vs White". Please feel free to visit the study at the link above for more detailed information.
-        </p>
-        <p>
-            *** Currently this site only offers visualizations on a limited set of municipalities from the study. I am planning on adding more as time permits. ***
         </p>
     </div>
     <div class="container footer">

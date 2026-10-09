@@ -1,6 +1,5 @@
 import { SVG, Circle } from "@svgdotjs/svg.js";
-import { LocalityStatisticSet } from "./types";
-import { Colors } from "./utils";
+import { Colors, DotShares, dotColors } from "./utils";
 
 export class GeneralPopulationChartMaker {
     private width: number;
@@ -8,26 +7,20 @@ export class GeneralPopulationChartMaker {
     private sampleSize: number;
     private dotSize: number
 
-    constructor(width: number, height: number, sampleSize: number) {
+    constructor(width: number, height: number, sampleSize: number, private containerId = "pop-chart") {
         this.width = width;
         this.height = height;
         this.sampleSize = sampleSize;
         this.dotSize = 10;
     }
 
-    make = (statistics: LocalityStatisticSet) => {
-        const id = "pop-chart";
+    make = (shares: DotShares) => {
+        const id = this.containerId;
         document.getElementById(id)!.innerHTML = "";
 
         var svg = SVG().addTo(`#${id}`).size(this.width, this.height);
 
-        const whitePercent = statistics.white.benchmark / statistics.totalBenchmark;
-        const blackPercent = statistics.black.benchmark / statistics.totalBenchmark;
-        const hispanicPercent = statistics.hispanic.benchmark / statistics.totalBenchmark;
-
-        let whiteCount = this.sampleSize * whitePercent;
-        let blackCount = this.sampleSize * blackPercent;
-        let hispanicCount = this.sampleSize * hispanicPercent;
+        const colors = dotColors(this.sampleSize, shares);
 
         const dots: Circle[] = [];
 
@@ -38,18 +31,8 @@ export class GeneralPopulationChartMaker {
                 coordinates = this.generateCoordinates();
             }
 
-            let color = Colors.BLUE;
-
-            if (blackCount > 0) {
-                color = Colors.RED;
-                blackCount--;
-            } else if (hispanicCount > 0) {
-                color = Colors.GREEN;
-                hispanicCount--;
-            }
-
             const dot = svg.circle(this.dotSize)
-                .attr({ fill: color})
+                .attr({ fill: colors[i]})
                 .attr({ cx: coordinates.x, cy: coordinates.y });
 
             dots.push(dot);

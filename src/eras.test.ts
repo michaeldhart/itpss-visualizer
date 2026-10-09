@@ -13,7 +13,7 @@ const full: YearStats = {
 describe("getEraNotice", () => {
     it("warns for traffic years without per-race benchmarks", () => {
         expect(getEraNotice(2004, "traffic")).toContain("through 2018");
-        expect(getEraNotice(2018, "traffic")).toContain("through 2018");
+        expect(getEraNotice(2018, "traffic")).toContain("White and minority");
     });
 
     it("has no notice for full-data years", () => {
