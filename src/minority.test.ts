@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { Colors, dotColors, toMinorityComparison } from "./utils";
+import { Colors, dotColors, inLegendOrder, toMinorityComparison } from "./utils";
 import { YearStats } from "./types";
 
 // ADDISON POLICE, 2012: IDOT printed 3,526 White and 2,317 minority stops, an estimated 46.42% minority driving population, ratio 0.85
@@ -52,5 +52,19 @@ describe("dotColors", () => {
 
     it("draws only blue dots when there are no other groups", () => {
         expect(new Set(dotColors(50, { red: 0, green: 0 }))).toEqual(new Set([Colors.BLUE]));
+    });
+});
+
+describe("inLegendOrder", () => {
+    it("lists blue dots first, then red, then green, keeping every dot", () => {
+        const colors = dotColors(10, { red: 0.2, green: 0.3 }); // 2 red, 3 green, 5 blue, in drawing order
+        const ordered = inLegendOrder(colors);
+        expect(ordered).toEqual([...Array(5).fill(Colors.BLUE), ...Array(2).fill(Colors.RED), ...Array(3).fill(Colors.GREEN)]);
+        expect(colors[0]).toBe(Colors.RED); // the input is left as it was
+    });
+
+    it("handles a chart with only some of the colors", () => {
+        expect(inLegendOrder([Colors.GREEN, Colors.BLUE, Colors.GREEN])).toEqual([Colors.BLUE, Colors.GREEN, Colors.GREEN]);
+        expect(inLegendOrder([])).toEqual([]);
     });
 });

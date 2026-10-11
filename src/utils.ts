@@ -70,6 +70,15 @@ export function dotColors(count: number, shares: DotShares): Colors[] {
     });
 }
 
+// The colors in the order the legends list them (White, Black, Hispanic). The dot rows use this so the
+// colors read left to right in the same order as their legend; in the big maps the dots are placed at
+// random, so their order doesn't matter.
+const legendOrder = [Colors.BLUE, Colors.RED, Colors.GREEN];
+
+export function inLegendOrder(colors: Colors[]): Colors[] {
+    return [...colors].sort((a, b) => legendOrder.indexOf(a) - legendOrder.indexOf(b));
+}
+
 export function benchmarkShares(statistics: LocalityStatisticSet): DotShares {
     return {
         red: statistics.black.benchmark / statistics.totalBenchmark,

@@ -1,6 +1,6 @@
 import { SVG, Circle } from "@svgdotjs/svg.js";
 import { LocalityStatisticSet } from "./types";
-import { DotShares, dotColors } from "./utils";
+import { DotShares, dotColors, inLegendOrder } from "./utils";
 
 export class NoBiasChartMaker {
     private width: number;
@@ -28,7 +28,7 @@ export class NoBiasChartMaker {
         const rowCount = Math.ceil(count / columnCount);
         var svg = SVG().addTo(`#${id}`).size(this.width, Math.max(this.height, rowCount * this.dotSize * 2));
 
-        const colors = dotColors(count, shares);
+        const colors = inLegendOrder(dotColors(count, shares));
 
         const dots: Circle[] = [];
 

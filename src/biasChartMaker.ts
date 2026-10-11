@@ -1,5 +1,5 @@
 import { SVG, Circle } from "@svgdotjs/svg.js";
-import { DotShares, dotColors } from "./utils";
+import { DotShares, dotColors, inLegendOrder } from "./utils";
 
 export class BiasChartMaker {
     private width: number;
@@ -27,7 +27,7 @@ export class BiasChartMaker {
         const rowCount = Math.ceil(count / columnCount);
         var svg = SVG().addTo(`#${id}`).size(this.width, Math.max(this.height, rowCount * this.dotSize * 2));
 
-        const colors = dotColors(count, shares);
+        const colors = inLegendOrder(dotColors(count, shares));
 
         const dots: Circle[] = [];
 
