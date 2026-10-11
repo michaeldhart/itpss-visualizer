@@ -152,6 +152,7 @@ Tolerated discrepancies in IDOT's reports (parsed values kept as printed).
 2017 pedestrian p.62 CHICAGO POLICE: community demographics sum to 2150916, printed total is 2150966
 2018 pedestrian p.176 ILLINOIS DEPARTMENT OF NATURAL RESOURCES POLICE: community demographics are inconsistent in the report; benchmark omitted
 2018 pedestrian p.352 SECRETARY OF STATE POLICE: community demographics are inconsistent in the report; benchmark omitted
+2022 traffic p.972 PANA POLICE: black rate ratio: computed 2.546 but IDOT printed 2.3
 
 Sum of agency stops vs the report's statewide total (agencies IDOT lists separately may be missing from the body):
 2004 traffic    statewide  2,495,099  agencies  2,494,663  diff -436

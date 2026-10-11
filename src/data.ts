@@ -1,4 +1,4 @@
-import { AgencyFile, AgencyIndexEntry } from "./types";
+import { AgencyFile, AgencyIndexEntry, RankingFile, StopType } from "./types";
 
 const agencyCache = new Map<string, Promise<AgencyFile>>();
 
@@ -26,4 +26,13 @@ export function loadAgency(id: string): Promise<AgencyFile> {
     }
 
     return agency;
+}
+
+// The years the Rankings page has data for, by stop type
+export function loadRankingYears(): Promise<Partial<Record<StopType, number[]>>> {
+    return fetchJson(`${import.meta.env.BASE_URL}data/rankings/index.json`);
+}
+
+export function loadRanking(stopType: StopType, year: number): Promise<RankingFile> {
+    return fetchJson(`${import.meta.env.BASE_URL}data/rankings/${stopType}-${year}.json`);
 }

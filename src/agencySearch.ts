@@ -5,6 +5,14 @@ function normalize(text: string): string {
     return text.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
 }
 
+// True when every word in the query appears in the name, in any order. An empty query matches everything.
+export function nameMatches(name: string, query: string): boolean {
+    const tokens = normalize(query).split(" ").filter(Boolean);
+    const normalized = normalize(name);
+
+    return tokens.every(token => normalized.includes(token));
+}
+
 // Lower is a better match: 0 = name starts with the query, 1 = a word does, 2 = the words appear
 // somewhere in the name, undefined = not a match.
 function rank(name: string, tokens: string[]): number | undefined {

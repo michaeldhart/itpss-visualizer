@@ -84,3 +84,57 @@ def test_page_override_supplies_missing_header():
     record = parse_tables.parse_page(headerless, "ROUND LAKE POLICE", "traffic 2025")
     assert record["problems"] == [] and record["agency"] == "ROUND LAKE POLICE"
     assert record["benchmarkMethod"] is None
+
+
+# --- printed rate ratios and their 95% intervals ---
+
+RATIO_ROWS_2025 = ("Population R. Ratio vs Wh. \n(95% Confidence Interval) \n1.0 \n1.37 (1.36 - 1.39) \n0.972 (0.965 - 0.979) \n"
+                   "0.686 (0.679 - 0.692) \nNA \n4.2 (<0.5 - 8,900) \nMileage Benchmark \n")
+RATIO_ROWS_2022 = "Stop Rate Ratio vs White \n(95% Confidence Interval) \n1.0 \n2.3 (0.78 - 5.8) \n2.3 (0.89 - 5.2) \n0.16 (0.0039 - 0.88) \n0.44 (0.0074 - 8.6) \n9.7 (0.24 - 56) \nPanel: 2"
+
+
+def test_printed_ratios_are_read_in_group_order_with_their_intervals():
+    printed = parse_tables.printed_ratios(RATIO_ROWS_2025)
+    assert printed["white"]["ratio"] == 1.0 and printed["white"]["interval"] is None
+    assert printed["black"] == {"text": "1.37", "ratio": 1.37, "interval": [1.36, 1.39]}
+    assert printed["hispanic"]["interval"] == [0.965, 0.979]
+    assert printed["americanIndian"] is None  # NA keeps its place, so later groups don't shift up
+    assert printed["pacificIslander"] == {"text": "4.2", "ratio": 4.2, "interval": [0.5, 8900]}  # "<" and commas
+
+
+def test_older_label_wording_is_read_too():
+    printed = parse_tables.printed_ratios(RATIO_ROWS_2022)
+    assert printed["black"]["interval"] == [0.78, 5.8] and printed["pacificIslander"]["ratio"] == 9.7
+
+
+def test_unexpected_layout_is_not_guessed_at():
+    assert parse_tables.printed_ratios("nothing here") is None
+    assert parse_tables.printed_ratios("Stop Rate Ratio vs White \n1.0 \n2.3 (0.78 -\n5.8) \n") is None  # wrapped interval
+
+
+GROUPS_FOR_CHECK = {"white": {"stops": 414, "benchmark": 7906}, "black": {"stops": 6, "benchmark": 45},
+                    "hispanic": {"stops": 7, "benchmark": 61}}
+
+
+def printed(black, hispanic):
+    return {"black": {"text": black, "ratio": float(black)}, "hispanic": {"text": hispanic, "ratio": float(hispanic)}}
+
+
+def test_printed_ratio_check_accepts_rounding():
+    # computed: black 2.546, hispanic 2.191
+    assert parse_tables.check_printed_ratios(GROUPS_FOR_CHECK, printed("2.5", "2.2")) == ([], [])
+
+
+def test_printed_ratio_check_warns_on_a_modest_disagreement():
+    problems, warnings = parse_tables.check_printed_ratios(GROUPS_FOR_CHECK, printed("2.3", "2.2"))  # Pana Police, 2022
+    assert problems == [] and "black rate ratio" in warnings[0]
+
+
+def test_printed_ratio_check_fails_on_a_large_disagreement():
+    problems, _ = parse_tables.check_printed_ratios(GROUPS_FOR_CHECK, printed("0.5", "2.2"))
+    assert "black rate ratio" in problems[0]
+
+
+def test_printed_ratio_check_skips_groups_it_cannot_compute():
+    no_white = {**GROUPS_FOR_CHECK, "white": {"stops": 0, "benchmark": 7906}}
+    assert parse_tables.check_printed_ratios(no_white, printed("9.9", "9.9")) == ([], [])

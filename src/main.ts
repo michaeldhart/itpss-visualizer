@@ -179,6 +179,7 @@ function renderVisualization(agency: AgencyFile, current: Selection, stats: Year
         renderNoBias(noBiasHeight, statistics);
         renderBias(noBiasHeight, statistics);
         renderRatioCards(statistics);
+        renderCompareLink(agency, current);
         fillDotLegend("no-bias-legend", raceLegend);
         fillDotLegend("actual-legend", raceLegend);
     }
@@ -395,6 +396,15 @@ function renderGeneralPopulation(height: number, statistics: LocalityStatisticSe
     insertLegendDot("pop-legend-w", Colors.BLUE);
     insertLegendDot("pop-legend-b", Colors.RED);
     insertLegendDot("pop-legend-h", Colors.GREEN);
+}
+
+// Traffic stops with a benchmark by race are the ones the Rankings page compares
+function renderCompareLink(agency: AgencyFile, current: Selection) {
+    const link = document.getElementById("compare-link")!;
+    link.hidden = current.stopType !== "traffic";
+
+    (document.getElementById("compare-link-anchor") as HTMLAnchorElement).href =
+        `${import.meta.env.BASE_URL}rankings/?year=${current.year}&department=${agency.id}`;
 }
 
 function fillRatioCard(idPrefix: string, card: RatioCard) {

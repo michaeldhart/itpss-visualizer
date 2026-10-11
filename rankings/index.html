@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- site-head -->
+    <title>How Departments Compare | Illinois Stop Data</title>
+    <meta name="description" content="Compare Illinois police departments side by side for a year: how often Black and Hispanic drivers are stopped relative to White drivers, with the caveats shown.">
+    <script type="module" src="/src/rankings.ts"></script>
+</head>
+<body class="rankings">
+    <!-- site-nav -->
+    <main>
+    <div class="container">
+        <h1>How Departments Compare</h1>
+        <p class="lead">Traffic stops, one year at a time.</p>
+        <p>
+            Pick a year to see every department's <strong>rate ratio vs. White</strong> for Black and Hispanic drivers combined, from the
+            highest to the lowest. The numbers come with a lot of caveats, so please read them first.
+        </p>
+
+        <section class="explainer" aria-labelledby="explainer-heading">
+            <h2 id="explainer-heading">Before you read the table</h2>
+            <ul>
+                <li>
+                    <strong>What the ratio is.</strong> Black and Hispanic drivers together are stopped at some rate relative to their share of the
+                    benchmark population, and White drivers at another. The ratio divides one by the other: 2.0 means twice the White rate, and 1.0 means the same.
+                </li>
+                <li>
+                    <strong>A high ratio is not proof of bias.</strong> <span id="rank-median">The typical department has a ratio above 1.0.</span>
+                    Who lives in an area, who drives through it and how the population is counted all move the number.
+                </li>
+                <li>
+                    <strong>Compare like with like.</strong> Campus police, sheriffs and highway towns have very different traffic from a city police
+                    department, so filter by type. Recent years use different benchmark methods (crash-based or distance-based), which can't be compared
+                    directly, so filter by method too.
+                </li>
+                <li>
+                    <strong>Few stops, shaky numbers.</strong> A department needs a minimum number of stops in each group to appear. The <em>low end</em>
+                    is what the ratio would be if both groups sat at the bottom of IDOT's 95% range. Sorting by it puts the more certain results first.
+                </li>
+                <li>
+                    <strong>Black and Hispanic combined</strong> leaves out Asian and Native American drivers and can hide groups that move in opposite
+                    directions, so each group is shown separately as well.
+                </li>
+            </ul>
+        </section>
+
+        <form id="rank-controls" class="rank-controls" autocomplete="off">
+            <label>Year
+                <select id="rank-year"></select>
+            </label>
+            <label>Sort by
+                <select id="rank-sort">
+                    <option value="highest">Highest ratio first</option>
+                    <option value="lowest">Lowest ratio first</option>
+                    <option value="lowEnd">Highest low end first (most certain)</option>
+                </select>
+            </label>
+            <label>Minimum stops of each kind
+                <select id="rank-min">
+                    <option value="10">10</option>
+                    <option value="30">30</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
+            </label>
+            <label>Department type
+                <select id="rank-kind"></select>
+            </label>
+            <label>Benchmark method
+                <select id="rank-method"></select>
+            </label>
+            <label>Find a department
+                <input id="rank-search" type="search" placeholder="Start typing a name" spellcheck="false">
+            </label>
+            <label class="checkbox">
+                <input id="rank-incomplete" type="checkbox">
+                <span>Include departments IDOT flagged as having submitted incomplete data</span>
+            </label>
+        </form>
+
+        <p id="rank-summary" class="rank-summary" aria-live="polite">Loading...</p>
+        <p id="rank-notice" class="data-message" hidden></p>
+    </div>
+
+    <!-- the table is wider than the text column, so it gets a wider container -->
+    <div class="container wide">
+        <div class="table-scroll">
+            <table id="rank-table" class="rank-table" hidden>
+                <caption class="visually-hidden">Departments by rate ratio vs. White for Black and Hispanic drivers combined</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Department</th>
+                        <th scope="col">Black + Hispanic<br>vs. White</th>
+                        <th scope="col" title="The combined ratio if both groups were at the bottom of IDOT's 95% range">Low end</th>
+                        <th scope="col">Black<br>vs. White</th>
+                        <th scope="col">Hispanic<br>vs. White</th>
+                        <th scope="col">Stops<br>White / Black + Hispanic</th>
+                        <th scope="col">Benchmark</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <p><button id="rank-more" type="button" hidden>Show more</button></p>
+        <p class="small">
+            Black and Hispanic ranges are IDOT's own 95% intervals, which include uncertainty in the population benchmark. The combined
+            ratio and its low end are worked out from the same published numbers.
+        </p>
+    </div>
+    </main>
+    <!-- site-footer -->
+</body>
+</html>

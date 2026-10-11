@@ -1,9 +1,11 @@
 import { describe, expect, it } from "vitest";
-import page from "../index.html?raw";
+import department from "../department/index.html?raw";
+import home from "../index.html?raw";
+import rankings from "../rankings/index.html?raw";
 
-// index.html is edited by hand, and one unclosed <div> silently nests a section inside another, so a section
+// department/index.html is edited by hand, and one unclosed <div> silently nests a section inside another, so a section
 // that is hidden takes the ones inside it along. Check that the page's sections are where they should be.
-const html = page.split("<body>")[1];
+const html = department.split("<body>")[1];
 
 function divDepths(): { depths: Record<string, number>; balance: number } {
     const depths: Record<string, number> = {};
@@ -26,7 +28,7 @@ function divDepths(): { depths: Record<string, number>; balance: number } {
     return { depths, balance: depth };
 }
 
-describe("index.html", () => {
+describe("department/index.html", () => {
     const { depths, balance } = divDepths();
 
     it("closes every div it opens", () => {
@@ -44,6 +46,33 @@ describe("index.html", () => {
         for (const id of ["agency-input", "year-select", "pop-chart", "projected-pop-chart", "no-bias-chart", "bias-chart",
             "minority-pop-chart", "minority-stops-chart", "rrvw-w", "rrvw-b", "rrvw-h", "rrvw-b-detail", "rrvw-b-extra", "rrvw-b-note", "minority-ratio", "trend-share-chart", "trend-ratio-chart"]) {
             expect(html, id).toContain(`id="${id}"`);
+        }
+    });
+});
+
+
+// The other pages: every div closed, and the elements their scripts look up are there
+describe.each([["home", home], ["rankings", rankings]])("%s page", (name, page) => {
+    it("closes every div it opens", () => {
+        expect((page.match(/<div\b/g) ?? []).length).toBe((page.match(/<\/div>/g) ?? []).length);
+    });
+
+    it("has the shared head, nav and footer to fill in", () => {
+        ["<!-- site-head -->", "<!-- site-nav -->", "<!-- site-footer -->"].forEach(marker => expect(page, marker).toContain(marker));
+    });
+});
+
+describe("rankings page", () => {
+    it("has the elements the page script looks up", () => {
+        for (const id of ["rank-year", "rank-sort", "rank-min", "rank-kind", "rank-method", "rank-search", "rank-incomplete", "rank-controls",
+            "rank-summary", "rank-notice", "rank-median", "rank-table", "rank-more"]) {
+            expect(rankings, id).toContain(`id="${id}"`);
+        }
+    });
+
+    it("offers every sort the script understands", () => {
+        for (const mode of ["highest", "lowest", "lowEnd"]) {
+            expect(rankings).toContain(`<option value="${mode}">`);
         }
     });
 });

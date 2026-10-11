@@ -50,3 +50,20 @@ def display_name(name: str) -> str:
     # lowercase small words except at the start
     return re.sub(r"(?<=\s)(" + "|".join(w.capitalize() for w in LOWERCASE_WORDS) + r")(?=\s)",
                   lambda m: m.group(1).lower(), titled)
+
+
+# What kind of department an agency is, so a ranking can say that a university or a highway sheriff is not comparable
+# to a city police department. Checked in this order; anything else is a city or village police department.
+KINDS = [
+    ("sheriff", re.compile(r"\bSHERIFF")),
+    ("campus", re.compile(r"\b(UNIVERSITY|COLLEGE)\b")),
+    ("parks", re.compile(r"PARK DISTRICT|FOREST PRESERVE|CONSERVATION")),
+    ("transit", re.compile(r"RAILROAD|RAILWAY|\bMETRA\b|AIRPORT|TRANSIT|\bAVIATION\b|TERMINAL RAILROAD")),
+    ("state", re.compile(r"^(ILLINOIS (STATE POLICE|DEPARTMENT|DEPT|COMMERCE)|SECRETARY OF STATE|UNITED STATES|US VETERANS)|\bVA\b|VETERANS")),
+    ("other", re.compile(r"TASK FORCE|NARCOTICS|ENFORCEMENT TEAM|WATER RECLAMATION|HOSPITAL|AUTHORITY|ASSOCIATION|\bSAFE\b")),
+]
+
+
+def agency_kind(name: str) -> str:
+    upper = name.upper()
+    return next((kind for kind, pattern in KINDS if pattern.search(upper)), "police")

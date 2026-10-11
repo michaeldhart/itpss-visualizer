@@ -1,0 +1,126 @@
+// Styles every page shares: the page background, the nav bar and the footer.
+body {
+    margin-top: 0;
+    background: rgba(255, 255, 255, 0.95) url("/images/dot-bg.jpg") repeat-x;
+    background-blend-mode: color;
+}
+
+.site-header {
+    margin-bottom: 2rem;
+    background: #fff;
+    border-bottom: 1px solid #e3e3e3;
+}
+
+.site-nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem 2rem;
+    // the .container class lines the nav up with the page content; this adds only vertical room
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+
+    ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.25rem 2.4rem;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    li {
+        margin: 0;
+    }
+
+    a {
+        color: #222;
+        text-decoration: none;
+    }
+
+    .site-brand {
+        font-size: 1.9rem;
+        font-weight: 600;
+    }
+
+    ul a {
+        padding: 0.4rem 0;
+        border-bottom: 3px solid transparent;
+        font-size: 1.5rem;
+
+        &:hover {
+            border-bottom-color: #bbb;
+        }
+
+        &[aria-current="page"] {
+            font-weight: 600;
+            border-bottom-color: #222;
+        }
+    }
+}
+
+.footer {
+    border-top: 1px solid #000;
+    margin-top: 100px;
+    opacity: 0.5;
+}
+
+// The home page
+.home {
+    .hero {
+        padding: 2rem 0 0;
+
+        h1 {
+            margin-bottom: 0.5rem;
+        }
+
+        .lead {
+            font-size: 2.2rem;
+            opacity: 0.7;
+        }
+    }
+
+    h2 {
+        margin-top: 4rem;
+        font-size: 2.8rem;
+    }
+
+    .choices {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 20px;
+        margin: 3rem 0 1rem;
+    }
+
+    .choice {
+        display: flex;
+        flex-direction: column;
+        padding: 2rem 2.4rem;
+        color: inherit;
+        text-decoration: none;
+        background: #fff;
+        border: 1px solid #e3e3e3;
+        border-top: 5px solid #222;
+        border-radius: 6px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+
+        &:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.14);
+        }
+
+        h2 {
+            margin: 0 0 1rem;
+            font-size: 2.4rem;
+        }
+
+        p {
+            flex: 1;
+        }
+    }
+
+    .choice-action {
+        font-weight: 600;
+        color: #1eaedb;
+    }
+}

@@ -23,6 +23,11 @@ VALUE_AT_LINE_START = re.compile(r"^\s*(\d[\d,]*(?:\.\d+)?)", re.M)
 STOPS_LABEL = re.compile(r"^Stops(?: \(% of Total\))?\s*$", re.M)
 BENCHMARK_LABEL = re.compile(r"^(?:Population )?Benchmark(?: \(% of Total\))?\s*$", re.M)
 RATE_LABEL = re.compile(r"^(?:Population )?Stop Rate\s*$", re.M)
+# The row of each group's stop rate relative to White drivers, with IDOT's 95% interval: "1.37 (1.36 - 1.39)"
+RATIO_LABEL = re.compile(r"^(?:Population R\. Ratio vs Wh\.|Stop Rate Ratio vs White|Rate Ratio vs White)\s*$", re.M)
+RATIO_TOLERANCE = 0.06
+RATIO_WARNING_GAP = 0.25
+PRINTED_RATIO = re.compile(r"^\s*(?:NA|(<?[\d.,]+)(?:\s*\(\s*(<?[\d.,]+)\s*-\s*(<?[\d.,]+)\s*\))?)\s*$")
 
 
 def to_number(text: str) -> float:
@@ -40,6 +45,60 @@ def values_between(panel: str, start: re.Pattern, end: re.Pattern) -> List[float
 
 
 BENCHMARK_TYPE = re.compile(r"Benchmark Type:\s*([^.\n(]+)")
+
+
+def printed_ratios(panel: str) -> Optional[dict]:
+    """IDOT's printed rate ratio vs White for each group, as {group: {"text", "ratio", "interval"} or None for NA}.
+
+    Returns None if the rows aren't in the expected layout, so the caller can say so instead of guessing.
+    """
+    label = RATIO_LABEL.search(panel)
+    if not label:
+        return None
+    lines = [line for line in panel[label.end():].split("\n") if line.strip()]
+    if lines and lines[0].strip().startswith("(95%"):
+        lines = lines[1:]
+
+    printed = {}
+    for group, line in zip(GROUPS, lines[:len(GROUPS)]):
+        match = PRINTED_RATIO.match(line)
+        if not match:
+            return None
+        if match.group(1) is None:
+            printed[group] = None
+        else:
+            lower, upper = match.group(2), match.group(3)
+            printed[group] = {
+                "text": match.group(1).lstrip("<"),
+                "ratio": to_number(match.group(1).lstrip("<")),
+                "interval": [to_number(lower.lstrip("<")), to_number(upper.lstrip("<"))] if lower else None,
+            }
+    return printed if len(printed) == len(GROUPS) else None
+
+
+def check_printed_ratios(groups: dict, printed: dict):
+    """Compares IDOT's printed Black and Hispanic ratios with the ones computed from the counts. They should agree to
+    the precision IDOT printed, which guards both this parser and the ratio formula the site uses.
+
+    Returns (problems, warnings): a few percent apart is rounding (IDOT prints two or three significant figures and the
+    benchmark counts we have are whole people), up to RATIO_WARNING_GAP is an inconsistency in IDOT's own table, and
+    beyond that a misread column is the likelier cause.
+    """
+    problems, warnings = [], []
+    white = groups["white"]
+    for group in ("black", "hispanic"):
+        item, g = printed.get(group), groups[group]
+        if item is None or not white["stops"] or not white["benchmark"] or not g["benchmark"]:
+            continue
+        computed = (g["stops"] / g["benchmark"]) / (white["stops"] / white["benchmark"])
+        decimals = len(item["text"].split(".")[1]) if "." in item["text"] else 0
+        gap = abs(computed - item["ratio"])
+        message = f"{group} rate ratio: computed {computed:.3f} but IDOT printed {item['text']}"
+        if gap > max(0.5 * 10 ** -decimals, RATIO_WARNING_GAP * abs(item["ratio"])) + 1e-9:
+            problems.append(message)
+        elif gap > max(0.5 * 10 ** -decimals, RATIO_TOLERANCE * abs(item["ratio"])) + 1e-9:
+            warnings.append(message)
+    return problems, warnings
 
 
 def parse_page(text: str, override_agency: Optional[str] = None, context: str = "") -> Optional[dict]:
@@ -92,6 +151,17 @@ def parse_page(text: str, override_agency: Optional[str] = None, context: str = 
             problems.append(f"stops sum {sum(stops)} != stated total {record['totalStops']}")
         if not no_benchmark and round(sum(benchmark)) != record["totalBenchmark"]:
             problems.append(f"benchmark sum {round(sum(benchmark))} != stated total {record['totalBenchmark']}")
+
+        if not no_benchmark and not problems:
+            printed = printed_ratios(panel)
+            if printed is None:
+                record["warnings"] = ["could not read the printed rate ratios, so no intervals are available"]
+            else:
+                ratio_problems, ratio_warnings = check_printed_ratios(record["groups"], printed)
+                problems += ratio_problems
+                record.setdefault("warnings", []).extend(ratio_warnings)
+                record["ratioIntervals"] = {g: printed[g]["interval"] for g in ("black", "hispanic")
+                                            if printed[g] and printed[g]["interval"]}
     return record
 
 

@@ -1,0 +1,141 @@
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+.rankings {
+    .lead {
+        font-size: 2.2rem;
+        opacity: 0.7;
+    }
+
+    .explainer {
+        margin: 2rem 0 3rem;
+        padding: 0.5rem 2.4rem 1rem;
+        background: #fff;
+        border: 1px solid #e3e3e3;
+        border-left: 5px solid #e0a800;
+        border-radius: 6px;
+
+        h2 {
+            margin-top: 1.5rem;
+            font-size: 2.4rem;
+        }
+
+        ul {
+            padding-left: 1.6rem;
+        }
+
+        li {
+            margin-bottom: 1rem;
+        }
+    }
+
+    .rank-controls {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 0 20px;
+        margin-bottom: 1rem;
+
+        select, input[type="search"] {
+            width: 100%;
+            font-size: 16px; // iOS Safari zooms the page when an input under 16px gets focus
+        }
+
+        .checkbox {
+            grid-column: 1 / -1;
+
+            span {
+                font-weight: normal;
+            }
+        }
+    }
+
+    .rank-summary {
+        margin: 1rem 0;
+    }
+
+    // wide enough for the table; the skeleton .container otherwise stops at 960px
+    .container.wide {
+        width: 96%;
+        max-width: 1200px;
+    }
+
+    .table-scroll {
+        overflow-x: auto;
+    }
+
+    .rank-table {
+        width: 100%;
+        font-size: 1.4rem;
+
+        th, td {
+            padding: 8px 12px;
+            vertical-align: top;
+        }
+
+        td {
+            white-space: nowrap;
+        }
+
+        th {
+            white-space: normal;
+        }
+
+        th[title] {
+            cursor: help;
+        }
+
+        th[scope="row"] {
+            font-weight: normal;
+            white-space: normal;
+            min-width: 18rem;
+        }
+
+        .rank-number {
+            opacity: 0.55;
+        }
+
+        .department-type {
+            display: block;
+            font-size: 1.2rem;
+            opacity: 0.55;
+        }
+
+        .ratio {
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .interval {
+            display: block;
+            font-size: 1.2rem;
+            opacity: 0.55;
+        }
+
+        // a bar for the combined ratio, so the rows can be scanned
+        .bar {
+            display: block;
+            width: 8rem;
+            height: 6px;
+            margin-top: 4px;
+            background: #eee;
+            border-radius: 3px;
+            overflow: hidden;
+
+            span {
+                display: block;
+                height: 100%;
+                background: #888;
+            }
+        }
+
+        tr.highlight {
+            background: #fff6d6;
+        }
+    }
+}

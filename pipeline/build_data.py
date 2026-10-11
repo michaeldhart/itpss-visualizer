@@ -16,6 +16,9 @@ PUBLIC_DATA = Path(__file__).parent.parent / "public" / "data"
 STATEWIDE_ID = "illinois-statewide"
 FIRST_DETAIL_TABLES_YEAR = 2019  # earlier reports are per-agency pages with a different layout
 WARNINGS_PATH = Path(__file__).parent / "data_warnings.txt"
+# The Rankings page compares departments on traffic stops, from the first year with a benchmark by race.
+# Pedestrian stops are left out: in 2025 only 13 departments had enough of them to compare.
+RANKING_STOP_TYPE = "traffic"
 STOP_TYPES = ("traffic", "pedestrian")
 
 
@@ -35,6 +38,9 @@ def year_stats(record: dict, incomplete: bool) -> dict:
         stats["notStated"] = {"stops": record["notStated"], "benchmark": None}
     if "minorityBenchmarkPercent" in record:
         stats["minorityBenchmarkPercent"] = record["minorityBenchmarkPercent"]
+    # IDOT's printed 95% interval for each group's rate ratio vs White (they include uncertainty in the benchmark)
+    for group, interval in record.get("ratioIntervals", {}).items():
+        stats[f"{group}RatioInterval"] = interval
     if record["benchmarkMethod"]:
         stats["benchmarkMethod"] = record["benchmarkMethod"]
     if incomplete:
@@ -110,6 +116,40 @@ def collect(years):
     return agencies, problems, warnings
 
 
+def ranking_row(agency_id: str, name: str, stats: dict) -> dict:
+    """What the Rankings page needs for one department-year. Ratios and the combined figure are worked out in the page
+    from these counts, so there is one implementation of the formula."""
+    row = {
+        "id": agency_id,
+        "name": name,
+        "kind": names.agency_kind(name),
+        "white": stats["white"],
+        "black": stats["black"],
+        "hispanic": stats["hispanic"],
+    }
+    for key in ("blackRatioInterval", "hispanicRatioInterval", "benchmarkMethod", "incomplete"):
+        if key in stats:
+            row[key] = stats[key]
+    return row
+
+
+def has_benchmark_by_race(stats: dict) -> bool:
+    return stats["totalBenchmark"] is not None and all(stats[g]["benchmark"] is not None for g in ("white", "black", "hispanic"))
+
+
+def write_rankings(rows_by_year: dict, reporting_by_year: dict):
+    out = PUBLIC_DATA / "rankings"
+    if out.exists():
+        shutil.rmtree(out)
+    out.mkdir(parents=True)
+    years = sorted(rows_by_year)
+    for year in years:
+        rows = sorted(rows_by_year[year], key=lambda r: r["name"])
+        document = {"stopType": RANKING_STOP_TYPE, "year": year, "departmentsReporting": reporting_by_year[year], "rows": rows}
+        (out / f"{RANKING_STOP_TYPE}-{year}.json").write_text(json.dumps(document, separators=(",", ":")) + "\n")
+    (out / "index.json").write_text(json.dumps({RANKING_STOP_TYPE: years}) + "\n")
+
+
 def write(agencies):
     out = PUBLIC_DATA / "agency"
     if out.exists():
@@ -117,6 +157,7 @@ def write(agencies):
     out.mkdir(parents=True)
 
     index = []
+    rows_by_year, reporting_by_year = defaultdict(list), defaultdict(int)
     for agency_id in sorted(agencies, key=lambda i: (i != STATEWIDE_ID, i)):
         agency = agencies[agency_id]
         latest_name = display_source(agency["names"], agency_id)
@@ -125,6 +166,14 @@ def write(agencies):
         (out / f"{agency_id}.json").write_text(json.dumps({"id": agency_id, "name": shown, **data}, separators=(",", ":")) + "\n")
         index.append({"id": agency_id, "name": shown,
                       "years": {t: sorted(int(y) for y in data[t]) for t in STOP_TYPES}})
+
+        # Chicago's districts are rows of their own next to the citywide one, and the statewide row isn't a department
+        if agency_id != STATEWIDE_ID and not CHICAGO_DISTRICT.match(latest_name):
+            for year, stats in data[RANKING_STOP_TYPE].items():
+                reporting_by_year[int(year)] += 1
+                if has_benchmark_by_race(stats):
+                    rows_by_year[int(year)].append(ranking_row(agency_id, shown, stats))
+    write_rankings(rows_by_year, reporting_by_year)
     (PUBLIC_DATA / "agencies.json").write_text(json.dumps(index, separators=(",", ":")) + "\n")
     return index
 

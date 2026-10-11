@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- site-head -->
+    <title>Check Your Department | Illinois Stop Data</title>
+    <meta name="description" content="Pick an Illinois police department and a year to see how often it stops Black, Hispanic and White drivers compared with the community it serves.">
+
+    <script type="module" src="/src/main.ts"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173279415-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-173279415-1');
+    </script>
+
+</head>
+<body>
+    <!-- site-nav -->
+    <div class="container">
+        <h1>Check Your Department</h1>
+        <p>
+            The Illinois Department of Transportation publishes an annual <a target="_blank" href="https://idot.illinois.gov/form-and-reports/crash-reports/illinois-traffic-and-pedestrian-stop-study.html">Illinois Traffic and Pedestrian Stop Study</a>. This study provides valuable information about local police departments and may help to determine whether or not each department exhibits any racial bias in their traffic stop practices.
+        </p>
+        <div id="selectors">
+            <label for="agency-input">
+                To begin, please search for the police force you wish to view the data for.
+            </label>
+            <div class="combobox">
+                <input id="agency-input" type="text" role="combobox" aria-expanded="false" aria-controls="agency-listbox"
+                    aria-autocomplete="list" autocomplete="off" spellcheck="false" placeholder="Start typing a city, county or agency name" />
+                <ul id="agency-listbox" role="listbox" hidden></ul>
+            </div>
+            <div class="row">
+                <div class="six columns">
+                    <label>
+                        Type of stop
+                        <select id="stop-type-select">
+                            <option value="traffic">Traffic stops</option>
+                            <option value="pedestrian">Pedestrian stops</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="six columns">
+                    <label>
+                        Year
+                        <select id="year-select"></select>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <p id="data-message" class="data-message"></p>
+        <p id="benchmark-method" class="small" hidden></p>
+    </div>
+    <div id="visualization">
+    <div class="container" id="ratio-summary">
+        <h3>Rate Ratio vs. White</h3>
+        <div class="stat-cards">
+            <div class="stat-card stat-white">
+                <div class="stat-label">White drivers</div>
+                <div class="stat-value" id="rrvw-w"></div>
+                <div class="stat-detail" id="rrvw-w-detail"></div>
+                <div class="stat-extra" id="rrvw-w-extra"></div>
+                <div class="stat-note" id="rrvw-w-note"></div>
+            </div>
+            <div class="stat-card stat-black">
+                <div class="stat-label">Black drivers</div>
+                <div class="stat-value" id="rrvw-b"></div>
+                <div class="stat-detail" id="rrvw-b-detail"></div>
+                <div class="stat-extra" id="rrvw-b-extra"></div>
+                <div class="stat-note" id="rrvw-b-note"></div>
+            </div>
+            <div class="stat-card stat-hispanic">
+                <div class="stat-label">Hispanic drivers</div>
+                <div class="stat-value" id="rrvw-h"></div>
+                <div class="stat-detail" id="rrvw-h-detail"></div>
+                <div class="stat-extra" id="rrvw-h-extra"></div>
+                <div class="stat-note" id="rrvw-h-note"></div>
+            </div>
+        </div>
+        <p>
+            One of the major data points of this study is the "Rate Ratio vs. White". It is the stop ratio of each race category to that of whites. You will notice the white ratio is always 1. If the ratio is 2.0, for example, it means that the minority stop rate is twice the white rate.
+        </p>
+        <p id="compare-link" hidden>
+            <a id="compare-link-anchor" href="#">See how this department compares with others</a>
+        </p>
+    </div>
+    <div class="container" id="minority-ratio-summary">
+        <h3>Minority Stop Ratio</h3>
+        <div class="stat-cards">
+            <div class="stat-card stat-minority">
+                <div class="stat-label">Minority drivers</div>
+                <div class="stat-value" id="minority-ratio"></div>
+                <div class="stat-detail" id="minority-ratio-detail"></div>
+                <div class="stat-extra" id="minority-ratio-extra"></div>
+                <div class="stat-note" id="minority-ratio-note"></div>
+            </div>
+        </div>
+        <p>
+            One of the main numbers IDOT reports for these years is the "ratio": the minority share of stops divided by the
+            minority share of the driving population. A ratio of 1.00 would mean minority drivers were stopped in proportion
+            to their share of the drivers; a higher ratio means they were stopped more often than that share, and a lower one
+            means less often.
+        </p>
+    </div>
+    <div class="container" id="dot-maps">
+        <div class="maps">
+            <div class="map" id="population-map">
+                <h3>Actual Population</h3>
+                <p>
+                    IDOT's benchmark population for this department is <span id="total-benchmark"></span> people. If this community were represented by <span class="sample-size"></span> dots, it would look like this:
+                </p>
+                <div class="row">
+                    <div>Figure 1.</div>
+                    <div id="pop-chart"></div>
+                </div>
+                <div>
+                    <table class="u-full-width dot-table">
+                    <thead>
+                        <tr>
+                            <th>Race</th>
+                            <th>Total</th>
+                            <th>Percent</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>White</td>
+                            <td id="benchmark-w"></td>
+                            <td id="percent-w"></td>
+                            <td id="pop-legend-w"></td>
+                        </tr>
+                        <tr>
+                            <td>Black</td>
+                            <td id="benchmark-b"></td>
+                            <td id="percent-b"></td>
+                            <td id="pop-legend-b"></td>
+                        </tr>
+                        <tr>
+                            <td>Hispanic</td>
+                            <td id="benchmark-h"></td>
+                            <td id="percent-h"></td>
+                            <td id="pop-legend-h"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                    <div class="small">
+                        Note: other categories of reported races have been omitted because the data reported for those categories was statistically insignificant. Any dots they would take up are drawn blue, like White.
+                    </div>
+                </div>
+            </div>
+            <div class="map" id="stops-map">
+                <h3>Stop Population</h3>
+                <p>
+                    Here is what our <span class="sample-size"></span> dots would look like if they matched the racial makeup of the actual <span class="stop-type-label"></span> stop results for this municipality:
+                </p>
+                <div class="row">
+                    <div>Figure 2.</div>
+                    <div id="projected-pop-chart"></div>
+                </div>
+                <div>
+                    <table class="u-full-width dot-table">
+                    <thead>
+                        <tr>
+                            <th>Race</th>
+                            <th>Total</th>
+                            <th>Percent</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>White</td>
+                            <td id="stops-w"></td>
+                            <td id="stops-percent-w"></td>
+                            <td id="stops-legend-w"></td>
+                        </tr>
+                        <tr>
+                            <td>Black</td>
+                            <td id="stops-b"></td>
+                            <td id="stops-percent-b"></td>
+                            <td id="stops-legend-b"></td>
+                        </tr>
+                        <tr>
+                            <td>Hispanic</td>
+                            <td id="stops-h"></td>
+                            <td id="stops-percent-h"></td>
+                            <td id="stops-legend-h"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                    <div class="small">
+                        Note: other categories of reported races are not listed separately; their dots are drawn blue, like White.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container" id="line-charts">
+        <div class="maps">
+            <div class="map" id="no-bias">
+                <h3>Assuming No Bias</h3>
+                <div>
+                    <p>
+                        <span id="total-stops"></span> <span class="stop-type-label"></span> stops were reported by this municipality in <span class="selected-year"></span>. In our scaled-down municipality of <span class="sample-size"></span> people, we would have <span id="sample-stops"></span> stops. If those stops reflected the racial makeup of the larger municipality, they would look like this:
+                    </p>
+                    <p class="stop-rate-disclaimer small"></p>
+                </div>
+                <p class="legend" id="no-bias-legend"></p>
+                <div class="row">
+                    <div>Figure 3.</div>
+                    <div id="no-bias-chart"></div>
+                </div>
+            </div>
+            <div class="map" id="actual-results">
+                <h3>Actual Results</h3>
+                <div>
+                    <p>
+                        The actual racial representation of <span class="stop-type-label"></span> stops for this municipality according to this report looked like this:
+                    </p>
+                    <p class="stop-rate-disclaimer small"></p>
+                </div>
+                <p class="legend" id="actual-legend"></p>
+                <div class="row">
+                    <div>Figure 4.</div>
+                    <div id="bias-chart"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container" id="minority-view">
+        <div class="maps">
+            <div class="map">
+                <h3>Estimated Driving Population</h3>
+                <p>
+                    IDOT's <span class="selected-year"></span> report doesn't count this department's population by race. Instead it estimates
+                    that <strong id="minority-population-percent"></strong> of the drivers in the department's area are minority drivers (everyone who is
+                    not White). If that area were represented by <span class="sample-size"></span> dots, it would look like this:
+                </p>
+                <div class="row">
+                    <div>Figure 1.</div>
+                    <div id="minority-pop-chart"></div>
+                </div>
+                <p class="legend" id="minority-pop-legend"></p>
+            </div>
+            <div class="map">
+                <h3>Actual Stops</h3>
+                <p>
+                    In <span class="selected-year"></span> this department made <span id="minority-known-stops"></span> traffic stops where the driver's race
+                    was recorded, and <strong id="minority-stop-percent"></strong> of them were minority drivers. Here are <span class="sample-size"></span>
+                    dots matching the racial makeup of those stops:
+                    <span class="small" id="minority-small-sample"></span>
+                </p>
+                <div class="row">
+                    <div>Figure 2.</div>
+                    <div id="minority-stops-chart"></div>
+                </div>
+                <p class="legend" id="minority-stops-legend"></p>
+            </div>
+        </div>
+        <div class="row">
+            <p>
+                How similar are Figure 1 and Figure 2? The more similar they are, the closer this department's stops came to
+                matching its estimated driving population.
+            </p>
+        </div>
+    </div>
+    </div>
+    <div class="container" id="conclusion">
+        <h3>Conclusion</h3>
+        <p>
+            The degree to which racial bias exists in this municipality, according to the data of this study, is reflected in the above charts. How similar are Figure 3 and Figure 4? Figure 1 and Figure 2? The more similar they are, the less racial bias is presented by the data. The more different they are, the more racial bias is presented by the data.
+        </p>
+        <h5>How did your community do?</h5>
+    </div>
+    <div class="container" id="trends">
+        <h3>Over the Years</h3>
+        <p>
+            How <span class="agency-name"></span>'s <span class="stop-type-label"></span> stops have changed from <span id="trend-first-year"></span>
+            to <span id="trend-last-year"></span>. Select a point to jump to that year. Hollow points are based on fewer than
+            <span id="trend-small-sample"></span> stops, so they can swing widely. A gap means the department did not report that year.
+        </p>
+        <h5 class="chart-title">Minority drivers: share of stops and share of the population</h5>
+        <p class="legend" id="trend-share-legend"></p>
+        <div id="trend-share-chart"></div>
+        <div id="trend-ratio-section">
+            <h5 class="chart-title">Stop rate compared with White drivers</h5>
+            <p class="small">
+                A value of 1.0 means a group was stopped at the same rate as White drivers; 2.0 means twice the rate.
+                Only years with a population benchmark by race can be shown.
+            </p>
+            <p class="legend" id="trend-ratio-legend"></p>
+            <div id="trend-ratio-chart"></div>
+        </div>
+        <p class="small" id="trend-benchmarks"></p>
+        <details>
+            <summary>Show the numbers</summary>
+            <div class="table-scroll">
+                <table id="trend-table">
+                    <thead>
+                        <tr>
+                            <th>Year</th>
+                            <th>Stops with a recorded race</th>
+                            <th>Minority share of stops</th>
+                            <th>Minority share of population</th>
+                            <th>Ratio of the two</th>
+                            <th>Black stop rate vs. White</th>
+                            <th>Hispanic stop rate vs. White</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </details>
+    </div>
+    <div class="container afterword">
+        <h6>Afterword</h6>
+        <p>
+            This study contains much more data than presented in these graphs. I chose to select the simplest set of data which I believe is the easiest to understand and which does the best job of summarizing the outcomes of the study - namely the "Rate Ratio vs White". Please feel free to visit the study at the link above for more detailed information.
+        </p>
+    </div>
+    <!-- site-footer -->
+</body>

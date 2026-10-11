@@ -1,8 +1,4 @@
 body {
-    margin-top: 20px;
-    background: rgba(255, 255, 255, 0.95) url("/images/dot-bg.jpg") repeat-x;
-    background-blend-mode: color;
-
     h3 {
         margin-top: 40px
     }
@@ -211,11 +207,6 @@ body {
         border-top: 1px solid #000;
     }
 
-    .footer {
-        border-top: 1px solid #000;
-        margin-top: 100px;
-        opacity: 0.5;
-    }
 }
 
 .data-message {
