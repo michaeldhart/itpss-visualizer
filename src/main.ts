@@ -20,7 +20,7 @@ const minStopCount = 10;
 const smallSampleStops = 30;
 
 // Benchmark-based sections, hidden for years whose reports don't publish population benchmarks
-const benchmarkSections = ["population-map", "no-bias", "actual-results", "conclusion"];
+const benchmarkSections = ["population-map", "line-charts", "conclusion"];
 
 interface Selection {
     agencyId: string;
@@ -174,8 +174,8 @@ function renderVisualization(agency: AgencyFile, current: Selection, stats: Year
     // the sections above are shown (a hidden element has no width).
     if (statistics) {
         renderGeneralPopulation(genPopHeight, statistics);
-        renderNoBias(width, noBiasHeight, statistics);
-        renderBias(width, noBiasHeight, statistics);
+        renderNoBias(noBiasHeight, statistics);
+        renderBias(noBiasHeight, statistics);
         fillDotLegend("no-bias-legend", raceLegend);
         fillDotLegend("actual-legend", raceLegend);
     }
@@ -394,10 +394,10 @@ function renderGeneralPopulation(height: number, statistics: LocalityStatisticSe
     insertLegendDot("pop-legend-h", Colors.GREEN);
 }
 
-function renderNoBias(width: number, height: number, statistics: LocalityStatisticSet) {
+function renderNoBias(height: number, statistics: LocalityStatisticSet) {
     document.getElementById("total-stops")!.innerHTML = `${statistics.totalStops.toLocaleString()}`;
 
-    const chartMaker = new NoBiasChartMaker(width, height, minStopCount);
+    const chartMaker = new NoBiasChartMaker(chartWidth("no-bias-chart"), height, minStopCount);
 
     const count = chartMaker.getStopCountForSampleSize(statistics, sampleSize);
 
@@ -408,9 +408,9 @@ function renderNoBias(width: number, height: number, statistics: LocalityStatist
     document.getElementsByClassName("stop-rate-disclaimer").item(0)!.innerHTML = getLowStopRateDisclaimerMessage(count);
 }
 
-function renderBias(width: number, height: number, statistics: LocalityStatisticSet) {
+function renderBias(height: number, statistics: LocalityStatisticSet) {
     const count = Math.round((statistics.totalStops / statistics.totalBenchmark) * sampleSize);
-    const chartMaker = new BiasChartMaker(width, height, minStopCount);
+    const chartMaker = new BiasChartMaker(chartWidth("bias-chart"), height, minStopCount);
     chartMaker.make(stopShares(statistics), count);
 
     document.getElementById("rrvw-w")!.innerHTML = `${getRateRatioVsWhite(statistics, RaceCategory.WHITE)}`;

@@ -21,14 +21,16 @@ export class BiasChartMaker {
         const id = "bias-chart";
         document.getElementById(id)!.innerHTML = "";
 
-        var svg = SVG().addTo(`#${id}`).size(this.width, this.height);
+        const columnCount = Math.max(1, Math.floor(this.width / (this.dotSize * 2)));
+
+        // grow taller when the dots need more rows than fit in the minimum height, so none are cut off
+        const rowCount = Math.ceil(count / columnCount);
+        var svg = SVG().addTo(`#${id}`).size(this.width, Math.max(this.height, rowCount * this.dotSize * 2));
 
         const colors = dotColors(count, shares);
 
         const dots: Circle[] = [];
 
-        const columnCount = Math.floor(this.width / (this.dotSize * 2));
-            
         let currentRow = 0;
         let currentColumn = 0;
 

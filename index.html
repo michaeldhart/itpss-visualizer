@@ -30,9 +30,6 @@
         <p>
             The Illinois Department of Transportation publishes an annual <a target="_blank" href="https://idot.illinois.gov/form-and-reports/crash-reports/illinois-traffic-and-pedestrian-stop-study.html">Illinois Traffic and Pedestrian Stop Study</a>. This study provides valuable information about local police departments and may help to determine whether or not each department exhibits any racial bias in their traffic stop practices.
         </p>
-        <p>
-            In my conversations, it seemed that there was a lot of confusion on what exactly the data is telling us. We're not all data scientists and complex data sets can be hard to interpret. Sometimes making data more visual helps us to understand what's going on in the numbers. That is the purpose of this site. 
-        </p>
         <div id="selectors">
             <label for="agency-input">
                 To begin, please search for the police force you wish to view the data for.
@@ -67,7 +64,7 @@
     <div class="container" id="dot-maps">
         <div class="maps">
             <div class="map" id="population-map">
-                <h3>General Population</h3>
+                <h3>Actual Population</h3>
                 <p>
                     IDOT's benchmark population for this department is <span id="total-benchmark"></span> people. If this community were represented by <span class="sample-size"></span> dots, it would look like this:
                 </p>
@@ -112,7 +109,7 @@
                 </div>
             </div>
             <div class="map" id="stops-map">
-                <h3>Projected Population</h3>
+                <h3>Stop Population</h3>
                 <p>
                     Here is what our <span class="sample-size"></span> dots would look like if they matched the racial makeup of the actual <span class="stop-type-label"></span> stop results for this municipality:
                 </p>
@@ -158,28 +155,36 @@
             </div>
         </div>
     </div>
-    <div class="container" id="no-bias">
-        <h3>Assuming No Bias</h3>
-        <p>
-            <span id="total-stops"></span> <span class="stop-type-label"></span> stops were reported by this municipality in <span class="selected-year"></span>. In our scaled-down municipality of <span class="sample-size"></span> people, we would have <span id="sample-stops"></span> stops. If those stops reflected the racial makeup of the larger municipality, they would look like this:
-        </p>
-        <p class="stop-rate-disclaimer small"></p>
-        <p class="legend" id="no-bias-legend"></p>
-        <div class="row">
-            <div>Figure 3.</div>
-            <div id="no-bias-chart"></div>
-        </div>
-    </div>
-    <div class="container" id="actual-results">
-        <h3>Actual Results</h3>
-        <p>
-            The actual racial representation of <span class="stop-type-label"></span> stops for this municipality according to this report looked like this:
-        </p>
-        <p class="stop-rate-disclaimer small"></p>
-        <p class="legend" id="actual-legend"></p>
-        <div class="row">
-            <div>Figure 4.</div>
-            <div id="bias-chart"></div>
+    <div class="container" id="line-charts">
+        <div class="maps">
+            <div class="map" id="no-bias">
+                <h3>Assuming No Bias</h3>
+                <div>
+                    <p>
+                        <span id="total-stops"></span> <span class="stop-type-label"></span> stops were reported by this municipality in <span class="selected-year"></span>. In our scaled-down municipality of <span class="sample-size"></span> people, we would have <span id="sample-stops"></span> stops. If those stops reflected the racial makeup of the larger municipality, they would look like this:
+                    </p>
+                    <p class="stop-rate-disclaimer small"></p>
+                </div>
+                <p class="legend" id="no-bias-legend"></p>
+                <div class="row">
+                    <div>Figure 3.</div>
+                    <div id="no-bias-chart"></div>
+                </div>
+            </div>
+            <div class="map" id="actual-results">
+                <h3>Actual Results</h3>
+                <div>
+                    <p>
+                        The actual racial representation of <span class="stop-type-label"></span> stops for this municipality according to this report looked like this:
+                    </p>
+                    <p class="stop-rate-disclaimer small"></p>
+                </div>
+                <p class="legend" id="actual-legend"></p>
+                <div class="row">
+                    <div>Figure 4.</div>
+                    <div id="bias-chart"></div>
+                </div>
+            </div>
         </div>
         <div class="row">
             <table class="u-full-width race-ratio-v-white-table">

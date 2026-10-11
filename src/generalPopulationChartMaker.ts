@@ -1,6 +1,8 @@
 import { SVG, Circle } from "@svgdotjs/svg.js";
 import { DotShares, dotColors } from "./utils";
 
+const maxPlacementAttempts = 500;
+
 export class GeneralPopulationChartMaker {
     private width: number;
     private height: number;
@@ -18,6 +20,10 @@ export class GeneralPopulationChartMaker {
         const id = this.containerId;
         document.getElementById(id)!.innerHTML = "";
 
+        if (this.width < this.dotSize * 2) {
+            return;
+        }
+
         var svg = SVG().addTo(`#${id}`).size(this.width, this.height);
 
         const colors = dotColors(this.sampleSize, shares);
@@ -27,7 +33,9 @@ export class GeneralPopulationChartMaker {
         for (let i = 0; i < this.sampleSize; i++) {
             let coordinates = this.generateCoordinates();
 
-            while (!this.coordinatesAreUnique(coordinates, dots)) {
+            // Give up on finding a free spot after a while (a crowded chart) and let the dot overlap, rather than
+            // looping forever
+            for (let attempt = 0; attempt < maxPlacementAttempts && !this.coordinatesAreUnique(coordinates, dots); attempt++) {
                 coordinates = this.generateCoordinates();
             }
 
