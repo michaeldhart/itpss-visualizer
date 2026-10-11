@@ -7,7 +7,8 @@ import { fillDotLegend, insertLegendDot } from "./legend";
 import { GeneralPopulationChartMaker } from "./generalPopulationChartMaker";
 import { drawTrendChart, niceAxis, TrendPoint, TrendSeries } from "./trendChart";
 import { benchmarkPeriods, buildTrend, describePeriod, smallSampleStops as trendSmallSample, YearTrend } from "./trends";
-import { benchmarkShares, Colors, getRateRatioVsWhite, MinorityComparison, RaceCategory, stopShares, toMinorityComparison, toStatisticSet } from "./utils";
+import { minorityRatioCard, rateRatioCard, RatioCard, whiteBaselineCard } from "./ratioCards";
+import { benchmarkShares, Colors, MinorityComparison, RaceCategory, rateRatioVsWhite, stopShares, toMinorityComparison, toStatisticSet } from "./utils";
 import { NoBiasChartMaker } from "./noBiasChartMaker";
 import { BiasChartMaker } from "./biasChartMaker";
 import { ProjectedPopulationChartMaker } from "./projectedPopulationChartMaker";
@@ -20,7 +21,7 @@ const minStopCount = 10;
 const smallSampleStops = 30;
 
 // Benchmark-based sections, hidden for years whose reports don't publish population benchmarks
-const benchmarkSections = ["population-map", "line-charts", "conclusion"];
+const benchmarkSections = ["ratio-summary", "population-map", "line-charts", "conclusion"];
 
 interface Selection {
     agencyId: string;
@@ -168,6 +169,7 @@ function renderVisualization(agency: AgencyFile, current: Selection, stats: Year
 
     benchmarkSections.forEach(id => document.getElementById(id)!.hidden = !statistics);
     document.getElementById("minority-view")!.hidden = !minority;
+    document.getElementById("minority-ratio-summary")!.hidden = !minority;
     document.getElementById("dot-maps")!.hidden = !!minority;
 
     // The two big maps sit side by side, so each is as wide as its own column. That is measured here, after
@@ -176,6 +178,7 @@ function renderVisualization(agency: AgencyFile, current: Selection, stats: Year
         renderGeneralPopulation(genPopHeight, statistics);
         renderNoBias(noBiasHeight, statistics);
         renderBias(noBiasHeight, statistics);
+        renderRatioCards(statistics);
         fillDotLegend("no-bias-legend", raceLegend);
         fillDotLegend("actual-legend", raceLegend);
     }
@@ -358,7 +361,7 @@ function renderMinorityComparison(comparison: MinorityComparison) {
     document.getElementById("minority-population-percent")!.textContent = percent(comparison.minorityPopulationShare);
     document.getElementById("minority-stop-percent")!.textContent = percent(comparison.minorityStopShare);
     document.getElementById("minority-known-stops")!.textContent = knownStops.toLocaleString();
-    document.getElementById("minority-ratio")!.textContent = comparison.ratio === null ? "not available (IDOT estimated no minority drivers in this area)" : comparison.ratio.toFixed(2);
+    fillRatioCard("minority-ratio", minorityRatioCard(comparison));
     document.getElementById("minority-small-sample")!.textContent = knownStops < smallSampleStops
         ? `Note: only ${knownStops} stops with a recorded race, so these percentages can swing widely from one stop to the next.`
         : "";
@@ -394,6 +397,21 @@ function renderGeneralPopulation(height: number, statistics: LocalityStatisticSe
     insertLegendDot("pop-legend-h", Colors.GREEN);
 }
 
+function fillRatioCard(idPrefix: string, card: RatioCard) {
+    document.getElementById(idPrefix)!.textContent = card.value;
+    document.getElementById(`${idPrefix}-detail`)!.textContent = card.detail;
+    document.getElementById(`${idPrefix}-extra`)!.textContent = card.extra;
+    document.getElementById(`${idPrefix}-note`)!.textContent = card.note;
+}
+
+function renderRatioCards(statistics: LocalityStatisticSet) {
+    const whiteStops = statistics.white.stops;
+
+    fillRatioCard("rrvw-w", whiteBaselineCard(whiteStops));
+    fillRatioCard("rrvw-b", rateRatioCard("Black", rateRatioVsWhite(statistics, RaceCategory.BLACK), statistics.black.stops, whiteStops));
+    fillRatioCard("rrvw-h", rateRatioCard("Hispanic", rateRatioVsWhite(statistics, RaceCategory.HISPANIC), statistics.hispanic.stops, whiteStops));
+}
+
 function renderNoBias(height: number, statistics: LocalityStatisticSet) {
     document.getElementById("total-stops")!.innerHTML = `${statistics.totalStops.toLocaleString()}`;
 
@@ -413,9 +431,6 @@ function renderBias(height: number, statistics: LocalityStatisticSet) {
     const chartMaker = new BiasChartMaker(chartWidth("bias-chart"), height, minStopCount);
     chartMaker.make(stopShares(statistics), count);
 
-    document.getElementById("rrvw-w")!.innerHTML = `${getRateRatioVsWhite(statistics, RaceCategory.WHITE)}`;
-    document.getElementById("rrvw-b")!.innerHTML = `${getRateRatioVsWhite(statistics, RaceCategory.BLACK)}`;
-    document.getElementById("rrvw-h")!.innerHTML = `${getRateRatioVsWhite(statistics, RaceCategory.HISPANIC)}`;
 
     document.getElementsByClassName("stop-rate-disclaimer").item(1)!.innerHTML = getLowStopRateDisclaimerMessage(count);
 }

@@ -37,12 +37,12 @@ describe("index.html", () => {
         // directly under <body>
         ["visualization", "conclusion", "trends"].forEach(id => expect(depths[id], id).toBe(0));
         // directly inside #visualization
-        ["dot-maps", "line-charts", "minority-view"].forEach(id => expect(depths[id], id).toBe(1));
+        ["ratio-summary", "minority-ratio-summary", "dot-maps", "line-charts", "minority-view"].forEach(id => expect(depths[id], id).toBe(1));
     });
 
     it("has the elements the page script looks up", () => {
         for (const id of ["agency-input", "year-select", "pop-chart", "projected-pop-chart", "no-bias-chart", "bias-chart",
-            "minority-pop-chart", "minority-stops-chart", "trend-share-chart", "trend-ratio-chart"]) {
+            "minority-pop-chart", "minority-stops-chart", "rrvw-w", "rrvw-b", "rrvw-h", "rrvw-b-detail", "rrvw-b-extra", "rrvw-b-note", "minority-ratio", "trend-share-chart", "trend-ratio-chart"]) {
             expect(html, id).toContain(`id="${id}"`);
         }
     });
